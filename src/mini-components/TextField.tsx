@@ -10,7 +10,7 @@ interface SearchFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 
-const SearchField: FC<SearchFieldProps> = ({ placeholder = "Buscar...", icon: Icon, width, ...rest }) => {
+const SearchField: FC<SearchFieldProps> = ({ placeholder = "Buscar...", icon: Icon, width}) => {
   const style = width ? { width } : undefined;
   return (
     <div className="search-field" style={style}>
@@ -19,7 +19,6 @@ const SearchField: FC<SearchFieldProps> = ({ placeholder = "Buscar...", icon: Ic
         type="text"
         placeholder={placeholder}
         className="search-input"
-        {...rest}
       />
     </div>
   );
