@@ -1,8 +1,3 @@
-export interface HeadingProps {
-  children: React.ReactNode;
-  className?: string;
-  id?: string;
-  [key: string]: unknown;
-}
+import type { BaseHeadingProps } from "../shared";
 
-export type H1Props = HeadingProps;
+export type H1Props = BaseHeadingProps;
