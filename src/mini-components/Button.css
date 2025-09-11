@@ -1,0 +1,16 @@
+/* src/mini-components/Button.css */
+.button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    color: white;
+    font-weight: 500;
+    transition: opacity 0.2s ease-in-out;
+    background-color: var(--btn-bg, #5c0a0a);
+  }
+  
+  .button:hover {
+    opacity: 0.9;
+  }
