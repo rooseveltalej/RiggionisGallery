@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  src: string;
-  alt: string;
-}
+import type { ImageProps } from './Image.interface';
 
 const Image: React.FC<ImageProps> = ({ src, alt, className, style, ...rest }) => {
   return (
