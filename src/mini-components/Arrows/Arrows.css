@@ -1,0 +1,19 @@
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.arrow:hover:not(.disabled) {
+  transform: scale(1.1);
+}
+
+.arrow.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
