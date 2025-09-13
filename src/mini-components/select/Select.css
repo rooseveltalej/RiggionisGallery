@@ -1,0 +1,102 @@
+.select-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 200px;
+}
+
+.select {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  border: 2px solid #ccc;
+  background-color: #fbfbfb;
+  font-size: 16px;
+  font-family: inherit;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  border-radius: 25px;
+}
+
+.select:hover {
+  border-color: #999;
+}
+
+.select:focus {
+  border-color: #5a1114;
+  box-shadow: 0 0 0 2px rgba(90, 17, 20, 0.25);
+}
+
+.select:disabled {
+  background-color: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: transform 0.2s;
+  width: 20px;
+  height: 10px;
+}
+
+.select-arrow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 2px;
+  background-color: #666;
+  transform: rotate(30deg);
+  transform-origin: left bottom;
+}
+
+.select-arrow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 2px;
+  background-color: #666;
+  transform: rotate(-30deg);
+  transform-origin: right bottom;
+}
+
+.select-container:hover .select-arrow::before,
+.select-container:hover .select-arrow::after {
+  background-color: #333;
+}
+
+.select:focus + .select-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.select-container.is-open .select-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.select-container.is-open .select {
+  border-color: #5a1114;
+  box-shadow: 0 0 0 2px rgba(90, 17, 20, 0.25);
+}
+
+/* Estilos para opciones en navegadores que lo soporten */
+.select option {
+  padding: 8px 16px;
+  background-color: #fbfbfb;
+  color: #333;
+}
+
+.select option:hover {
+  background-color: #f0f0f0;
+}
