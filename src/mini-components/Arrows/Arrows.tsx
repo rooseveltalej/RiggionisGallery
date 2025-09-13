@@ -9,7 +9,7 @@ const Arrows: React.FC<ArrowsProps> = ({ direction, onClick,size,color, disabled
     <button
       onClick={onClick}
       disabled={disabled}
-        className={`arrow ${isLeft ? "left" : "right"} ${disabled ? "disabled" : ""}`}
+      className={`arrow ${isLeft ? "left" : "right"} ${disabled ? "disabled" : ""}`}
       style={{
         fontSize: size,
         color: color,
