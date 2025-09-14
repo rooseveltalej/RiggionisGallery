@@ -4,6 +4,10 @@ import './Footer.css';
 
 const Footer: React.FC<FooterProps> = ({ 
   companyName = "Riggioni's Gallery",
+  artistInfo = {
+    name: "Mónica María Riggioni Esquivel",
+    title: "Bach. y Lic. en Diseño Plástico énf. Diseño Pictórico"
+  },
   year = new Date().getFullYear(),
   className,
   ...rest 
@@ -14,6 +18,10 @@ const Footer: React.FC<FooterProps> = ({
       <div className="footer-content">
         <div className="footer-section">
           <h3 className="footer-title">{companyName}</h3>
+          <div className="artist-info">
+            <p className="artist-name">{artistInfo.name}</p>
+            <p className="artist-title">{artistInfo.title}</p>
+          </div>
         </div>
         
         <div className="footer-section">
