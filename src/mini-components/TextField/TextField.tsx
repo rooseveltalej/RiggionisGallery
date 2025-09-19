@@ -5,10 +5,17 @@ import IconWrapper from "../IconWrapper/IconWrapper";
 import type { TextFieldProps } from "./TextField.interface";
 
 
-const TextField: FC<TextFieldProps> = ({ icon, width, ...props }) => {
-  const style = width ? { width } : undefined;
+const TextField: FC<TextFieldProps> = ({ 
+  icon, 
+  width, 
+  className = "",
+  ...props 
+}) => {
   return (
-    <div className="search-field" style={style}>
+    <div 
+      className={`search-field ${className ?? ""}`.trim()}
+      style={width ? { width } : undefined}
+    >
       {icon && <IconWrapper icon={icon} className="search-icon" />}
       <input
         className="search-input"
