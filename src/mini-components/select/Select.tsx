@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { SelectProps } from './Select.interface';
 import './Select.css';
 
@@ -10,36 +10,24 @@ const Select: React.FC<SelectProps> = ({
   onChange,
   ...rest 
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleStateChange = (newState: boolean, event?: any) => {
-    setIsOpen(newState);
-    if (onChange && event) onChange(event);
-  };
-
   return (
-    <div className={`select-container ${isOpen ? 'is-open' : ''}`}>
-      <select
-        className={`select ${className || ''}`}
-        style={style}
-        onFocus={() => handleStateChange(true)}
-        onBlur={() => handleStateChange(false)}
-        onChange={(e) => handleStateChange(false, e)}
-        {...rest}
-      >
-        {placeholder && (
-          <option value="" disabled>
-            {placeholder}
-          </option>
-        )}
-        {options.map(({ value, label }) => (
-          <option key={value} value={value}>
-            {label}
-          </option>
-        ))}
-      </select>
-      <div className="select-arrow"></div>
-    </div>
+    <select
+      className={`select ${className || ''}`}
+      style={style}
+      onChange={onChange}
+      {...rest}
+    >
+      {placeholder && (
+        <option value="" disabled hidden>
+          {placeholder}
+        </option>
+      )}
+      {options.map(({ value, label, disabled }) => (
+        <option key={value} value={value} disabled={disabled}>
+          {label}
+        </option>
+      ))}
+    </select>
   );
 };
 
