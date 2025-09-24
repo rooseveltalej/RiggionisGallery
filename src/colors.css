@@ -1,0 +1,24 @@
+:root {
+  /* Colores principales */
+  --primary-color: #5a1114;
+  --focus-color: #5a1114;
+
+  /* Bordes */
+  --border-color: #ccc;
+  --border-hover-color: #999;
+  --border-focus-color: var(--primary-color);
+
+  /* Texto */
+  --text-color: #0d0000;
+  --text-muted-color: #666;
+  --text-disabled-color: #999;
+  --placeholder-color: #aaa;
+
+  /* Fondos */
+  --background-color: #fbfbfb;
+  --background-disabled-color: #f5f5f5;
+  --background-hover-color: #f0f0f0;
+
+  /* Sombras */
+  --focus-shadow: 0 0 0 0.125rem rgba(90, 17, 20, 0.25);
+}
