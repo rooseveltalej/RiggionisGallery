@@ -9,10 +9,12 @@ const Footer: React.FC<FooterProps> = ({
     title: "Bach. y Lic. en Diseño Plástico énf. Diseño Pictórico"
   },
   year = new Date().getFullYear(),
+  contactContent,
+  socialContent,
+  developersContent,
   className,
   ...rest 
 }) => {
-  //NOTE: This component should be refactored to use the minicomponents that are waiting code review
   return (
     <footer className={`footer ${className || ''}`} {...rest}>
       <div className="footer-content">
@@ -26,14 +28,17 @@ const Footer: React.FC<FooterProps> = ({
         
         <div className="footer-section">
           <h3>Contacto</h3>
+          {contactContent}
         </div>
 
         <div className="footer-section">
-          <h3>Sigueme</h3>
+          <h3>Sígueme</h3>
+          {socialContent}
         </div>
 
         <div className="footer-section">
           <h3>Desarrolladores</h3>
+          {developersContent}
         </div>
       </div>
       
