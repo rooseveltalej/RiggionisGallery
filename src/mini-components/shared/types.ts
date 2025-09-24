@@ -1,6 +1,4 @@
-export interface BaseHeadingProps {
+export interface BaseHeadingProps
+  extends React.HTMLAttributes<HTMLHeadingElement> {
   children: React.ReactNode;
-  className?: string;
-  id?: string;
-  [key: string]: unknown;
 }

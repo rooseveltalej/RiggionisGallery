@@ -1,7 +1,6 @@
 import React from "react";
 import type { H1Props } from "./types";
 import { combineH1Classes, validateH1Content } from "./utils";
-import { filterValidHeadingProps } from "../shared";
 import "./H1.css";
 
 export const H1: React.FC<H1Props> = ({
@@ -12,10 +11,9 @@ export const H1: React.FC<H1Props> = ({
 }) => {
   const validatedChildren = validateH1Content(children);
   const combinedClassName = combineH1Classes(className);
-  const validProps = filterValidHeadingProps(restProps);
 
   return (
-    <h1 className={combinedClassName} id={id} {...validProps}>
+    <h1 className={combinedClassName} id={id} {...restProps}>
       {validatedChildren}
     </h1>
   );

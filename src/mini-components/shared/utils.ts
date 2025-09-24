@@ -15,16 +15,3 @@ export const validateHeadingContent = (
   if (typeof children === "string" && children.trim() === "") return fallback;
   return children;
 };
-
-export const filterValidHeadingProps = (
-  props: Record<string, unknown>
-): Record<string, unknown> => {
-  return Object.fromEntries(
-    Object.entries(props).filter(
-      ([key]) =>
-        key.startsWith("data-") ||
-        key.startsWith("aria-") ||
-        ["role", "tabIndex", "title", "lang", "dir", "hidden"].includes(key)
-    )
-  );
-};
