@@ -10,16 +10,13 @@ export const H1: React.FC<H1Props> = ({
   id,
   ...restProps
 }) => {
-  if (!validateH1Content(children)) {
-    return null;
-  }
-
+  const validatedChildren = validateH1Content(children);
   const combinedClassName = combineH1Classes(className);
   const validProps = filterValidHeadingProps(restProps);
 
   return (
     <h1 className={combinedClassName} id={id} {...validProps}>
-      {children}
+      {validatedChildren}
     </h1>
   );
 };

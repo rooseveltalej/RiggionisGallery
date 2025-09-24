@@ -10,16 +10,13 @@ export const H2: React.FC<H2Props> = ({
   id,
   ...restProps
 }) => {
-  if (!validateH2Content(children)) {
-    return null;
-  }
-
+  const validatedChildren = validateH2Content(children);
   const combinedClassName = combineH2Classes(className);
   const validProps = filterValidHeadingProps(restProps);
 
   return (
     <h2 className={combinedClassName} id={id} {...validProps}>
-      {children}
+      {validatedChildren}
     </h2>
   );
 };

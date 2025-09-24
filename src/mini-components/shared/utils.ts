@@ -1,24 +1,16 @@
+import clsx from "clsx";
+
 export const combineClasses = (
   baseClass: string,
   additionalClassName?: string
 ): string => {
-  if (!additionalClassName) {
-    return baseClass;
-  }
-
-  return `${baseClass} ${additionalClassName}`;
+  return clsx(baseClass, additionalClassName);
 };
 
-export const validateHeadingContent = (children: React.ReactNode): boolean => {
-  if (children === null || children === undefined) {
-    return false;
-  }
-
-  if (typeof children === "string" && children.trim() === "") {
-    return false;
-  }
-
-  return true;
+export const validateHeadingContent = (children: React.ReactNode, fallback = "Título"): React.ReactNode => {
+  if (children === null || children === undefined) return fallback;
+  if (typeof children === "string" && children.trim() === "") return fallback;
+  return children;
 };
 
 export const filterValidHeadingProps = (
