@@ -7,7 +7,10 @@ export const combineClasses = (
   return clsx(baseClass, additionalClassName);
 };
 
-export const validateHeadingContent = (children: React.ReactNode, fallback = "Título"): React.ReactNode => {
+export const validateHeadingContent = (
+  children: React.ReactNode,
+  fallback = "Título"
+): React.ReactNode => {
   if (children === null || children === undefined) return fallback;
   if (typeof children === "string" && children.trim() === "") return fallback;
   return children;
@@ -21,7 +24,7 @@ export const filterValidHeadingProps = (
       ([key]) =>
         key.startsWith("data-") ||
         key.startsWith("aria-") ||
-        ["role", "tabIndex", "title"].includes(key)
+        ["role", "tabIndex", "title", "lang", "dir", "hidden"].includes(key)
     )
   );
 };
