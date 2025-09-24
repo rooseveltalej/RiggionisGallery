@@ -1,3 +1,3 @@
 import type { BaseHeadingProps } from "../shared";
 
-export type H1Props = BaseHeadingProps;
+export type H2Props = BaseHeadingProps;
