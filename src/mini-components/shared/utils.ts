@@ -9,7 +9,7 @@ export const combineClasses = (
 
 export const validateHeadingContent = (
   children: React.ReactNode,
-  fallback = "Título"
+  fallback = "Tittle"
 ): React.ReactNode => {
   if (children === null || children === undefined) return fallback;
   if (typeof children === "string" && children.trim() === "") return fallback;
