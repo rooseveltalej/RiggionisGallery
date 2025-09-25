@@ -1,0 +1,27 @@
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.arrow:hover:not(.disabled) {
+  transform: scale(1.1);
+}
+
+.arrow:focus-visible  {
+  outline: 2px solid #5c0a0a;
+  outline-offset: 4px;
+}
+
+.arrow.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
