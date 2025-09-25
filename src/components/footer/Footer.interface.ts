@@ -5,12 +5,16 @@ export interface ArtistInfo {
   title: string;
 }
 
-export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
-  companyName?: string;
-  artistInfo?: ArtistInfo;
-  year?: number;
-
+// TODO: In future tickets, these sections will be required and not optional.
+export interface FooterSections {
   contactContent?: ReactNode;
   socialContent?: ReactNode;
   developersContent?: ReactNode;
+}
+
+export interface FooterProps extends HTMLAttributes<HTMLElement> {
+  companyName: string;
+  artistContent?: ReactNode;
+  year?: number;
+  sections?: FooterSections;
 }

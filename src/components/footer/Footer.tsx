@@ -1,64 +1,65 @@
 import React from 'react';
 import type { FooterProps } from './Footer.interface';
 import { H1 } from '../../mini-components/h1';
-import { H3 } from '../../mini-components/h3';
+import { H2 } from '../../mini-components/h2';
 import Paragraph from '../../mini-components/paragraph/Paragraph';
 import './Footer.css';
 
 const Footer: React.FC<FooterProps> = ({ 
   companyName = "Riggioni's Gallery",
-  artistInfo = {
-    name: "Mónica María Riggioni Esquivel",
-    title: "Bach. y Lic. en Diseño Plástico énf. Diseño Pictórico"
-  },
+  artistContent = (
+    <>
+      <Paragraph 
+        className="artist-name" 
+        color="var(--footer-text-secondary)"
+        fontWeight="600"
+      >
+        Mónica María Riggioni Esquivel
+      </Paragraph>
+      <Paragraph 
+        className="artist-title" 
+        color="var(--footer-text-muted)"
+      >
+        Bach. y Lic. en Diseño Plástico énf. Diseño Pictórico
+      </Paragraph>
+    </>
+  ),
   year = new Date().getFullYear(),
-  contactContent,
-  socialContent,
-  developersContent,
+  sections = {},
   className,
   ...rest 
 }) => {
+  const { contactContent, socialContent, developersContent } = sections;
+
   return (
     <footer className={`footer ${className || ''}`} {...rest}>
       <div className="footer-content">
         <div className="footer-section">
           <H1 className="footer-title">{companyName}</H1>
           <div className="artist-info">
-            <Paragraph 
-              className="artist-name" 
-              color="var(--gray-500)"
-              fontWeight="600"
-            >
-              {artistInfo.name}
-            </Paragraph>
-            <Paragraph 
-              className="artist-title" 
-              color="var(--gray-200)"
-            >
-              {artistInfo.title}
-            </Paragraph>
+            {artistContent}
           </div>
         </div>
         
         <div className="footer-section">
-          <H3>Contacto</H3>
+          <H2 className="footer-h2">Contacto</H2>
           {contactContent}
         </div>
 
         <div className="footer-section">
-          <H3>Sígueme</H3>
+          <H2 className="footer-h2">Sígueme</H2>
           {socialContent}
         </div>
 
         <div className="footer-section">
-          <H3>Desarrolladores</H3>
+          <H2 className="footer-h2">Desarrolladores</H2>
           {developersContent}
         </div>
       </div>
       
       <div className="footer-bottom">
         <Paragraph 
-          color="var(--gray-300)"
+          color="var(--footer-text-light)"
           fontSize="0.85rem"
         >
           &copy; {year} {companyName}. Todos los derechos reservados.
