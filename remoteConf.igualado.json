@@ -1,0 +1,232 @@
+{
+  "languages": {
+    "spanish": {
+      "general-titles": {
+        "filters": {
+          "techniques": {
+            "all": "Todas",
+            "oil": "Óleo",
+            "acrylic": "Acrílico",
+            "watercolor": "Acuarela"
+          },
+          "supports": {
+            "all": "Todos",
+            "canvas": "Lienzo",
+            "paper": "Papel",
+            "wood": "Madera"
+          },
+          "styles": {
+            "all": "Todos",
+            "realism": "Realismo",
+            "abstract": "Abstracto",
+            "impressionism": "Impresionismo",
+            "surrealism": "Surrealismo",
+            "pop-art": "Pop Art"
+          }
+        },
+        "artist-info": {
+          "name": "Nombre",
+          "phone": "Teléfono",
+          "email1": "Correo 1",
+          "email2": "Correo 2"
+        }
+      },
+      "footer": {
+        "sections": {
+          "contact": { "title": "Contacto" },
+          "social-media": { "title": "Sigueme" },
+          "developers": { "title": "Desarrolladores" }
+        },
+        "copyright": "© 2025 Riggioni's Gallery. Todos los derechos reservados."
+      },
+      "navbar": {
+        "routes": {
+          "gallery": "Galería",
+          "artist": "Artista",
+          "contact": "Contacto",
+          "quote": "Cotizar"
+        },
+        "languages": {
+          "spanish": "Español",
+          "english": "Inglés"
+        }
+      },
+      "gallery-page": { "search-placeholder": "Buscar obra..." },
+      "quote-page": {},
+      "artist-page": {
+        "main-info": {
+          "title": "Diseño Pictórico",
+          "name": "Nombre: Mónica María Reggioni Esquivel",
+          "grade": "Grado Académico: Bach. y Lic. en Diseño Plástico énf. Diseño Pictórico",
+          "send-message": "Enviar Mensaje"
+        },
+        "academic-info": {
+          "title": "Preparación Académica",
+          "degrees": {
+            "degree1": { "name": "", "institution": "", "year": "" },
+            "degree2": { "name": "", "institution": "", "year": "" },
+            "degree3": { "name": "", "institution": "", "year": "" }
+          }
+        },
+        "experience-info": {
+          "title": "Experiencia",
+          "jobs": {
+            "job1": {
+              "experience-company": "Experiencia en ",
+              "years": "(-)",
+              "description": ""
+            },
+            "job2": {
+              "experience-company": "Experiencia en ",
+              "years": "(-)",
+              "description": ""
+            },
+            "job3": {
+              "experience-company": "Experiencia en ",
+              "years": "(-)",
+              "description": ""
+            },
+            "job4": {
+              "experience-company": "Experiencia en ",
+              "years": "(-)",
+              "description": ""
+            }
+          }
+        },
+        "habilities-info": {
+          "title": "Habilidades y Herramientas",
+          "habilities": {
+            "hability1": "",
+            "hability2": "",
+            "hability3": "",
+            "hability4": "",
+            "hability5": "",
+            "hability6": ""
+          }
+        },
+        "languages-info": {
+          "title": "Idiomas",
+          "languages": { "language1": "", "language2": "" }
+        },
+        "cv-buttons": {
+          "view-cv": "Ver CV",
+          "download-cv": "Descargar CV"
+        }
+      }
+    },
+    "english": {
+      "general-titles": {
+        "filters": {
+          "techniques": {
+            "all": "All",
+            "oil": "Oil",
+            "acrylic": "Acrylic",
+            "watercolor": "Watercolor"
+          },
+          "supports": {
+            "all": "All",
+            "canvas": "Canvas",
+            "paper": "Paper",
+            "wood": "Wood"
+          },
+          "styles": {
+            "all": "All",
+            "realism": "Realism",
+            "abstract": "Abstract",
+            "impressionism": "Impressionism",
+            "surrealism": "Surrealism",
+            "pop-art": "Pop Art"
+          }
+        },
+        "artist-info": {
+          "name": "Name",
+          "phone": "Phone",
+          "email1": "Email 1",
+          "email2": "Email 2"
+        }
+      },
+      "footer": {
+        "sections": {
+          "contact": { "title": "Contact" },
+          "social-media": { "title": "Follow Me" },
+          "developers": { "title": "Developers" }
+        },
+        "copyright": "© 2025 Riggioni's Gallery. All rights reserved."
+      },
+      "navbar": {
+        "routes": {
+          "gallery": "Gallery",
+          "artist": "Artist",
+          "contact": "Contact",
+          "quote": "Quote"
+        },
+        "languages": {
+          "spanish": "Spanish",
+          "english": "English"
+        }
+      },
+      "gallery-page": { "search-placeholder": "Search artwork..." },
+      "quote-page": {},
+      "artist-page": {
+        "main-info": {
+          "title": "Pictorial Design",
+          "name": "Name: Monica Maria Reggioni Esquivel",
+          "grade": "Academic Degree: Bachelor and Lic. in Plastic Design with emphasis in Pictorial Design",
+          "send-message": "Send Message"
+        },
+        "academic-info": {
+          "title": "Academic Preparation",
+          "degrees": {
+            "degree1": { "name": "", "institution": "", "year": "" },
+            "degree2": { "name": "", "institution": "", "year": "" },
+            "degree3": { "name": "", "institution": "", "year": "" }
+          }
+        },
+        "experience-info": {
+          "title": "Experience",
+          "jobs": {
+            "job1": {
+              "experience-company": "Experience at ",
+              "years": "(-)",
+              "description": ""
+            },
+            "job2": {
+              "experience-company": "Experience at ",
+              "years": "(-)",
+              "description": ""
+            },
+            "job3": {
+              "experience-company": "Experience at ",
+              "years": "(-)",
+              "description": ""
+            },
+            "job4": {
+              "experience-company": "Experience at ",
+              "years": "(-)",
+              "description": ""
+            }
+          }
+        },
+        "habilities-info": {
+          "title": "Skills and Tools",
+          "habilities": {
+            "hability1": "",
+            "hability2": "",
+            "hability3": "",
+            "hability4": "",
+            "hability5": "",
+            "hability6": ""
+          }
+        },
+        "languages-info": {
+          "title": "Languages",
+          "languages": { "language1": "", "language2": "" }
+        },
+        "cv-buttons": {
+          "view-cv": "View CV",
+          "download-cv": "Download CV"
+        }
+      }
+    }
+  }
+}
