@@ -2,11 +2,11 @@
   width: 100%;
   max-width: 12.5rem;
   padding: 0.75rem 2.5rem 0.75rem 1rem;
-  border: 0.125rem solid var(--border-color);
-  background-color: var(--background-color);
+  border: 0.125rem solid var(--input-border);
+  background-color: var(--input-bg);
   font-size: 1rem;
   font-family: inherit;
-  color: var(--text-color);
+  color: var(--input-text);
   cursor: pointer;
   outline: none;
   appearance: none;
@@ -26,20 +26,20 @@
 }
 
 .select:focus {
-  border-color: var(--border-focus-color);
+  border-color: var(--input-border-focus);
   box-shadow: var(--focus-shadow);
 }
 
 .select:disabled {
-  background-color: var(--background-disabled-color);
-  color: var(--text-disabled-color);
+  background-color: var(--input-disabled-bg);
+  color: var(--input-disabled-text);
   cursor: not-allowed;
 }
 
 .select option {
   padding: 0.5rem 1rem;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--input-bg);
+  color: var(--input-text);
 }
 
 .select option:hover {
@@ -47,6 +47,6 @@
 }
 
 .select option:disabled {
-  color: var(--text-disabled-color);
-  background-color: var(--background-disabled-color);
+  color: var(--input-disabled-text);
+  background-color: var(--input-disabled-bg);
 }
