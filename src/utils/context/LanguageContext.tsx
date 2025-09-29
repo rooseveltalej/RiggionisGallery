@@ -1,57 +1,97 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { fetchRemoteConfig } from "../../firebase/remoteConfig";
+import type { 
+  RemoteConfigCache, 
+  LanguageContextProps, 
+  LanguageProviderProps 
+} from "./LanguageContext.interface";
 
-export type Languages = Record<string, Record<string, string>>;
+export const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
 
-interface LanguageContextProps {
-  language: string;
-  setLanguage: (lang: string) => void;
-  t: (key: string) => string;
-  availableLanguages: string[];
-  loading: boolean;
-}
+const CACHE_KEY = "remoteconfig_cache";
+const CACHE_DURATION = 86400000; // 24 horas en milisegundos
 
-const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
-
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [languages, setLanguages] = useState<Languages>({});
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+  const [allLanguages, setAllLanguages] = useState<any>({});
   const [language, setLanguage] = useState("spanish");
   const [loading, setLoading] = useState(true);
 
+  const getCachedData = (): any | null => {
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (!cached) return null;
+
+      const parsedCache: RemoteConfigCache = JSON.parse(cached);
+      const now = Date.now();
+
+      if (now - parsedCache.timestamp < CACHE_DURATION) {
+        return parsedCache.data;
+      } else {
+        localStorage.removeItem(CACHE_KEY);
+        return null;
+      }
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const setCachedData = (data: any) => {
+    try {
+      const cacheData: RemoteConfigCache = {
+        data,
+        timestamp: Date.now()
+      };
+      localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+    } catch (error) {
+      // Error silencioso
+    }
+  };
+
   useEffect(() => {
-    fetchRemoteConfig().then((data) => {
-      if (data && typeof data === "object") setLanguages(data as Languages);
-      setLoading(false);
-    });
+    const loadData = async () => {
+      const cachedData = getCachedData();
+      
+      if (cachedData) {
+        setAllLanguages(cachedData);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const data = await fetchRemoteConfig();
+        
+        if (data && typeof data === "object") {
+          setAllLanguages(data);
+          setCachedData(data);
+        }
+      } catch (error) {
+        // Error silencioso
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
   }, []);
 
-  const t = (key: string): string => {
-    const keys = key.split(".");
-    let value: any = languages[language];
-    for (const k of keys) {
-      if (value && typeof value === "object" && k in value) {
-        value = value[k];
-      } else {
-        return key;
-      }
-    }
-    return typeof value === "string" ? value : key;
-  };
-  const availableLanguages = Object.keys(languages);
+  const texts = allLanguages[language] || {};
+  const availableLanguages = Object.keys(allLanguages);
 
   if (loading) {
     return <div>Loading translations...</div>;
   }
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, availableLanguages, loading }}>
+    <LanguageContext.Provider 
+      value={{ 
+        language, 
+        setLanguage, 
+        texts, 
+        availableLanguages, 
+        loading 
+      }}
+    >
       {children}
     </LanguageContext.Provider>
   );
-};
-
-export const useLanguage = () => {
-  const ctx = useContext(LanguageContext);
-  if (!ctx) throw new Error("useLanguage must be used within LanguageProvider");
-  return ctx;
 };
