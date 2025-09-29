@@ -1,5 +1,5 @@
 import './App.css';
-import Footer from './components/footer/Footer';
+import {Footer} from './components'
 import { useLanguage } from './hooks/useLanguage';
 
 function App() {
