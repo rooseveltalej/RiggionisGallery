@@ -6,63 +6,64 @@ import Paragraph from '../../mini-components/paragraph/Paragraph';
 import './Footer.css';
 
 const Footer: React.FC<FooterProps> = ({ 
-  companyName = "Riggioni's Gallery",
-  artistContent = (
-    <>
-      <Paragraph 
-        className="artist-name" 
-        color="var(--footer-text-secondary)"
-        fontWeight="600"
-      >
-        Mónica María Riggioni Esquivel
-      </Paragraph>
-      <Paragraph 
-        className="artist-title" 
-        color="var(--footer-text-muted)"
-      >
-        Bach. y Lic. en Diseño Plástico énf. Diseño Pictórico
-      </Paragraph>
-    </>
-  ),
-  year = new Date().getFullYear(),
-  sections = {},
+  generalTitles,
+  footerData,
   className,
   ...rest 
 }) => {
-  const { contactContent, socialContent, developersContent } = sections;
-
   return (
     <footer className={`footer ${className || ''}`} {...rest}>
       <div className="footer-content">
+        {/* Company and Artist Section */}
         <div className="footer-section">
-          <H1 className="footer-title">{companyName}</H1>
+          <H1 className="footer-title">
+            {generalTitles.companyName}
+          </H1>
           <div className="artist-info">
-            {artistContent}
+            <Paragraph 
+              className="artist-name" 
+              color="var(--gray-100)"
+              fontWeight="600"
+            >
+              {generalTitles.artist_info.name}
+            </Paragraph>
+            <Paragraph 
+              className="artist-title" 
+              color="var(--gray-200)"
+            >
+              {generalTitles.artist_info.grade}
+            </Paragraph>
           </div>
         </div>
         
+        {/* Contact Section */}
         <div className="footer-section">
-          <H2 className="footer-h2">Contacto</H2>
-          {contactContent}
+          <H2 className="footer-h2">
+            {footerData.sections.contact.title}
+          </H2>
         </div>
 
+        {/* Social Media Section */}
         <div className="footer-section">
-          <H2 className="footer-h2">Sígueme</H2>
-          {socialContent}
+          <H2 className="footer-h2">
+            {footerData.sections.social_media.title}
+          </H2>
         </div>
 
+        {/* Developers Section */}
         <div className="footer-section">
-          <H2 className="footer-h2">Desarrolladores</H2>
-          {developersContent}
+          <H2 className="footer-h2">
+            {footerData.sections.developers.title}
+          </H2>
         </div>
       </div>
       
       <div className="footer-bottom">
         <Paragraph 
-          color="var(--footer-text-light)"
+          color="var(--gray-300)"
           fontSize="0.85rem"
         >
-          &copy; {year} {companyName}. Todos los derechos reservados.
+          {footerData.copyright}
         </Paragraph>
       </div>
     </footer>
