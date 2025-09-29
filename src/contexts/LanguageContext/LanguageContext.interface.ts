@@ -1,14 +1,16 @@
+export interface LanguageData {
+  [languageKey: string]: Record<string, any>;
+}
+
 export interface RemoteConfigCache {
-  //NOTE: Using 'any' here because the JSON structure from remote config can change frequently.
-  data: any;
+  data: LanguageData;
   timestamp: number;
 }
 
 export interface LanguageContextProps {
   language: string;
   setLanguage: (lang: string) => void;
-  //NOTE: Using 'any' here because the JSON structure from remote config can change frequently.
-  languageStrings: any;
+  languageStrings: Record<string, any>;
   availableLanguages: string[];
   loading: boolean;
 }

@@ -3,20 +3,21 @@ import { fetchRemoteConfig } from "../../firebase/remoteConfig";
 import type { 
   RemoteConfigCache, 
   LanguageContextProps, 
-  LanguageProviderProps 
+  LanguageProviderProps,
+  LanguageData
 } from "./LanguageContext.interface";
 
 export const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
 
 const CACHE_KEY = "remoteconfig_cache";
-const CACHE_DURATION = 86400000; // 24 horas en milisegundos
+const CACHE_DURATION = 86400000; // 24 horas
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [allLanguages, setAllLanguages] = useState<any>({});
+  const [allLanguages, setAllLanguages] = useState<LanguageData>({});
   const [language, setLanguage] = useState("spanish");
   const [loading, setLoading] = useState(true);
 
-  const getCachedData = (): any | null => {
+  const getCachedData = (): LanguageData | null => {
     try {
       const cached = localStorage.getItem(CACHE_KEY);
       if (!cached) return null;
@@ -31,11 +32,12 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         return null;
       }
     } catch (error) {
+      console.error('Error reading cache:', error);
       return null;
     }
   };
 
-  const setCachedData = (data: any) => {
+  const setCachedData = (data: LanguageData) => {
     try {
       const cacheData: RemoteConfigCache = {
         data,
@@ -43,7 +45,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       };
       localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
     } catch (error) {
-      // Error silencioso
+      console.error('Error setting cache:', error);
     }
   };
 
@@ -61,11 +63,11 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         const data = await fetchRemoteConfig();
         
         if (data && typeof data === "object") {
-          setAllLanguages(data);
-          setCachedData(data);
+          setAllLanguages(data as LanguageData);
+          setCachedData(data as LanguageData);
         }
       } catch (error) {
-        // Error silencioso
+        console.error('Error fetching remote config:', error);
       } finally {
         setLoading(false);
       }
@@ -76,10 +78,6 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   const languageStrings = allLanguages[language] || {};
   const availableLanguages = Object.keys(allLanguages);
-
-  if (loading) {
-    return <div>Loading translations...</div>;
-  }
 
   return (
     <LanguageContext.Provider 
