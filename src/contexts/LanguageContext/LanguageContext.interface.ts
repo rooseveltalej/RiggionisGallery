@@ -6,7 +6,7 @@ export interface RemoteConfigCache {
 export interface LanguageContextProps {
   language: string;
   setLanguage: (lang: string) => void;
-  texts: any;
+  languageStrings: any;
   availableLanguages: string[];
   loading: boolean;
 }
