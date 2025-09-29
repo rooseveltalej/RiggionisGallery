@@ -1,8 +1,6 @@
 import React from 'react';
 import type { FooterProps } from './Footer.interface';
-import { H1 } from '../../mini-components/h1';
-import { H2 } from '../../mini-components/h2';
-import Paragraph from '../../mini-components/paragraph/Paragraph';
+import { H1, H2, Paragraph } from '../../mini-components';
 import './Footer.css';
 
 const Footer: React.FC<FooterProps> = ({ 
