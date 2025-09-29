@@ -14,6 +14,8 @@ export interface Project {
   style?: string; // Estilo artístico
   year?: number;
   dimensions?: ProjectDimensions;
+  availability?: string;  // Agotado, Disponible, Vendido
+  price?: number;           
 }
 
 export interface ProjectCardProps {
