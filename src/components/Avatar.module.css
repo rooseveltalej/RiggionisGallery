@@ -18,3 +18,14 @@
   font-size: 2.2em;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .avatar-circle {
+    width: 140px; 
+    height: 140px;
+  }
+
+  .avatar-name {
+    font-size: 1.5em;
+  }
+}
