@@ -4,22 +4,28 @@ import Avatar from "../components/Avatar";
 import ContactInfo from "../components/ContactInfo";
 import SocialLinks from "../components/SocialLinks";
 import WhatsAppButton from "../components/WhatsAppButton";
+import {
+  AVATAR_NAME,
+  AVATAR_IMAGE_URL,
+  CONTACT_PHONE,
+  CONTACT_EMAILS,
+  SOCIAL_LINKS,
+  WHATSAPP_BUTTON_TEXT,
+  WHATSAPP_ICON_SRC,
+} from "../utils/constants";
 
 const Contact: React.FC = () => {
   return (
     <div className="contact-page">
-      <Avatar name="Your Name" imageUrl="/images/avatar.jpg" />
+      <Avatar name={AVATAR_NAME} imageUrl={AVATAR_IMAGE_URL} />
       <div className="contact-info">
-        <ContactInfo phone="+1 (234) 567-8901" emails={["you@example.com"]} />
+        <ContactInfo phone={CONTACT_PHONE} emails={CONTACT_EMAILS} />
         <div className="social-links-container">
-          <SocialLinks
-            links={[
-              { iconSrc: "/icons/twitter.svg", alt: "Twitter" },
-              { iconSrc: "/icons/instagram.svg", alt: "Instagram" },
-              { iconSrc: "/icons/facebook.svg", alt: "Facebook" },
-            ]}
+          <SocialLinks links={SOCIAL_LINKS} />
+          <WhatsAppButton
+            text={WHATSAPP_BUTTON_TEXT}
+            iconSrc={WHATSAPP_ICON_SRC}
           />
-          <WhatsAppButton text="Chat on WhatsApp" iconSrc="/icons/whatsapp.svg" />
         </div>
       </div>
     </div>
