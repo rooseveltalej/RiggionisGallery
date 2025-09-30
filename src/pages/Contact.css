@@ -104,13 +104,33 @@
   border-radius: 50px;
   cursor: pointer;
   font-weight: 200;
-  
 }
 
 @media (max-width: 768px) {
   .contact-page {
     flex-direction: column;
-    gap: 40px; /* Reducir la separación en pantallas pequeñas */
+    gap: 20px; /* Reducir la separación en pantallas pequeñas */
+    padding: 20px; /* Agregar padding para mejor visualización */
+    overflow-x: hidden; /* Evitar que el contenido se salga horizontalmente */
+  }
+
+  .avatar {
+    align-items: center;
+    margin-top: 120px; /* Incrementar aún más el margen superior para evitar que el círculo se corte */
+  }
+
+  .contact-info {
+    text-align: center; /* Centrar el texto en pantallas pequeñas */
+  }
+
+  .avatar-circle {
+    width: 140px; /* Ajustar el tamaño del círculo del avatar */
+    height: 140px;
+  }
+
+  .social-links {
+    flex-wrap: wrap; /* Permitir que las redes sociales se ajusten */
+    justify-content: center; /* Centrar las redes sociales */
   }
 
   .social-links-container {
@@ -120,11 +140,6 @@
   }
 
   .whatsapp-button {
-    margin-left: 0; /* Eliminar margen izquierdo en pantallas pequeñas */
-  }
-
-  .avatar-circle {
-    width: 200px;
-    height: 200px;
+    width: 100%; /* Hacer que el botón ocupe todo el ancho */
   }
 }
