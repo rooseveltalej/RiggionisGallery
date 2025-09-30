@@ -87,6 +87,7 @@
   gap: 20px; /* Ajustar la separación entre los enlaces sociales */
   margin-top: 10px;
   align-items: center; /* Alinear verticalmente con el botón de WhatsApp */
+  flex-wrap: wrap; /* Permitir que las redes sociales se ajusten si es necesario */
 }
 
 .icon {
@@ -117,7 +118,7 @@
 
   .avatar {
     align-items: center;
-    margin-top: 120px; /* Incrementar aún más el margen superior para evitar que el círculo se corte */
+    margin-top: 200px; /* Incrementar aún más el margen superior para evitar que el círculo se corte */
   }
 
   .contact-info {
@@ -132,12 +133,14 @@
   .social-links {
     flex-wrap: wrap; /* Permitir que las redes sociales se ajusten */
     justify-content: center; /* Centrar las redes sociales */
+    gap: 60px; /* Ajustar la separación entre los enlaces sociales */
   }
 
   .social-links-container {
     flex-direction: column;
     align-items: center;
     gap: 15px; /* Ajustar la separación vertical */
+    margin-top: 40px; /* Reducir la separación encima de la sección de social links */
   }
 
   .whatsapp-button {
