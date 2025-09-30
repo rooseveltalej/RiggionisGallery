@@ -4,6 +4,7 @@ import { H1 } from "../mini-components/h1/H1";
 import { H2 } from "../mini-components/h2/H2";
 import { H3 } from "../mini-components/h3/H3";
 import IconWrapper from "../mini-components/IconWrapper/IconWrapper";
+import Button from "../mini-components/Button/Button";
 
 const Contact: React.FC = () => {
   return (
@@ -37,10 +38,11 @@ const Contact: React.FC = () => {
             <IconWrapper icon={() => <span>🔗</span>} />
           </div>
 
-          <button className="whatsapp-button">
-            <IconWrapper icon={() => <span>💬</span>} />
-            Enviar mensaje
-          </button>
+          <Button
+            className="whatsapp-button"
+            text="Enviar mensaje"
+            icon={<span>💬</span>}
+          />
         </div>
       </div>
     </div>
