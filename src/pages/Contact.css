@@ -38,7 +38,8 @@
 
 .contact-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* Alinear label y value al inicio */
+  gap: 100px; /* Agregar espacio entre el label y el value */
   align-items: center;
   margin: 15px 0;
   line-height: 1.6;
@@ -51,7 +52,8 @@
 
 .contact-value {
   flex-grow: 1;
-  text-align: right;
+  text-align: left; /* Justificar los valores a la izquierda */
+  margin-left: 10px; /* Ajustar separación con el label */
 }
 
 .divider {
