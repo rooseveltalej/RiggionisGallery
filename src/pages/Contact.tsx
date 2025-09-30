@@ -33,15 +33,27 @@ const Contact: React.FC = () => {
         </div>
         <div className="social-links-container">
           <div className="social-links">
-            <IconWrapper icon={() => <span>📷</span>} />
-            <IconWrapper icon={() => <span>📘</span>} />
-            <IconWrapper icon={() => <span>🔗</span>} />
+            <IconWrapper
+              icon={() => (
+                <img src="src/assets/icons/instagram.svg" alt="Instagram" />
+              )}
+            />
+            <IconWrapper
+              icon={() => (
+                <img src="src/assets/icons/facebook.svg" alt="Facebook" />
+              )}
+            />
+            <IconWrapper
+              icon={() => (
+                <img src="src/assets/icons/linkedin.svg" alt="LinkedIn" />
+              )}
+            />
           </div>
 
           <Button
             className="whatsapp-button"
             text="Enviar mensaje"
-            icon={<span>💬</span>}
+            icon={<img src="src/assets/icons/whatsapp.svg" alt="WhatsApp" />}
           />
         </div>
       </div>
