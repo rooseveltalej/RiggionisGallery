@@ -11,11 +11,11 @@ const Contact: React.FC = () => {
     <div className="contact-page">
       <div className="avatar">
         <div className="avatar-circle"></div>
-        <H1 className="avatar-name">Mónica Riggioni</H1>
+        <H2 className="avatar-name">Mónica Riggioni</H2>
       </div>
 
       <div className="contact-info">
-        <H2>Información de contacto</H2>
+        <H1>Información de contacto</H1>
 
         <div className="contact-item">
           <H3 className="contact-label">Teléfono:</H3>
