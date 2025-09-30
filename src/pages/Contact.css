@@ -90,3 +90,25 @@
   cursor: pointer;
   margin-left: 20px; /* Separación entre los social links y el botón */
 }
+
+@media (max-width: 768px) {
+  .contact-page {
+    flex-direction: column;
+    gap: 40px; /* Reducir la separación en pantallas pequeñas */
+  }
+
+  .social-links-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Ajustar la separación vertical */
+  }
+
+  .whatsapp-button {
+    margin-left: 0; /* Eliminar margen izquierdo en pantallas pequeñas */
+  }
+
+  .avatar-circle {
+    width: 200px;
+    height: 200px;
+  }
+}
