@@ -1,0 +1,90 @@
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  height: 100vh;
+  gap: 30px;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #000;
+  margin-bottom: 15px;
+}
+
+.avatar-name {
+  margin-top: 10px;
+  font-size: 1.2em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.contact-info {
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.contact-info h2 {
+  margin-bottom: 25px;
+  font-size: 1.5em;
+}
+
+.contact-item {
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+.contact-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.contact-value {
+  display: block;
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 25px 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 1.5em;
+}
+
+.whatsapp-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 25px;
+  background-color: #5c2d2d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 1em;
+}

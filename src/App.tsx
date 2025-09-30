@@ -1,14 +1,14 @@
-import './App.css'
-import Footer from './components/footer/Footer'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
-    <div className="app">
-      <h1>Riggioni's Gallery</h1>
-      <p>Bienvenido a nuestra galería</p>
-      <Footer />
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
