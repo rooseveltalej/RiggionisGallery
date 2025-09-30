@@ -1,0 +1,23 @@
+.contact-info {
+  text-align: left;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: flex-start;
+  gap: 100px;
+  align-items: center;
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+.contact-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.contact-value {
+  flex-grow: 1;
+  text-align: left;
+  margin-left: 10px;
+}

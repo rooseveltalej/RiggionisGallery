@@ -2,28 +2,29 @@ import React from "react";
 
 import { H1 } from "../mini-components/h1/H1";
 import { H3 } from "../mini-components/h3/H3";
+import styles from "./ContactInfo.module.css";
 
-import "../pages/Contact.css";
+type ContactInfoProps = {
+  phone: string;
+  emails: string[];
+};
 
-const ContactInfo: React.FC = () => {
+const ContactInfo: React.FC<ContactInfoProps> = ({ phone, emails }) => {
   return (
-    <div className="contact-info">
+    <div className={styles["contact-info"]}>
       <H1>Información de contacto</H1>
 
-      <div className="contact-item">
-        <H3 className="contact-label">Teléfono:</H3>
-        <H3 className="contact-value">+506 0000 0000</H3>
+      <div className={styles["contact-item"]}>
+        <H3 className={styles["contact-label"]}>Teléfono:</H3>
+        <H3 className={styles["contact-value"]}>{phone}</H3>
       </div>
 
-      <div className="contact-item">
-        <H3 className="contact-label">Correo 1:</H3>
-        <H3 className="contact-value">correo1@gmail.com</H3>
-      </div>
-
-      <div className="contact-item">
-        <H3 className="contact-label">Correo 2:</H3>
-        <H3 className="contact-value">correo2@gmail.com</H3>
-      </div>
+      {emails.map((email, index) => (
+        <div className={styles["contact-item"]} key={index}>
+          <H3 className={styles["contact-label"]}>Correo {index + 1}:</H3>
+          <H3 className={styles["contact-value"]}>{email}</H3>
+        </div>
+      ))}
     </div>
   );
 };

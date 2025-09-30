@@ -1,21 +1,20 @@
 import React from "react";
 import IconWrapper from "../mini-components/IconWrapper/IconWrapper";
-import "../pages/Contact.css";
+import styles from "./SocialLinks.module.css";
 
-const SocialLinks: React.FC = () => {
+type SocialLinksProps = {
+  links: { iconSrc: string; alt: string }[];
+};
+
+const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
   return (
-    <div className="social-links">
-      <IconWrapper
-        icon={() => (
-          <img src="src/assets/icons/instagram.svg" alt="Instagram" />
-        )}
-      />
-      <IconWrapper
-        icon={() => <img src="src/assets/icons/facebook.svg" alt="Facebook" />}
-      />
-      <IconWrapper
-        icon={() => <img src="src/assets/icons/linkedin.svg" alt="LinkedIn" />}
-      />
+    <div className={styles["social-links"]}>
+      {links.map((link, index) => (
+        <IconWrapper
+          key={index}
+          icon={() => <img src={link.iconSrc} alt={link.alt} />}
+        />
+      ))}
     </div>
   );
 };

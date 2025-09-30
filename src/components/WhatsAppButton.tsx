@@ -1,13 +1,18 @@
 import React from "react";
 import Button from "../mini-components/Button/Button";
-import "../pages/Contact.css";
+import styles from "./WhatsAppButton.module.css";
 
-const WhatsAppButton: React.FC = () => {
+type WhatsAppButtonProps = {
+  text: string;
+  iconSrc: string;
+};
+
+const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ text, iconSrc }) => {
   return (
     <Button
-      className="whatsapp-button"
-      text="Enviar mensaje"
-      icon={<img src="src/assets/icons/whatsapp.svg" alt="WhatsApp" />}
+      className={styles["whatsapp-button"]}
+      text={text}
+      icon={<img src={iconSrc} alt="WhatsApp" />}
     />
   );
 };

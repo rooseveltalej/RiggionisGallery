@@ -1,12 +1,20 @@
 import React from "react";
 import { H2 } from "../mini-components/h2/H2";
-import "../pages/Contact.css";
+import styles from "./Avatar.module.css";
 
-const Avatar: React.FC = () => {
+type AvatarProps = {
+  name: string;
+  imageUrl: string;
+};
+
+const Avatar: React.FC<AvatarProps> = ({ name, imageUrl }) => {
   return (
-    <div className="avatar">
-      <div className="avatar-circle"></div>
-      <H2 className="avatar-name">Mónica Riggioni</H2>
+    <div className={styles.avatar}>
+      <div
+        className={styles["avatar-circle"]}
+        style={{ backgroundImage: `url(${imageUrl})`, backgroundSize: "cover" }}
+      ></div>
+      <H2 className={styles["avatar-name"]}>{name}</H2>
     </div>
   );
 };
