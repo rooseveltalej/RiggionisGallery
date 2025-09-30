@@ -41,8 +41,8 @@
 }
 
 .contact-info h3 {
-  font-size: 1.5em; /* Reducir el tamaño de los H3 dentro de contact-info */
-  font-weight: 300; /* Asegurar un peso medio-alto para la fuente */
+  font-size: 1.1em; /* Reducir el tamaño de los H3 dentro de contact-info */
+  font-weight: 250; /* Asegurar un peso medio-alto para la fuente */
 }
 
 .contact-item {
