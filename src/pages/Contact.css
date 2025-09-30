@@ -14,8 +14,8 @@
 }
 
 .avatar-circle {
-  width: 250px;
-  height: 250px;
+  width: 450px;
+  height: 450px;
   border-radius: 50%;
   background-color: #000;
   margin-bottom: 35px;
@@ -71,7 +71,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 70px; /* Agregar separación encima de la sección de social links */
 }
 
 .social-links {
