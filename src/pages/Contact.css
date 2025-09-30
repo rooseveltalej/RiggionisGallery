@@ -95,6 +95,7 @@
 
 .whatsapp-button {
   display: flex;
+  justify-content: center; /* Centrar el contenido del botón */
   align-items: center;
   gap: 12px;
   padding: 5px 20px;
