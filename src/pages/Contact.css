@@ -1,10 +1,29 @@
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle {
+  border-radius: 50%;
+  background-color: #000;
+}
+
+
 .contact-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
+  gap: 220px;
   height: 100vh;
-  gap: 220px; /* Incrementar la separación horizontal */
+  padding: 0;
 }
 
 .avatar {
@@ -33,7 +52,7 @@
 }
 
 .contact-info h1 {
-  margin-bottom: 80px; /* Incrementar el espacio debajo del H1 */
+  margin-bottom: 80px;
   font-size: 3em;
   font-weight: 300;
 }
@@ -44,28 +63,26 @@
 }
 
 .contact-info h3 {
-  font-size: 1.2em; /* Reducir el tamaño de los H3 dentro de contact-info */
-  font-weight: 300; /* Asegurar un peso medio-alto para la fuente */
+  font-size: 1.2em;
+  font-weight: 300;
 }
 
 .contact-item {
   display: flex;
-  justify-content: flex-start; /* Alinear label y value al inicio */
-  gap: 100px; /* Agregar espacio entre el label y el value */
   align-items: center;
+  justify-content: flex-start;
+  gap: 100px;
   margin: 15px 0;
   line-height: 1.6;
 }
 
 .contact-label {
   font-weight: bold;
-  margin-right: 10px;
 }
 
 .contact-value {
   flex-grow: 1;
-  text-align: left; /* Justificar los valores a la izquierda */
-  margin-left: 10px; /* Ajustar separación con el label */
+  text-align: left;
 }
 
 .divider {
@@ -75,19 +92,19 @@
   margin: 25px 0;
 }
 
+/* Redes sociales */
 .social-links-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 70px; /* Agregar separación encima de la sección de social links */
+  margin-top: 70px;
 }
 
 .social-links {
   display: flex;
-  gap: 20px; /* Ajustar la separación entre los enlaces sociales */
-  margin-top: 10px;
-  align-items: center; /* Alinear verticalmente con el botón de WhatsApp */
-  flex-wrap: wrap; /* Permitir que las redes sociales se ajusten si es necesario */
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .icon {
@@ -96,7 +113,7 @@
 
 .whatsapp-button {
   display: flex;
-  justify-content: center; /* Centrar el contenido del botón */
+  justify-content: center;
   align-items: center;
   gap: 12px;
   padding: 5px 20px;
@@ -108,46 +125,48 @@
   font-weight: 200;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .contact-page {
     flex-direction: column;
-    gap: 20px; /* Reducir la separación en pantallas pequeñas */
-    padding: 20px; /* Agregar padding para mejor visualización */
-    overflow-x: hidden; /* Evitar que el contenido se salga horizontalmente */
+    gap: 20px;
+    padding: 20px;
+    overflow-x: hidden;
   }
 
   .avatar {
-    align-items: center;
-    margin-top: 200px; /* Incrementar aún más el margen superior para evitar que el círculo se corte */
-  }
-
-  .contact-info {
-    text-align: center; /* Centrar el texto en pantallas pequeñas */
+    margin-top: 200px;
   }
 
   .avatar-circle {
-    width: 140px; /* Ajustar el tamaño del círculo del avatar */
+    width: 140px;
     height: 140px;
   }
 
+  .contact-info {
+    text-align: center;
+  }
+
   .social-links {
-    flex-wrap: wrap; /* Permitir que las redes sociales se ajusten */
-    justify-content: center; /* Centrar las redes sociales */
-    gap: 60px; /* Ajustar la separación entre los enlaces sociales */
+    justify-content: center;
+    gap: 60px;
   }
 
   .social-links-container {
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* Ajustar la separación vertical */
-    margin-top: 40px; /* Reducir la separación encima de la sección de social links */
+    gap: 15px;
+    margin-top: 40px;
   }
 
   .whatsapp-button {
-    width: 100%; /* Hacer que el botón ocupe todo el ancho */
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 10px 30px; /* Aumentar el tamaño del botón en dispositivos móviles */
-    font-size: 1.2em; /* Incrementar el tamaño del texto */
+    width: 100%;
+    margin: 30px 0;
+    padding: 10px 30px;
+    font-size: 1.2em;
+  }
+
+  .icon {
+    font-size: 3em;
   }
 }
