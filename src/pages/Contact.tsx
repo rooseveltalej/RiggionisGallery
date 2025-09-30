@@ -26,16 +26,18 @@ const Contact: React.FC = () => {
           <span className="contact-label">Correo 2:</span>
           <span className="contact-value">correo2@gmail.com</span>
         </div>
-        <div className="social-links">
-          <span className="icon">📷</span>
-          <span className="icon">📘</span>
-          <span className="icon">🔗</span>
-        </div>
+        <div className="social-links-container">
+          <div className="social-links">
+            <span className="icon">📷</span>
+            <span className="icon">📘</span>
+            <span className="icon">🔗</span>
+          </div>
 
-        <button className="whatsapp-button">
-          <span className="icon">💬</span>
-          Enviar mensaje
-        </button>
+          <button className="whatsapp-button">
+            <span className="icon">💬</span>
+            Enviar mensaje
+          </button>
+        </div>
       </div>
     </div>
   );
