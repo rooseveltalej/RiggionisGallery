@@ -142,5 +142,9 @@
 
   .whatsapp-button {
     width: 100%; /* Hacer que el botón ocupe todo el ancho */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 30px; /* Aumentar el tamaño del botón en dispositivos móviles */
+    font-size: 1.2em; /* Incrementar el tamaño del texto */
   }
 }
