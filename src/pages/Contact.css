@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-weight: 200;
 }
 
 .avatar-circle {
@@ -33,6 +34,8 @@
 
 .contact-info h1 {
   margin-bottom: 80px; /* Incrementar el espacio debajo del H1 */
+  font-size: 3em;
+  font-weight: 300;
 }
 
 .contact-info h2 {
@@ -41,8 +44,8 @@
 }
 
 .contact-info h3 {
-  font-size: 1.1em; /* Reducir el tamaño de los H3 dentro de contact-info */
-  font-weight: 250; /* Asegurar un peso medio-alto para la fuente */
+  font-size: 1.2em; /* Reducir el tamaño de los H3 dentro de contact-info */
+  font-weight: 300; /* Asegurar un peso medio-alto para la fuente */
 }
 
 .contact-item {
@@ -95,7 +98,7 @@
   align-items: center;
   gap: 5px;
   padding: 10px 20px;
-  background-color: #5c2d2d;
+  background-color: #3a0a0c;
   color: #fff;
   border: none;
   border-radius: 5px;
