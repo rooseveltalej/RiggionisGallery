@@ -8,22 +8,6 @@
   padding: 60px 20px;
 }
 
-.contact-info h1 {
-  margin-bottom: 80px;
-  font-size: 3em;
-  font-weight: 300;
-}
-
-.contact-info h2 {
-  margin-bottom: 25px;
-  font-size: 1.5em;
-}
-
-.contact-info h3 {
-  font-size: 1.2em;
-  font-weight: 300;
-}
-
 .social-links-container {
   display: flex;
   justify-content: space-between;
@@ -43,12 +27,6 @@
     min-height: 100vh;
     height: 100vh;
     width: 100%;
-  }
-
-  .contact-info {
-    text-align: center;
-    width: 100%;
-    flex-shrink: 0;
   }
 
   .social-links-container {
