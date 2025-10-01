@@ -1,20 +1,4 @@
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.circle {
-  border-radius: 50%;
-  background-color: #000;
-}
-
+/* Contact Page Layout Styles */
 .contact-page {
   display: flex;
   justify-content: center;
@@ -23,29 +7,6 @@
   height: 100vh;
   padding: 0;
 }
-
-.avatar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: 200;
-}
-
-.avatar-circle {
-  width: 450px;
-  height: 450px;
-  border-radius: 50%;
-  background-color: #000;
-  margin-bottom: 35px;
-}
-
-.avatar-name {
-  margin-top: 10px;
-  font-size: 1.2em;
-  text-align: center;
-}
-
-
 
 .contact-info h1 {
   margin-bottom: 80px;
@@ -63,61 +24,11 @@
   font-weight: 300;
 }
 
-.contact-item {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 100px;
-  margin: 15px 0;
-  line-height: 1.6;
-}
-
-.contact-label {
-  font-weight: bold;
-}
-
-.contact-value {
-  flex-grow: 1;
-  text-align: left;
-}
-
-.divider {
-  width: 100%;
-  border: none;
-  border-top: 1px solid #ccc;
-  margin: 25px 0;
-}
-
 .social-links-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 70px;
-}
-
-.social-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.icon {
-  font-size: 1.5em;
-}
-
-.whatsapp-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  padding: 5px 20px;
-  background-color: #3a0a0c;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 200;
 }
 
 /* Responsive */
@@ -129,22 +40,8 @@
     overflow-x: hidden;
   }
 
-  .avatar {
-    margin-top: 200px;
-  }
-
-  .avatar-circle {
-    width: 140px;
-    height: 140px;
-  }
-
   .contact-info {
     text-align: center;
-  }
-
-  .social-links {
-    justify-content: center;
-    gap: 60px;
   }
 
   .social-links-container {
@@ -152,16 +49,5 @@
     align-items: center;
     gap: 15px;
     margin-top: 40px;
-  }
-
-  .whatsapp-button {
-    width: 100%;
-    margin: 30px 0;
-    padding: 10px 30px;
-    font-size: 1.2em;
-  }
-
-  .icon {
-    font-size: 3em;
   }
 }
