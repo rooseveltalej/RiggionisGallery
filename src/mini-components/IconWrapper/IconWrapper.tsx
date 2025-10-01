@@ -1,12 +1,12 @@
 import React, { type FC } from "react";
 import type { IconWrapperProps } from "./IconWrapper.interface";
 
-const IconWrapper: FC<IconWrapperProps> = ({
-  icon: Icon,
-  size = "24px",
-  color = "currentColor",
+const IconWrapper: FC<IconWrapperProps> = ({ 
+  icon: Icon, 
+  size = "24px", 
+  color = "currentColor", 
   className = "",
-  ...props
+  ...props 
 }) => {
   const style: React.CSSProperties = {
     width: size,
@@ -15,7 +15,7 @@ const IconWrapper: FC<IconWrapperProps> = ({
   };
 
   return (
-    <Icon
+    <Icon 
       className={`icon-wrapper ${className}`.trim()}
       style={style}
       {...props}
