@@ -1,3 +1,10 @@
-import type { BaseHeadingProps } from "../shared";
+import type React from "react";
+import type { TextSize } from "../../utils/constants/textSizes";
 
-export type H2Props = BaseHeadingProps;
+export interface H2Props extends React.HTMLAttributes<HTMLHeadingElement> {
+  children: React.ReactNode;
+  color?: React.CSSProperties["color"];
+  fontSize?: TextSize | React.CSSProperties["fontSize"];
+  fontWeight?: React.CSSProperties["fontWeight"];
+  className?: string;
+}
