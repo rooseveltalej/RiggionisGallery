@@ -25,3 +25,35 @@
   text-align: left;
   margin-left: 10px;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-info {
+    text-align: center;
+  }
+
+  .contact-item {
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    margin: 25px 0;
+  }
+
+  .contact-label {
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .contact-value {
+    margin-left: 0;
+    text-align: center;
+    word-break: break-word;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .contact-item {
+    gap: 30px;
+  }
+}
