@@ -1,7 +1,7 @@
 import React from "react";
-import IconWrapper from "../mini-components/IconWrapper/IconWrapper";
-import styles from "./SocialLinks.module.css";
-import Image from "../mini-components/Image/Image";
+import IconWrapper from "@/mini-components/IconWrapper/IconWrapper";
+import styles from "@/components/SocialLinks.module.css";
+import Image from "@/mini-components/Image/Image";
 type SocialLinksProps = {
   links: { iconSrc: string; alt: string }[];
 };
