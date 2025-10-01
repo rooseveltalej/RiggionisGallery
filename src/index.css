@@ -48,6 +48,20 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  body {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  #root {
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;

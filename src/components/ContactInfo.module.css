@@ -2,6 +2,10 @@
   text-align: left;
 }
 
+.contact-info h1 {
+  text-align: center;
+}
+
 .contact-item {
   display: flex;
   justify-content: flex-start;

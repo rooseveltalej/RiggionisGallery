@@ -6,9 +6,21 @@
   flex-wrap: wrap;
 }
 
+.social-links img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
 @media (max-width: 768px) {
   .social-links {
     justify-content: center;
-    gap: 60px;
+    gap: 30px;
+    margin-top: 20px;
+  }
+
+  .social-links img {
+    width: 40px;
+    height: 40px;
   }
 }
