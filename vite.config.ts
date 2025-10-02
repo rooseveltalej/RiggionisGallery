@@ -14,7 +14,10 @@ export default defineConfig({
       '@/styles': '/src/styles',
       '@/assets': '/src/assets',
       '@/firebase': '/src/firebase',
-      '@/i18n': '/src/i18n',
+      '@/hooks': '/src/hooks',
+      '@/context': '/src/context',
+      '@/types': '/src/types',
+      '@/constants': '/src/constants',
     },
   },
 })
