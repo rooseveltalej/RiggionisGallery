@@ -1,6 +1,6 @@
 import React from "react";
-import type { H3Props } from "./types";
-import { H3_BASE_CLASS, H3_DEFAULTS } from "./constants";
+import type { H3Props } from "./H3.interface";
+import { H3_BASE_CLASS, H3_DEFAULTS } from "../../utils/constants/textSizes";
 import "./H3.css";
 
 export const H3: React.FC<H3Props> = ({
@@ -9,6 +9,7 @@ export const H3: React.FC<H3Props> = ({
   fontSize = H3_DEFAULTS.FONT_SIZE,
   fontWeight = H3_DEFAULTS.FONT_WEIGHT,
   className = "",
+  ...rest
 }) => {
   const style: React.CSSProperties = {
     color,
@@ -17,7 +18,7 @@ export const H3: React.FC<H3Props> = ({
   };
 
   return (
-    <h3 className={`${H3_BASE_CLASS} ${className}`.trim()} style={style}>
+    <h3 className={`${H3_BASE_CLASS} ${className}`.trim()} style={style} {...rest}>
       {children}
     </h3>
   );

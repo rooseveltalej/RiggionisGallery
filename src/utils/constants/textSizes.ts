@@ -13,13 +13,29 @@ export const TEXT_SIZES = {
   LG: '1.125rem',    // 18px
 } as const;
 
-// Type para TypeScript
 export type TextSize = typeof TEXT_SIZES[keyof typeof TEXT_SIZES];
 
-// Aliases comunes para mayor legibilidad
 export const FONT_SIZES = {
   CAPTION: TEXT_SIZES.XS,
   BODY_SMALL: TEXT_SIZES.SM,
   BODY: TEXT_SIZES.BASE,
   BODY_LARGE: TEXT_SIZES.LG,
 } as const;
+
+export const H1_BASE_CLASS = "riggioni-h1";
+export const H1_DEFAULTS = {
+  FONT_SIZE: "3em",
+  FONT_WEIGHT: 300,
+};
+
+export const H2_BASE_CLASS = "riggioni-h2";
+export const H2_DEFAULTS = {
+  FONT_SIZE: "1.5em",
+  FONT_WEIGHT: 400,
+};
+
+export const H3_BASE_CLASS = "riggioni-h3";
+export const H3_DEFAULTS = {
+  FONT_SIZE: "1.2em",
+  FONT_WEIGHT: 300,
+};

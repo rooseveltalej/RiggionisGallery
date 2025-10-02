@@ -1,6 +1,6 @@
 import React from "react";
-import type { H1Props } from "./types";
-import { H1_BASE_CLASS, H1_DEFAULTS } from "./constants";
+import type { H1Props } from "./H1.interface";
+import { H1_BASE_CLASS, H1_DEFAULTS } from "../../utils/constants/textSizes";
 import "./H1.css";
 
 export const H1: React.FC<H1Props> = ({
@@ -9,6 +9,7 @@ export const H1: React.FC<H1Props> = ({
   fontSize = H1_DEFAULTS.FONT_SIZE,
   fontWeight = H1_DEFAULTS.FONT_WEIGHT,
   className = "",
+  ...rest
 }) => {
   const style: React.CSSProperties = {
     color,
@@ -17,7 +18,7 @@ export const H1: React.FC<H1Props> = ({
   };
 
   return (
-    <h1 className={`${H1_BASE_CLASS} ${className}`.trim()} style={style}>
+    <h1 className={`${H1_BASE_CLASS} ${className}`.trim()} style={style} {...rest}>
       {children}
     </h1>
   );
