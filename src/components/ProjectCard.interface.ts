@@ -1,21 +1,28 @@
 // Interfaces y tipos para ProjectCard
+export type DimensionUnit = "cm" | "in" | "m";
+
 export interface ProjectDimensions {
   width: number;
   height: number;
-  unit: string;   
+  unit: DimensionUnit;   
 }
 export interface Project {
   id: string;
   title: string;
   description?: string;
   images: string[]; // Array de URLs de imágenes para el carrusel
-  technique?: string;
-  support?: string;
-  style?: string; // Estilo artístico
+  metadata?:{
+      technique?: string;
+      support?: string;
+      style?: string; // Estilo artístico
+      dimensions?: ProjectDimensions;
+  };
   year?: number;
-  dimensions?: ProjectDimensions;
   availability?: string;  // Agotado, Disponible, Vendido
-  price?: number;           
+  price?: {           
+      amount: number;
+      currency: "USD" |"CRC"| "EUR" 
+  }; 
 }
 
 export interface ProjectCardProps {
