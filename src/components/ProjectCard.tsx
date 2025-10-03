@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from '@/mini-components/Image/Image';
 import Arrows from '@/mini-components/Arrows/Arrows';
 import Button from '@/mini-components/Button/Button';
@@ -11,6 +11,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, onViewProject, onBuyP
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(initialFavorite);
   
+  useEffect(() => {
+    setIsFavorite(initialFavorite);
+  }, [initialFavorite]);
+
     // Llamar la función externa si existe
   const handleViewProject = () => {
     if (onViewProject) {
@@ -138,13 +142,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, onViewProject, onBuyP
 
         {/* Chips de información - solo visible en hover */}
         <div className="project-card__info-chips">
-          {project.technique && (
+          {project.metadata?.technique && (
             <H3 className="project-card__chip">Técnica</H3>
           )}
-          {project.support && (
+          {project.metadata?.support && (
             <H3 className="project-card__chip">Soporte</H3>
           )}
-          {project.style && (
+          {project.metadata?.style && (
             <H3 className="project-card__chip">Estilo</H3>
           )}
         </div>
