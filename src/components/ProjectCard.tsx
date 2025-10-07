@@ -3,6 +3,7 @@ import Image from '@/mini-components/Image/Image';
 import Arrows from '@/mini-components/Arrows/Arrows';
 import Button from '@/mini-components/Button/Button';
 import { H3 } from '@/mini-components/h3/H3';
+import IconWhatsapp from '/icons/whatsapp.svg';
 import type { ProjectCardProps } from './ProjectCard.interface';
 import './ProjectCard.css';
 
@@ -127,17 +128,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, onViewProject, onBuyP
                 text="Ver proyecto"
                 onClick={handleViewProject}
                 className="project-card__button project-card__button--view"
+                aria-label={`Ir a la página de detalles de ${project.title}`}
               />
               <Button
                 text="Comprar"
                 onClick={handleBuyProject}
                 className="project-card__button project-card__button--buy"
+                aria-label={`Comprar ${project.title}`}
               />
               <Button
                 text="WhatsApp"
-                icon={<span className="project-card__whatsapp-icon">📱</span>}
+                icon={<span className="project-card__whatsapp-icon"><Image src={IconWhatsapp} alt="Logo WhatsApp" /></span>}
                 onClick={handleWhatsApp}
                 className="project-card__button project-card__button--whatsapp"
+                aria-label={`Contactar por WhatsApp sobre ${project.title}`}
               />
             </div>
           </div>
@@ -162,19 +166,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, onViewProject, onBuyP
         <H3 className="project-card__title">{project.title}</H3>
         
         {/* Ícono de favorito junto al título */}
-        <button 
-          type="button"
+        <Button 
+          text=""
           className={`project-card__favorite-btn ${isFavorite ? 'active' : ''}`} 
           onClick={handleToggleFavorite}
           aria-label={isFavorite ? "Remover de favoritos" : "Agregar a favoritos"}
-        >
-          <Image
-            key={isFavorite ? 'filled' : 'outline'}
-            src={favoriteIconSrc}
-            alt={isFavorite ? "Favorito marcado" : "Favorito no marcado"}
-            className="project-card__favorite-icon"
-          />
-        </button>
+          icon={ <Image
+                  key={isFavorite ? 'filled' : 'outline'}
+                  src={favoriteIconSrc}
+                  alt={isFavorite ? "Favorito marcado" : "Favorito no marcado"}
+                  className="project-card__favorite-icon"
+                  /> 
+                }
+        />
       </div>
     </div>
   );
