@@ -15,7 +15,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, onViewProject, onBuyP
     setIsFavorite(initialFavorite);
   }, [initialFavorite]);
 
-    // Llamar la función externa si existe
+    // Llamar la función externa
   const handleViewProject = () => {
     if (onViewProject) {
       onViewProject(project);
@@ -102,8 +102,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, onViewProject, onBuyP
         {hasMultipleImages && (
           <div className="project-card__image-indicators">
             {project.images.map((_, index) => (
-              <div
+              <Button
                 key={index}
+                text="Desplazar Imagen"
                 className={`project-card__indicator ${
                   index === currentImageIndex ? 'active' : ''
                 }`}
@@ -111,6 +112,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, onViewProject, onBuyP
                   e.stopPropagation();
                   setCurrentImageIndex(index);
                 }}
+                aria-label={`Ir a la imagen ${index + 1}`}
+                aria-pressed={index === currentImageIndex}
               />
             ))}
           </div>
@@ -143,13 +146,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, onViewProject, onBuyP
         {/* Chips de información - solo visible en hover */}
         <div className="project-card__info-chips">
           {project.metadata?.technique && (
-            <H3 className="project-card__chip">Técnica</H3>
+            <H3 className="project-card__chip">{project.metadata.technique} </H3>
           )}
           {project.metadata?.support && (
-            <H3 className="project-card__chip">Soporte</H3>
+            <H3 className="project-card__chip">{project.metadata.support} </H3>
           )}
           {project.metadata?.style && (
-            <H3 className="project-card__chip">Estilo</H3>
+            <H3 className="project-card__chip">{project.metadata.style} </H3>
           )}
         </div>
       </div>
@@ -168,7 +171,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, onViewProject, onBuyP
           <Image
             key={isFavorite ? 'filled' : 'outline'}
             src={favoriteIconSrc}
-            alt="Favorito"
+            alt={isFavorite ? "Favorito marcado" : "Favorito no marcado"}
             className="project-card__favorite-icon"
           />
         </button>
