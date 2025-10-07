@@ -1,0 +1,56 @@
+{
+    "personName": "Nombre del Artista",
+    "fullName": "Nombre Completo del Artista",
+    "title": "Especialidad o Área de Trabajo",
+    "degree": "Grado académico o formación principal",
+    "avatarUrl": "https://via.placeholder.com/200",
+    "academic": [
+      {
+        "title": "Licenciatura en Bellas Artes",
+        "institution": "Universidad Nacional de Artes Visuales",
+        "year": 2018
+      },
+      {
+        "title": "Curso de Técnicas Mixtas",
+        "institution": "Centro de Arte Contemporáneo",
+        "year": 2020
+      },
+      {
+        "title": "Diplomado en Curaduría",
+        "institution": "Escuela de Diseño y Arte Moderno",
+        "year": 2022
+      }
+    ],
+    "experience": [
+      {
+        "heading": "Docencia universitaria",
+        "years": "2021 - Presente",
+        "description": "Profesora en el área de pintura y teoría del color, enfocada en la experimentación con materiales mixtos."
+      },
+      {
+        "heading": "Exposiciones colectivas",
+        "years": "2017 - 2024",
+        "description": "Participación en más de 20 exposiciones nacionales e internacionales, explorando temas de identidad y territorio."
+      },
+      {
+        "heading": "Proyectos curatoriales",
+        "years": "2019 - 2023",
+        "description": "Curaduría de exposiciones emergentes centradas en la sostenibilidad y el arte comunitario."
+      }
+    ],
+    "skills": [
+      ["Acrílico", "Óleo", "Acuarela", "Técnica Mixta"],
+      ["Photoshop", "Illustrator", "Composición", "Teoría del Color", "Fotografía"]
+    ],
+    "languages": ["Español", "Inglés", "Francés"],
+    "cv": {
+      "viewUrl": "https://via.placeholder.com/cv.pdf",
+      "downloadUrl": "https://via.placeholder.com/cv.pdf",
+      "filename": "CV_Artista_Generico.pdf"
+    },
+    "contact": {
+      "cta": "Enviar mensaje",
+      "href": "mailto:artista@example.com"
+    }
+  }
+  
