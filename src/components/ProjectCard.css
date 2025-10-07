@@ -274,8 +274,16 @@
   height: 8px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
+  border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  padding: 0;
+  outline: none;
+}
+
+.project-card__indicator:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
 }
 
 .project-card__indicator.active {
