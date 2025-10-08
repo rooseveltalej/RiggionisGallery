@@ -1,20 +1,23 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 import { fetchRemoteConfig } from "../../firebase/remoteConfig";
 import type { 
   RemoteConfigCache, 
   LanguageContextProps, 
   LanguageProviderProps,
-  LanguageData
+  LanguageData,
 } from "./LanguageContext.interface";
 
 export const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
 
 const CACHE_KEY = "remoteconfig_cache";
+const LANGUAGE_KEY = "selected_language";
 const CACHE_DURATION = 86400000; // 24 horas
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [allLanguages, setAllLanguages] = useState<LanguageData>({});
-  const [language, setLanguage] = useState("spanish");
+  const [language, setLanguage] = useState(() => {
+    return localStorage.getItem(LANGUAGE_KEY) || "spanish";
+  });
   const [loading, setLoading] = useState(true);
 
   const getCachedData = (): LanguageData | null => {
@@ -49,6 +52,11 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     }
   };
 
+  const handleSetLanguage = (lang: string) => {
+    setLanguage(lang);
+    localStorage.setItem(LANGUAGE_KEY, lang);
+  };
+
   useEffect(() => {
     const loadData = async () => {
       const cachedData = getCachedData();
@@ -76,14 +84,14 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     loadData();
   }, []);
 
-  const languageStrings = allLanguages[language] || {};
-  const availableLanguages = Object.keys(allLanguages);
+  const languageStrings: LanguageData = useMemo(() => allLanguages[language] || {}, [allLanguages, language]);
+  const availableLanguages = useMemo(() => Object.keys(allLanguages), [allLanguages]);
 
   return (
     <LanguageContext.Provider 
       value={{ 
         language, 
-        setLanguage, 
+        setLanguage: handleSetLanguage, 
         languageStrings, 
         availableLanguages, 
         loading 

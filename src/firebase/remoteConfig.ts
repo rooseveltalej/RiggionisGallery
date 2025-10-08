@@ -1,30 +1,29 @@
+import type { LanguageData } from "@/contexts";
 import { remoteConfig } from "./config";
 import {
   fetchAndActivate,
   getValue,
 } from "firebase/remote-config";
 
-export const fetchRemoteConfig = async (): Promise<unknown | null> => {
+export const fetchRemoteConfig = async (): Promise<LanguageData | null> => {
   try {
     await fetchAndActivate(remoteConfig);
     const languagesString = getValue(remoteConfig, "languages").asString();
+    if (!languagesString) {
+      console.warn('[RemoteConfig] No languages data found');
+      return null;
+    }
+
     const parsed = JSON.parse(languagesString);
-    if (
-      parsed &&
-      typeof parsed === 'object' &&
-      Object.keys(parsed).length === 1 &&
-      parsed.languages
-    ) {
-      return parsed.languages;
+    
+    if (parsed?.languages && typeof parsed.languages === 'object') {
+      return parsed.languages as LanguageData;
     }
-    if (parsed && typeof parsed === 'object' && parsed.spanish && parsed.english) {
-      return parsed;
-    }
+    
+    console.warn('[RemoteConfig] Invalid languages structure');
     return null;
   } catch (e) {
-    if (typeof window !== 'undefined') {
-      console.error('[RemoteConfig] Error parsing languages:', e);
-    }
+    console.error('[RemoteConfig] Error parsing languages:', e);
     return null;
   }
 };

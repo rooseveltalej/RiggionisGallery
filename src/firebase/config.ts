@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getRemoteConfig } from "firebase/remote-config";
+import { getRemoteConfig, fetchAndActivate } from "firebase/remote-config";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -17,5 +17,18 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 export const remoteConfig = getRemoteConfig(app);
+
+remoteConfig.settings = {
+  minimumFetchIntervalMillis: 3600000,
+  fetchTimeoutMillis: 60000, 
+};
+
+remoteConfig.defaultConfig = {
+  languages: "{}", 
+};
+
+fetchAndActivate(remoteConfig).catch((err) =>
+  console.error("Error fetching remote config:", err)
+);
 
 export default app;
