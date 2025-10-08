@@ -1,22 +1,37 @@
 export interface GeneralTitlesForFooter {
-  companyName: string;
+  company_name: string;
   artist_info: {
-    name: string;
-    grade: string;
+    labels: {
+      name: string;
+      degree: string;
+      phone: string;
+      email1: string;
+      email2: string;
+    };
+    values: {
+      name: string;
+      degree: string;
+      phone: string;
+      email1: string;
+      email2: string;
+    };
+    social_media: {
+            instagram: string;
+            facebook: string;
+            linkedin: string;
+          }
   };
 }
 
+export interface Developer {
+  name: string;
+  linkedin: string;
+}
+
 export interface FooterData {
-  sections: {
-    contact: {
-      title: string;
-    };
-    social_media: {
-      title: string;
-    };
-    developers: {
-      title: string;
-    };
+  developers: {
+    title: string;
+    team: Developer[];
   };
   copyright: string;
 }

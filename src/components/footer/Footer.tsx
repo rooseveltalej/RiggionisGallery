@@ -1,8 +1,5 @@
 import React from 'react';
 import type { FooterProps } from './Footer.interface';
-import { H1 } from '@/mini-components';
-import { H2 } from '@/mini-components';
-import {Paragraph} from '@/mini-components';
 import './Footer.css';
 
 const Footer: React.FC<FooterProps> = ({ 
@@ -14,57 +11,30 @@ const Footer: React.FC<FooterProps> = ({
   return (
     <footer className={`footer ${className || ''}`} {...rest}>
       <div className="footer-content">
-        {/* Company and Artist Section */}
-        <div className="footer-section">
-          <H1 className="footer-title">
-            {generalTitles.companyName}
-          </H1>
-          <div className="artist-info">
-            <Paragraph 
-              className="artist-name" 
-              color="var(--gray-100)"
-              fontWeight="600"
-            >
-              {generalTitles.artist_info.name}
-            </Paragraph>
-            <Paragraph 
-              className="artist-title" 
-              color="var(--gray-200)"
-            >
-              {generalTitles.artist_info.grade}
-            </Paragraph>
+        <div className="footer-section footer-left">
+          <span className="footer-artist-name">
+            {generalTitles.artist_info.values.name}
+          </span>
+          <span className="footer-artist-email">
+            {generalTitles.artist_info.values.email1}
+          </span>
+        </div>
+        <div className="footer-section footer-center">
+          //TODO: here will be the social media icons. Implement in other ticket
+          <div className="footer-bottom-text">
+            <span className="footer-company-name">
+              {generalTitles.company_name}
+            </span>
+            <span className="footer-copyright">
+              {footerData.copyright}
+            </span>
           </div>
         </div>
-        
-        {/* Contact Section */}
-        <div className="footer-section">
-          <H2 className="footer-h2">
-            {footerData.sections.contact.title}
-          </H2>
+        <div className="footer-section footer-right">
+          <span className="footer-developers-title">
+            {footerData.developers.title}
+          </span>
         </div>
-
-        {/* Social Media Section */}
-        <div className="footer-section">
-          <H2 className="footer-h2">
-            {footerData.sections.social_media.title}
-          </H2>
-        </div>
-
-        {/* Developers Section */}
-        <div className="footer-section">
-          <H2 className="footer-h2">
-            {footerData.sections.developers.title}
-          </H2>
-        </div>
-      </div>
-      
-      <div className="footer-bottom">
-        <Paragraph 
-          color="var(--gray-300)"
-          fontSize="0.85rem"
-        >
-          {footerData.copyright}
-        </Paragraph>
       </div>
     </footer>
   );
