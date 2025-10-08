@@ -3,6 +3,7 @@
   --primary-color: #5a1114;
   --primary-color-light: #7a1a1e;
   --primary-color-dark: #3a0a0c;
+  --primary-color-extra-dark: #0f0303;
   --accent-color: #e0b973;
 
   /* Neutros */
@@ -34,9 +35,7 @@
   --background-color: #fbfbfb;
   --background-disabled-color: var(--gray-100);
   --background-hover-color: var(--gray-200);
-  --background-footer: var(--primary-color);
-  --background-footer-light: #7a1a1e;
-  --background-footer-dark: #3a0a0c;
+  --background-footer: var(--primary-color-extra-dark);
 
   /* Inputs y componentes */
   --input-bg: var(--white);
