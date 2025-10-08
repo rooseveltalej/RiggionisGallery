@@ -1,0 +1,36 @@
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-logo:hover {
+  opacity: 0.85;
+}
+
+.nav-logo:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+  border-radius: 0.25rem;
+}
+
+.nav-logo__image {
+  height: 2.5rem;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-logo__image {
+    height: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-logo__image {
+    height: 1.75rem;
+  }
+}
