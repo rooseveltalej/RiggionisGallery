@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { NavbarProps } from "./Navbar.interface";
 import NavLogo from "./NavLogo";
 import NavLink from "./NavLink";
+import { HamburgerButton } from "../../mini-components/HamburgerButton";
 import "./Navbar.css";
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -29,19 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({
       <div className="navbar__container">
         <NavLogo src={logoSrc} alt={logoAlt} linkTo="/" />
 
-        <button
-          className={`navbar__toggle ${
-            isMobileMenuOpen ? "navbar__toggle--active" : ""
-          }`}
-          onClick={toggleMobileMenu}
-          aria-expanded={isMobileMenuOpen}
-          aria-label="Menú de navegación"
-          type="button"
-        >
-          <span className="navbar__toggle-bar"></span>
-          <span className="navbar__toggle-bar"></span>
-          <span className="navbar__toggle-bar"></span>
-        </button>
+        <HamburgerButton isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
 
         <div
           className={`navbar__menu ${
