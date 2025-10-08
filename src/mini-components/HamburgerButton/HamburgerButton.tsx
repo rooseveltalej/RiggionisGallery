@@ -1,5 +1,6 @@
 import React from "react";
 import type { HamburgerButtonProps } from "./HamburgerButton.interface";
+import Button from "../Button/Button";
 import "./HamburgerButton.css";
 
 const HamburgerButton: React.FC<HamburgerButtonProps> = ({
@@ -8,20 +9,25 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({
   ariaLabel = "Menú de navegación",
   className = "",
 }) => {
+  const hamburgerIcon = (
+    <div className={`hamburger-icon ${isOpen ? "hamburger-icon--active" : ""}`}>
+      <span className="hamburger-icon__bar"></span>
+      <span className="hamburger-icon__bar"></span>
+      <span className="hamburger-icon__bar"></span>
+    </div>
+  );
+
   return (
-    <button
-      className={`hamburger-button ${
-        isOpen ? "hamburger-button--active" : ""
-      } ${className}`}
+    <Button
+      text=""
+      icon={hamburgerIcon}
       onClick={onClick}
       aria-expanded={isOpen}
       aria-label={ariaLabel}
       type="button"
-    >
-      <span className="hamburger-button__bar"></span>
-      <span className="hamburger-button__bar"></span>
-      <span className="hamburger-button__bar"></span>
-    </button>
+      className={`hamburger-button ${className}`}
+      color="transparent"
+    />
   );
 };
 

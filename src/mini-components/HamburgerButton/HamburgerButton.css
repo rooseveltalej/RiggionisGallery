@@ -1,20 +1,21 @@
 .hamburger-button {
   display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 2rem;
-  height: 2rem;
-  background: transparent;
+  padding: 0.5rem !important;
+  background: transparent !important;
   border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1001;
-  transition: transform 0.3s ease;
+  min-width: auto !important;
   grid-column: 3;
 }
 
 .hamburger-button:hover {
+  background: transparent !important;
   transform: scale(1.1);
+  box-shadow: none !important;
+}
+
+.hamburger-button:active {
+  transform: scale(1);
+  box-shadow: none !important;
 }
 
 .hamburger-button:focus-visible {
@@ -23,23 +24,33 @@
   border-radius: 0.25rem;
 }
 
-.hamburger-button__bar {
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  gap: 0.35rem;
+}
+
+.hamburger-icon__bar {
   width: 100%;
   height: 3px;
   background-color: var(--white);
   border-radius: 2px;
   transition: all 0.3s ease;
+  display: block;
 }
 
-.hamburger-button--active .hamburger-button__bar:nth-child(1) {
+.hamburger-icon--active .hamburger-icon__bar:nth-child(1) {
   transform: rotate(45deg) translateY(10px);
 }
 
-.hamburger-button--active .hamburger-button__bar:nth-child(2) {
+.hamburger-icon--active .hamburger-icon__bar:nth-child(2) {
   opacity: 0;
 }
 
-.hamburger-button--active .hamburger-button__bar:nth-child(3) {
+.hamburger-icon--active .hamburger-icon__bar:nth-child(3) {
   transform: rotate(-45deg) translateY(-10px);
 }
 
@@ -50,12 +61,12 @@
 }
 
 @media (max-width: 480px) {
-  .hamburger-button {
+  .hamburger-icon {
     width: 1.75rem;
     height: 1.75rem;
   }
 
-  .hamburger-button__bar {
+  .hamburger-icon__bar {
     height: 2.5px;
   }
 }
