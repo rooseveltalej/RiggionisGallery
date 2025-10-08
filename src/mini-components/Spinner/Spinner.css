@@ -7,15 +7,6 @@
   height: 15em;
 }
 
-.spinner-icon {
-  width: 8em;
-  height: auto;
-  image-rendering: auto;
-  -ms-interpolation-mode: bicubic;
-  position: relative;
-  z-index: 2;
-}
-
 .spinner-orbit {
   position: absolute;
   width: 100%;
