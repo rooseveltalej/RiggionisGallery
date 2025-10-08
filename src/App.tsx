@@ -1,6 +1,6 @@
 import './App.css';
-import {Footer} from './components'
-import { useLanguage } from './hooks/useLanguage';
+import { useLanguage } from '@/hooks';
+import {Footer} from '@/components';
 
 function App() {
   const { languageStrings, loading } = useLanguage();
