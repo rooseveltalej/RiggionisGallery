@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Contact from "./pages/Contact";
 import { Navbar } from "./components/navbar";
+import { PageTransition } from "./components/PageTransition";
 import type { NavItem } from "./components/navbar";
 import logoBlanco from "./assets/images/logo/Blanco - Vino.png";
 
@@ -21,37 +22,52 @@ function App() {
         logoAlt="Riggioni's Gallery"
       />
       <Routes>
-        <Route path="/contact" element={<Contact />} />
+        <Route
+          path="/contact"
+          element={
+            <PageTransition>
+              <Contact />
+            </PageTransition>
+          }
+        />
         <Route
           path="/galeria"
           element={
-            <div style={{ padding: "2rem" }}>
-              Página de Galería (próximamente)
-            </div>
+            <PageTransition>
+              <div style={{ padding: "2rem" }}>
+                Página de Galería (próximamente)
+              </div>
+            </PageTransition>
           }
         />
         <Route
           path="/artista"
           element={
-            <div style={{ padding: "2rem" }}>
-              Página del Artista (próximamente)
-            </div>
+            <PageTransition>
+              <div style={{ padding: "2rem" }}>
+                Página del Artista (próximamente)
+              </div>
+            </PageTransition>
           }
         />
         <Route
           path="/cotizar"
           element={
-            <div style={{ padding: "2rem" }}>
-              Página de Cotización (próximamente)
-            </div>
+            <PageTransition>
+              <div style={{ padding: "2rem" }}>
+                Página de Cotización (próximamente)
+              </div>
+            </PageTransition>
           }
         />
         <Route
           path="/"
           element={
-            <div style={{ padding: "2rem" }}>
-              Bienvenido a Riggioni's Gallery
-            </div>
+            <PageTransition>
+              <div style={{ padding: "2rem" }}>
+                Bienvenido a Riggioni's Gallery
+              </div>
+            </PageTransition>
           }
         />
       </Routes>
