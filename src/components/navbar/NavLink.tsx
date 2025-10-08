@@ -7,17 +7,11 @@ const NavLink: React.FC<NavLinkProps> = ({ item, onClick }) => {
   const location = useLocation();
   const isActive = location.pathname === item.path || item.isActive;
 
-  const handleClick = () => {
-    if (onClick) {
-      onClick();
-    }
-  };
-
   return (
     <Link
       to={item.path}
       className={`nav-link ${isActive ? "nav-link--active" : ""}`}
-      onClick={handleClick}
+      onClick={onClick}
       aria-current={isActive ? "page" : undefined}
     >
       {item.label}
