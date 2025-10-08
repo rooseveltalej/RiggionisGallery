@@ -33,5 +33,5 @@ export interface FooterData {
     title: string;
     team: Developer[];
   };
-  copyright: string;
+  copyright: React.ReactNode;
 }
