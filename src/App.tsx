@@ -1,6 +1,7 @@
 import './App.css';
 import { useLanguage } from '@/hooks';
 import {Footer} from '@/components';
+import { H1 } from '@/mini-components';
 
 function App() {
   const { languageStrings, loading } = useLanguage();
@@ -12,7 +13,7 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1>{languageStrings.navbar?.routes?.gallery}</h1>
+        <H1>{languageStrings.navbar?.routes?.gallery}</H1>
       </header>
 
       <main className="main-content">

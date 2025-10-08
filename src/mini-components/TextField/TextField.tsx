@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import { type FC } from "react";
 import "./TextField.css";
 import IconWrapper from "@/mini-components/IconWrapper/IconWrapper";
 import { generateId } from "@/utils/idGenerator";
@@ -26,7 +26,7 @@ const TextField: FC<TextFieldProps> = ({
     >
       {htmlFor && (
         <label htmlFor={inputId} className={CSS_CLASSES.LABEL}>
-          {title ?? DEFAULT_TEXTS.LABEL_FALLBACK} {/* todo: this need to be implemented with remote_config */}
+          {title ?? DEFAULT_TEXTS.LABEL_FALLBACK} 
         </label>
       )}
 
@@ -36,7 +36,7 @@ const TextField: FC<TextFieldProps> = ({
         id={inputId}
         className={CSS_CLASSES.INPUT}
         title={title}
-        {...props} // this includes placeholder, type, aria-label, etc.
+        {...props}
       />
     </div>
   );
