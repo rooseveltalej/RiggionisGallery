@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 import Contact from "./pages/Contact";
 import { Navbar } from "./components/navbar";
 import type { NavItem } from "./components/navbar";

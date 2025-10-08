@@ -3,6 +3,8 @@
   align-items: center;
   text-decoration: none;
   transition: opacity 0.3s ease;
+  grid-column: 1;
+  padding-left: 0.5rem;
 }
 
 .nav-logo:hover {
@@ -16,21 +18,20 @@
 }
 
 .nav-logo__image {
-  height: 2.5rem;
+  height: 7rem;
   width: auto;
   object-fit: contain;
   display: block;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .nav-logo__image {
-    height: 2rem;
+    height: 5rem;
   }
 }
 
 @media (max-width: 480px) {
   .nav-logo__image {
-    height: 1.75rem;
+    height: 4rem;
   }
 }
