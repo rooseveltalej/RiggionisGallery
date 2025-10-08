@@ -20,7 +20,7 @@ const Footer: React.FC<FooterProps> = ({
           </span>
         </div>
         <div className="footer-section footer-center">
-          //TODO: here will be the social media icons. Implement in other ticket
+          {/* TODO: here will be the social media icons. Implement in other ticket */}
           <div className="footer-bottom-text">
             <span className="footer-company-name">
               {generalTitles.company_name}
