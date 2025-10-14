@@ -21,6 +21,11 @@ export interface GeneralTitlesForFooter {
       linkedin: string;
     };
   };
+  whatsapp_messages: {
+    contact_general: string;
+    quote_request: string;
+    artist_info: string;
+    };
 }
 
 export interface Developer {
