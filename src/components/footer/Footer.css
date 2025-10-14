@@ -24,13 +24,13 @@
 }
 
 .footer-artist-name {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: var(--text-inverse);
   margin-bottom: 0.25rem;
 }
 
-.footer-artist-email {
+.footer-artist-data {
   font-size: 1rem;
   font-weight: 400;
   color: var(--text-inverse);
