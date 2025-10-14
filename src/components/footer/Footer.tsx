@@ -1,7 +1,7 @@
 import React from 'react';
 import type { FooterProps } from './Footer.interface';
 import './Footer.css';
-import IconWrapper from '../../mini-components/IconWrapper/IconWrapper';
+import {IconWrapper, WhatsAppButton} from '@/mini-components';
 
 const Footer: React.FC<FooterProps> = ({ 
   generalTitles,
@@ -22,6 +22,11 @@ const Footer: React.FC<FooterProps> = ({
           <span className="footer-artist-data">
             {generalTitles.artist_info.values.phone ?? 'Teléfono del Artista'}
           </span>
+          <WhatsAppButton
+            text="¡Enviar Mensaje!"
+            phoneNumber={generalTitles.artist_info.values.phone ?? '+50600000000'}
+            message={generalTitles.whatsapp_messages.contact_general ?? 'Mensaje de Contacto General.'}
+          />
         </div>
         <div className="footer-section footer-center">
           {/* TODO: here will be the social media icons. Implement in other ticket */}
