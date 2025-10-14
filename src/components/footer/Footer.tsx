@@ -13,12 +13,6 @@ const Footer: React.FC<FooterProps> = ({
     <footer className={`footer ${className || ''}`} {...rest}>
       <div className="footer-content">
         <div className="footer-section footer-left">
-          <span className="footer-artist-name">
-            {generalTitles.artist_info.values.name ?? 'Nombre del Artista'}
-          </span>
-          <span className="footer-artist-email">
-            {generalTitles.artist_info.values.email1 ?? 'Email del Artista'}
-          </span>
         </div>
         <div className="footer-section footer-center">
           {/* TODO: here will be the social media icons. Implement in other ticket */}
