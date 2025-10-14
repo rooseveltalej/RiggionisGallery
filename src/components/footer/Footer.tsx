@@ -16,8 +16,11 @@ const Footer: React.FC<FooterProps> = ({
           <span className="footer-artist-name">
             {generalTitles.artist_info.values.name ?? 'Nombre del Artista'}
           </span>
-          <span className="footer-artist-email">
+          <span className="footer-artist-data">
             {generalTitles.artist_info.values.email1 ?? 'Email del Artista'}
+          </span>
+          <span className="footer-artist-data">
+            {generalTitles.artist_info.values.phone ?? 'Teléfono del Artista'}
           </span>
         </div>
         <div className="footer-section footer-center">
