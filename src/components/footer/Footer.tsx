@@ -15,7 +15,7 @@ const Footer: React.FC<FooterProps> = ({
         {/* Company and Artist Section */}
         <div className="footer-section">
           <H1 className="footer-title">
-            {generalTitles.companyName}
+            {generalTitles?.companyName}
           </H1>
           <div className="artist-info">
             <Paragraph 
@@ -23,13 +23,13 @@ const Footer: React.FC<FooterProps> = ({
               color="var(--gray-100)"
               fontWeight="600"
             >
-              {generalTitles.artist_info.name}
+              {generalTitles?.artist_info?.name}
             </Paragraph>
             <Paragraph 
               className="artist-title" 
               color="var(--gray-200)"
             >
-              {generalTitles.artist_info.grade}
+              {generalTitles?.artist_info?.grade}
             </Paragraph>
           </div>
         </div>
@@ -37,21 +37,21 @@ const Footer: React.FC<FooterProps> = ({
         {/* Contact Section */}
         <div className="footer-section">
           <H2 className="footer-h2">
-            {footerData.sections.contact.title}
+            {footerData?.sections?.contact?.title}
           </H2>
         </div>
 
         {/* Social Media Section */}
         <div className="footer-section">
           <H2 className="footer-h2">
-            {footerData.sections.social_media.title}
+            {footerData?.sections?.social_media?.title}
           </H2>
         </div>
 
         {/* Developers Section */}
         <div className="footer-section">
           <H2 className="footer-h2">
-            {footerData.sections.developers.title}
+            {footerData?.sections?.developers?.title}
           </H2>
         </div>
       </div>
@@ -61,7 +61,7 @@ const Footer: React.FC<FooterProps> = ({
           color="var(--gray-300)"
           fontSize="0.85rem"
         >
-          {footerData.copyright}
+          {footerData?.copyright}
         </Paragraph>
       </div>
     </footer>
