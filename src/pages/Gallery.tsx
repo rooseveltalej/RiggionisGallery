@@ -1,51 +1,56 @@
-"use client";
+import React from 'react';
+import { ProjectCard } from '../components';
+import { H1 } from '../mini-components/h1/H1';
+import { useLanguage } from '../hooks';
+import type { Project } from '../components/projectCard/ProjectCard.interface';
+import projectsData from '../data/projects.json';
+import './Gallery.css';
 
-import { useState, useEffect } from "react";
-import {
-  ProjectGrid 
-} from "../components";
-import remoteConfigData from "../remote_config.json";
-import "./Gallery.css";
+const Gallery: React.FC = () => {
+  const { languageStrings } = useLanguage();
+  const projects: Project[] = projectsData as Project[];
 
+  const handleViewProject = (project: Project) => {
+    console.log('Ver proyecto:', project);
+    // Aquí irá la lógica para navegar a la página de detalles del proyecto
+  };
 
-// TODO: THIS CODE IS JUST FOR NOW, TO SIMULATE HOW GONNA LOOKS THE PAGE IN THE FUTURE
+  const handleBuyProject = (project: Project) => {
+    console.log('Comprar proyecto:', project);
+    // Aquí irá la lógica para el proceso de compra
+  };
 
-type LanguageKey = "spanish" | "english";
+  const handleWhatsApp = (project: Project) => {
+    console.log('Contactar por WhatsApp:', project);
+    // Aquí irá la lógica para abrir WhatsApp con el proyecto
+  };
 
-// TODO: The interfaces should be in a separate file
-interface RemoteConfigState {
-  general_titles: any;
-  gallery_titles: any;
-}
-
-const Gallery = () => {
-  const [currentLanguage] = useState<LanguageKey>("spanish");
-  const [remoteConfig, setRemoteConfig] = useState<RemoteConfigState | null>(null);
-
-  useEffect(() => {
-    // simulate fetching remote config based on language
-    const config = remoteConfigData.languages[currentLanguage];
-    setRemoteConfig({
-      general_titles: config["general-titles"],
-      gallery_titles: config["gallery-page"]
-    });
-  }, [currentLanguage]);
-
-  // if remoteConfig is not loaded, the page shows a loading message
-  if (!remoteConfig) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="text-lg">Cargando galería...</div>
-      </div>
-    );
-  }
+  const handleToggleFavorite = (project: Project) => {
+    console.log('Toggle favorito:', project);
+    // Aquí irá la lógica para manejar favoritos
+  };
 
   return (
-    <div className="gallery-page">
-      <ProjectGrid
-        general_titles={remoteConfig.general_titles}
-        gallery_titles={remoteConfig.gallery_titles}
-      />
+    <div className="gallery">
+      <div className="gallery__header">
+        <H1 className="gallery__title">{languageStrings?.gallery_page?.title}</H1>
+      </div>
+      
+      <div className="gallery__grid">
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            onViewProject={handleViewProject}
+            onBuyProject={handleBuyProject}
+            onWhatsApp={handleWhatsApp}
+            onToggleFavorite={handleToggleFavorite}
+            isFavorite={false} // Por ahora todos empiezan como no favoritos
+            className="gallery__card"
+            // Pasar textos desde remote config si es necesario
+          />
+        ))}
+      </div>
     </div>
   );
 };

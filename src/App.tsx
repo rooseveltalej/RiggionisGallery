@@ -2,6 +2,7 @@ import './App.css';
 import { useLanguage } from '@/hooks';
 import { Footer } from '@/components';
 import { Spinner } from '@/mini-components';
+import Gallery from './pages/Gallery';
 
 function App() {
   const { languageStrings, loading } = useLanguage();
@@ -21,7 +22,7 @@ function App() {
   return (
     <div className="app">
       <main className="main-content">
-
+        <Gallery />
       </main>
 
       <Footer 
