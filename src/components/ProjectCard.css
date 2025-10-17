@@ -238,9 +238,9 @@
   color: var(--projectcard-secondary-color) !important;
 }
 
-.project-card__whatsapp-icon {
-  font-size: 1rem;
-  margin-right: 0.25rem;
+/* Espaciado del ícono en el botón de WhatsApp */
+.project-card__button--whatsapp .button-icon {
+  margin-right: 0.5rem;
 }
 
 /* Chips de información - solo visible en hover */
@@ -355,6 +355,16 @@
   overflow: hidden !important;
 }
 
+/* Ocultar contenido de texto en los botones de indicador */
+.project-card__indicator span {
+  display: none !important;
+}
+
+/* Asegurar que el contenedor del ícono del botón no interfiera */
+.project-card__indicator .button-icon {
+  display: none !important;
+}
+
 .project-card__indicator:focus {
   outline: 2px solid rgba(255, 255, 255, 0.8);
   outline-offset: 2px;
@@ -456,10 +466,6 @@
     max-width: var(--projectcard-button-width) !important;
     padding: var(--projectcard-padding-button) !important;
     font-size: var(--projectcard-font-size-button) !important;
-  }
-
-  .project-card__whatsapp-icon {
-    font-size: 0.9rem;
   }
 
   /* Ajustes para chips en móviles */

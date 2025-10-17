@@ -138,7 +138,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, onViewProject, onBuyP
               />
               <Button
                 text="WhatsApp"
-                icon={<span className="project-card__whatsapp-icon"><Image src={IconWhatsapp} alt="Logo WhatsApp" /></span>}
+                icon={IconWhatsapp}
                 onClick={handleWhatsApp}
                 className="project-card__button project-card__button--whatsapp"
                 aria-label={`Contactar por WhatsApp sobre ${project.title}`}
@@ -167,17 +167,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, onViewProject, onBuyP
         
         {/* Ícono de favorito junto al título */}
         <Button 
+          key={`favorite-${isFavorite}`}
           text=""
           className={`project-card__favorite-btn ${isFavorite ? 'active' : ''}`} 
           onClick={handleToggleFavorite}
           aria-label={isFavorite ? "Remover de favoritos" : "Agregar a favoritos"}
-          icon={ <Image
-                  key={isFavorite ? 'filled' : 'outline'}
-                  src={favoriteIconSrc}
-                  alt={isFavorite ? "Favorito marcado" : "Favorito no marcado"}
-                  className="project-card__favorite-icon"
-                  /> 
-                }
+          icon={favoriteIconSrc}
         />
       </div>
     </div>
