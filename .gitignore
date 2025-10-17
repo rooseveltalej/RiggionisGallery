@@ -26,3 +26,4 @@ dist-ssr
 .env
 
 Test.tsx
+remoteConfig.json
