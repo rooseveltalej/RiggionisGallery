@@ -1,11 +1,18 @@
 // Interfaces y tipos para ProjectCard
 export type DimensionUnit = "cm" | "in" | "m";
+export type AvailabilityStatus = "Disponible" | "Vendido" | "Agotado" ;
+export type CurrencyCode = "USD" | "CRC" | "EUR";
 
 export interface ProjectDimensions {
   width: number;
   height: number;
   unit: DimensionUnit;   
 }
+export interface Price {
+  amount: number;
+  currency: CurrencyCode;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -18,11 +25,8 @@ export interface Project {
       dimensions?: ProjectDimensions;
   };
   year?: number;
-  availability?: string;  // Agotado, Disponible, Vendido
-  price?: {           
-      amount: number;
-      currency: "USD" |"CRC"| "EUR" 
-  }; 
+  availability?: AvailabilityStatus; 
+  price?: Price; 
 }
 
 export interface ProjectCardProps {
