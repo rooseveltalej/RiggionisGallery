@@ -1,8 +1,6 @@
 // Interfaces y tipos para ProjectCard
-//export type DimensionUnit = "cm" | "in" | "m";
 export type AvailabilityStatus = "Disponible" | "Vendido" | "Agotado" ;
 export type CurrencyCode = "USD" | "CRC" | "EUR";
-
 export type WeightUnit = "kg" | "g" | "lb";
 export type DimensionUnit = "cm" | "in" | "m";
 
@@ -14,7 +12,6 @@ export interface Depth {
   amount: number;
   unit: DimensionUnit;
 }
-
 export interface ProjectDimensions {
   width: number;
   height: number;
@@ -36,11 +33,11 @@ export interface Project {
   id: string;
   title: string;
   description?: string;
-  images: string[]; // Array de URLs de imágenes
+  images: string[]; // Array URLs Images
   metadata?:{
       technique?: string;
       support?: string;
-      style?: string; // Estilo artístico
+      style?: string; // Style artistic
       dimensions?: ProjectDimensions;
   };
   year?: number;
