@@ -1,6 +1,6 @@
-/* Variables CSS locales para ProjectCard */
+/* Local CSS variables for ProjectCard */
 .project-card {
-  /* Colores principales */
+  /* Main colors */
   --projectcard-primary-color: #7a1518;
   --projectcard-primary-hover: #5a1114;
   --projectcard-secondary-color: #ffffff;
@@ -8,8 +8,8 @@
   --projectcard-text-light: #666666;
   --projectcard-border-color: #e0e0e0;
   --projectcard-success-color: #20c25a;
-  
-  /* Colores de fondo */
+
+  /* Background colors */
   --projectcard-bg-white: #ffffff;
   --projectcard-bg-overlay: rgba(0, 0, 0, 0.7);
   --projectcard-bg-chip: rgba(255, 255, 255, 0.95);
@@ -26,8 +26,8 @@
   --projectcard-shadow-favorite: 0 1px 3px rgba(0, 0, 0, 0.1);
   --projectcard-shadow-favorite-hover: 0 2px 8px rgba(0, 0, 0, 0.15);
   --projectcard-shadow-focus: 0 0 0 4px rgba(90, 17, 20, 0.2);
-  
-  /* Espaciado */
+
+  /* Spacing */
   --projectcard-border-radius: 1rem;
   --projectcard-border-radius-sm: 0.5rem;
   --projectcard-border-radius-chip: 15px;
@@ -37,8 +37,8 @@
   --projectcard-gap-buttons: 0.6rem;
   --projectcard-gap-chips: 0.5rem;
   --projectcard-gap-indicators: 0.5rem;
-  
-  /* Tamaños */
+
+  /* Sizes */
   --projectcard-image-height: 300px;
   --projectcard-button-width: 120px;
   --projectcard-button-height: 40px;
@@ -46,14 +46,14 @@
   --projectcard-favorite-icon-size: 20px;
   --projectcard-indicator-size: 8px;
   --projectcard-arrow-padding: 0.5rem;
-  
-  /* Transiciones */
+
+  /* Transitions */
   --projectcard-transition-base: all 0.3s ease;
   --projectcard-transition-transform: transform 0.3s ease;
   --projectcard-transition-opacity: opacity 0.3s ease;
   --projectcard-transition-fast: transform 0.2s ease;
-  
-  /* Tipografía */
+
+  /* Typography */
   --projectcard-font-size-title: 1.2rem;
   --projectcard-font-size-button: 0.85rem;
   --projectcard-font-size-chip: 0.75rem;
@@ -87,6 +87,10 @@
   width: 100%;
   height: var(--projectcard-image-height);
   overflow: hidden;
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .project-card__image {
@@ -94,21 +98,22 @@
   height: 100%;
   object-fit: cover;
   transition: var(--projectcard-transition-transform);
+  pointer-events: none;
 }
 
 .project-card:hover .project-card__image {
   transform: scale(1.05);
 }
 
-/* Botón de favorito junto al título */
-.project-card__favorite-btn {
+/* Favorite button next to the title */
+.project-card__title-container .project-card__favorite-btn {
   position: relative;
   background: var(--projectcard-bg-favorite);
   border: 1px solid var(--projectcard-border-color);
   border-radius: 50%;
   width: var(--projectcard-favorite-size);
   height: var(--projectcard-favorite-size);
-  display: flex !important;
+  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -117,21 +122,23 @@
   flex-shrink: 0;
   box-shadow: var(--projectcard-shadow-favorite);
   pointer-events: auto;
+  padding: 0;
+  margin: 0;
 }
 
-.project-card__favorite-btn:hover {
-  background: var(--projectcard-bg-white) !important;
+.project-card__title-container .project-card__favorite-btn:hover {
+  background: var(--projectcard-bg-white);
   transform: scale(1.1);
   box-shadow: var(--projectcard-shadow-favorite-hover);
 }
 
-.project-card__favorite-btn:focus {
+.project-card__title-container .project-card__favorite-btn:focus {
   outline: none;
-  background: var(--projectcard-bg-white) !important;
+  background: var(--projectcard-bg-white);
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
 }
 
-/* Estilos para el ícono de favorito usando Image component */
+/* Styles for the favorite icon using Image component */
 .project-card__favorite-icon {
   width: var(--projectcard-favorite-icon-size);
   height: var(--projectcard-favorite-icon-size);
@@ -144,7 +151,7 @@
 }
 
 
-/* Título fuera del contenedor de imagen */
+/* Title outside the image container */
 .project-card__title-container {
   padding: var(--projectcard-padding-card);
   display: flex;
@@ -176,12 +183,28 @@
   justify-content: center;
   opacity: 0;
   transition: var(--projectcard-transition-opacity);
+  pointer-events: none; /* Does not block touch events when hidden */
+}
+
+/* Overlay visible ONLY on devices with real hover (desktop) */
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .project-card__overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Overlay visible for tap (mobile/touch) */
+.project-card__overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .project-card__overlay-content {
   text-align: center;
   width: 100%;
   padding: var(--projectcard-padding-card);
+  pointer-events: auto; /* Buttons always receive events */
 }
 
 .project-card__action-buttons {
@@ -192,58 +215,59 @@
   justify-content: center;
 }
 
-/* Estilos específicos para los botones del ProjectCard */
-.project-card__button {
-  width: var(--projectcard-button-width) !important;
-  height: var(--projectcard-button-height) !important;
-  min-width: var(--projectcard-button-width) !important;
-  max-width: var(--projectcard-button-width) !important;
-  font-size: var(--projectcard-font-size-button) !important;
-  padding: var(--projectcard-padding-button) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  box-sizing: border-box !important;
+/* Styles for the ProjectCard buttons */
+.project-card__action-buttons .project-card__button {
+  width: var(--projectcard-button-width);
+  height: var(--projectcard-button-height);
+  min-width: var(--projectcard-button-width);
+  max-width: var(--projectcard-button-width);
+  font-size: var(--projectcard-font-size-button);
+  padding: var(--projectcard-padding-button);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.project-card__button--view {
-  background-color: var(--projectcard-secondary-color) !important;
-  color: var(--projectcard-text-color) !important;
-  border: 1px solid var(--projectcard-border-color) !important;
+.project-card__action-buttons .project-card__button--view {
+  background-color: var(--projectcard-secondary-color);
+  color: var(--projectcard-text-color);
+  border: 1px solid var(--projectcard-border-color);
 }
 
-.project-card__button--view:hover {
-  background-color: var(--projectcard-text-light) !important;
-  color: var(--projectcard-bg-white) !important;
+.project-card__action-buttons .project-card__button--view:hover {
+  background-color: var(--projectcard-text-light);
+  color: var(--projectcard-bg-white);
 }
 
-.project-card__button--buy {
-  background-color: var(--projectcard-primary-color) !important;
-  color: var(--projectcard-secondary-color) !important;
+.project-card__action-buttons .project-card__button--buy {
+  background-color: var(--projectcard-primary-color);
+  color: var(--projectcard-secondary-color);
 }
 
-.project-card__button--buy:hover {
-  background-color: var(--projectcard-primary-hover) !important;
-  color: var(--projectcard-secondary-color) !important;
+.project-card__action-buttons .project-card__button--buy:hover {
+  background-color: var(--projectcard-primary-hover);
+  color: var(--projectcard-secondary-color);
 }
 
-.project-card__button--whatsapp {
-  background-color: var(--projectcard-primary-color) !important;  
-  color: var(--projectcard-secondary-color) !important;
+.project-card__action-buttons .project-card__button--whatsapp {
+  background-color: var(--projectcard-primary-color);
+  color: var(--projectcard-secondary-color);
 }
 
-.project-card__button--whatsapp:hover {
-  background-color: var(--projectcard-success-color) !important;
-  color: var(--projectcard-secondary-color) !important;
+.project-card__action-buttons .project-card__button--whatsapp:hover {
+  background-color: var(--projectcard-success-color);
+  color: var(--projectcard-secondary-color);
 }
 
-/* Espaciado del ícono en el botón de WhatsApp */
+/* Spacing for the icon in the WhatsApp button */
 .project-card__button--whatsapp .button-icon {
   margin-right: 0.5rem;
 }
 
-/* Chips de información - solo visible en hover */
+/* Information chips - only visible on hover */
 .project-card__info-chips {
   position: absolute;
   bottom: 1rem;
@@ -257,7 +281,15 @@
   justify-content: center;
 }
 
-.project-card:hover .project-card__info-chips {
+/* Show chips on hover (only on desktop) */
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .project-card__info-chips {
+    opacity: 1;
+  }
+}
+
+/* Show chips when the overlay is visible (mobile) */
+.project-card__info-chips--visible {
   opacity: 1;
 }
 
@@ -273,7 +305,7 @@
   backdrop-filter: blur(4px);
 }
 
-/* Estilos para los arrows del carrusel */
+/* Styles for the carousel arrows */
 .project-card__arrow {
   position: absolute;
   top: 50%;
@@ -281,6 +313,8 @@
   z-index: 10;
   opacity: 0;
   transition: var(--projectcard-transition-opacity);
+  /* Hide on mobile to swipe usage */
+  display: none;
 }
 
 .project-card__arrow--left {
@@ -291,8 +325,15 @@
   right: var(--projectcard-border-radius-sm);
 }
 
-.project-card:hover .project-card__arrow {
-  opacity: 1;
+/* Show arrows only on devices with hover (desktop) */
+@media (hover: hover) and (pointer: fine) {
+  .project-card__arrow {
+    display: block;
+  }
+  
+  .project-card:hover .project-card__arrow {
+    opacity: 1;
+  }
 }
 
 .project-card__arrow button {
@@ -315,7 +356,7 @@
   opacity: 0.5;
 }
 
-/* Estilos para los indicadores de imagen */
+/* Styles for the image indicators */
 .project-card__image-indicators {
   position: absolute;
   bottom: 1.5rem;
@@ -327,66 +368,72 @@
   transition: var(--projectcard-transition-opacity);
 }
 
-.project-card:hover .project-card__image-indicators {
-  opacity: 1;
+/* Show indicators on hover (desktop) */
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .project-card__image-indicators {
+    opacity: 1;
+  }
 }
 
-.project-card__indicator {
-  width: var(--projectcard-indicator-size) !important;
-  height: var(--projectcard-indicator-size) !important;
-  min-width: var(--projectcard-indicator-size) !important;
-  min-height: var(--projectcard-indicator-size) !important;
-  max-width: var(--projectcard-indicator-size) !important;
-  max-height: var(--projectcard-indicator-size) !important;
-  border-radius: 50% !important;
-  background: var(--projectcard-bg-indicator) !important;
-  border: none !important;
+/* Show indicators always on mobile (to indicate swipe is available) */
+@media (hover: none) or (pointer: coarse) {
+  .project-card__image-indicators {
+    opacity: 0.7;
+  }
+}
+
+.project-card__image-indicators .project-card__indicator {
+  width: var(--projectcard-indicator-size);
+  height: var(--projectcard-indicator-size);
+  min-width: var(--projectcard-indicator-size);
+  min-height: var(--projectcard-indicator-size);
+  max-width: var(--projectcard-indicator-size);
+  max-height: var(--projectcard-indicator-size);
+  border-radius: 50%;
+  background: var(--projectcard-bg-indicator);
+  border: none;
   cursor: pointer;
   transition: var(--projectcard-transition-base);
-  padding: 0 !important;
-  margin: 0 !important;
+  padding: 0;
+  margin: 0;
   outline: none;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 0 !important;
-  line-height: 0 !important;
-  text-indent: -9999px !important;
-  overflow: hidden !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+  overflow: hidden;
 }
 
-/* Ocultar contenido de texto en los botones de indicador */
-.project-card__indicator span {
-  display: none !important;
+/* Hide text content in indicator buttons */
+.project-card__image-indicators .project-card__indicator span {
+  display: none;
 }
 
-/* Asegurar que el contenedor del ícono del botón no interfiera */
-.project-card__indicator .button-icon {
-  display: none !important;
+/* Ensure the button icon container does not interfere */
+.project-card__image-indicators .project-card__indicator .button-icon {
+  display: none;
 }
 
-.project-card__indicator:focus {
+.project-card__image-indicators .project-card__indicator:focus {
   outline: 2px solid rgba(255, 255, 255, 0.8);
   outline-offset: 2px;
 }
 
-.project-card__indicator.active {
-  background: var(--projectcard-bg-indicator-active) !important;
+.project-card__image-indicators .project-card__indicator.active {
+  background: var(--projectcard-bg-indicator-active);
   transform: scale(1.2);
 }
 
-.project-card__indicator:hover {
-  background: rgba(255, 255, 255, 0.8) !important;
-}
-
-.project-card:hover .project-card__overlay {
-  opacity: 1;
+.project-card__image-indicators .project-card__indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
 }
 
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .project-card {
-    /* Variables móviles */
+    /* Variables mobile */
     --projectcard-image-height: 250px;
     --projectcard-padding-card: 0.75rem;
     --projectcard-font-size-title: 1rem;
@@ -416,7 +463,7 @@
     font-size: var(--projectcard-font-size-title);
   }
 
-  /* Ajustes para favorito en móviles */
+  /* Favorite settings on mobile */
   .project-card__favorite-btn {
     width: var(--projectcard-favorite-size);
     height: var(--projectcard-favorite-size);
@@ -427,48 +474,35 @@
     height: var(--projectcard-favorite-icon-size);
   }
 
-  /* Ajustes para carrusel en móviles */
-  .project-card__arrow--left {
-    left: 0.25rem;
-  }
-
-  .project-card__arrow--right {
-    right: 0.25rem;
-  }
-
-  .project-card__arrow button {
-    padding: var(--projectcard-arrow-padding);
-  }
-
   .project-card__image-indicators {
     bottom: 1rem;
     right: 0.75rem;
   }
 
-  .project-card__indicator {
-    width: var(--projectcard-indicator-size) !important;
-    height: var(--projectcard-indicator-size) !important;
-    min-width: var(--projectcard-indicator-size) !important;
-    min-height: var(--projectcard-indicator-size) !important;
-    max-width: var(--projectcard-indicator-size) !important;
-    max-height: var(--projectcard-indicator-size) !important;
+  .project-card__image-indicators .project-card__indicator {
+    width: var(--projectcard-indicator-size);
+    height: var(--projectcard-indicator-size);
+    min-width: var(--projectcard-indicator-size);
+    min-height: var(--projectcard-indicator-size);
+    max-width: var(--projectcard-indicator-size);
+    max-height: var(--projectcard-indicator-size);
   }
 
-  /* Ajustes para botones de acción en móviles */
+  /* Action button adjustments on mobile */
   .project-card__action-buttons {
     gap: var(--projectcard-gap-buttons);
   }
 
-  .project-card__button {
-    width: var(--projectcard-button-width) !important;
-    height: var(--projectcard-button-height) !important;
-    min-width: var(--projectcard-button-width) !important;
-    max-width: var(--projectcard-button-width) !important;
-    padding: var(--projectcard-padding-button) !important;
-    font-size: var(--projectcard-font-size-button) !important;
+  .project-card__action-buttons .project-card__button {
+    width: var(--projectcard-button-width);
+    height: var(--projectcard-button-height);
+    min-width: var(--projectcard-button-width);
+    max-width: var(--projectcard-button-width);
+    padding: var(--projectcard-padding-button);
+    font-size: var(--projectcard-font-size-button);
   }
 
-  /* Ajustes para chips en móviles */
+  /* Chip adjustments on mobile */
   .project-card__info-chips {
     bottom: 0.75rem;
     left: 50%;
@@ -484,7 +518,7 @@
 
 @media (min-width: 1024px) {
   .project-card {
-    /* Variables para desktop */
+    /* Variables for desktop */
     --projectcard-image-height: 280px;
     --projectcard-font-size-title: 1.5rem;
   }
@@ -501,7 +535,7 @@
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
   .project-card {
-    /* Desactivar transiciones para usuarios que prefieren movimiento reducido */
+    /* Disable transitions for users who prefer reduced motion */
     --projectcard-transition-base: none;
     --projectcard-transition-transform: none;
     --projectcard-transition-opacity: none;
@@ -537,13 +571,12 @@
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .project-card {
-    /* Variables para alto contraste */
+    /* Variables for high contrast */
     --projectcard-border-color: var(--projectcard-text-color);
     --projectcard-shadow-focus: 0 0 0 2px var(--projectcard-primary-color);
     
     border: 2px solid var(--projectcard-border-color);
   }
-
   .project-card:hover,
   .project-card:focus {
     border-color: var(--projectcard-primary-color);
