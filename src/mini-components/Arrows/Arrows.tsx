@@ -4,7 +4,6 @@ import "./Arrows.css";
 const Arrows: React.FC<ArrowsProps> = ({ direction, onClick, size, color, disabled, style, ...rest }) => {
   const isLeft = direction === "left";
   
-  // Función para obtener el tamaño del SVG basado en el prop size
   const getSvgSize = () => {
     if (typeof size === 'string') {
       switch (size) {

@@ -1,14 +1,35 @@
-import './App.css'
-import {Footer} from '@/components';
+import './App.css';
+import { useLanguage } from '@/hooks';
+import { Footer } from '@/components';
+import { Spinner } from '@/mini-components';
 
 function App() {
+  const { languageStrings, loading } = useLanguage();
+
+  if (loading) {
+    return (
+      <div className="app" style={{ justifyContent: 'center' }}>
+        <Spinner/>
+      </div>
+    );
+  }
+  
+  if (!languageStrings?.navbar || !languageStrings?.footer) {
+    return <div>Error: missing translations</div>;
+  }
+
   return (
     <div className="app">
-      <h1>Riggioni's Gallery</h1>
-      <p>Bienvenido a nuestra galería</p>
-      <Footer companyName="Riggioni's Gallery"/>
+      <main className="main-content">
+
+      </main>
+
+      <Footer 
+        generalTitles={languageStrings.general_titles}
+        footerData={languageStrings.footer}
+      />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
