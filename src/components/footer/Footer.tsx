@@ -1,6 +1,7 @@
 import React from 'react';
 import type { FooterProps } from './Footer.interface';
 import './Footer.css';
+import IconWrapper from '../../mini-components/IconWrapper/IconWrapper';
 
 const Footer: React.FC<FooterProps> = ({ 
   generalTitles,
@@ -15,8 +16,11 @@ const Footer: React.FC<FooterProps> = ({
           <span className="footer-artist-name">
             {generalTitles.artist_info.values.name ?? 'Nombre del Artista'}
           </span>
-          <span className="footer-artist-email">
+          <span className="footer-artist-data">
             {generalTitles.artist_info.values.email1 ?? 'Email del Artista'}
+          </span>
+          <span className="footer-artist-data">
+            {generalTitles.artist_info.values.phone ?? 'Teléfono del Artista'}
           </span>
         </div>
         <div className="footer-section footer-center">
@@ -31,9 +35,21 @@ const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
         <div className="footer-section footer-right">
-          <span className="footer-developers-title">
-            {footerData.developers.title ?? 'Desarrolladores'}
+          <span className="footer-developers-title arima">
+              {footerData.developers.title ?? 'Desarrolladores'}
           </span>
+            <div style={{ marginTop: '0.5rem' }} className="footer-developers-list">
+            {footerData.developers.team?.map((dev, idx) => (
+              <div key={dev.name + idx} className="footer-developer-item">
+                  <span className="footer-developer-name small-text">{dev.name}</span>
+                {dev.linkedin && dev.linkedin.trim() !== '' ? (
+                  <a href={dev.linkedin} target="_blank" rel="noopener noreferrer" className="footer-linkedin-icon">
+                      <IconWrapper icon="/icons/linkedinFooter.svg" size="1.7rem"/>
+                  </a>
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
