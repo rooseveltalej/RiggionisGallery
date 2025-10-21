@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@/mini-components/Button/Button';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface PaginationProps {
   currentPage: number;
@@ -18,6 +19,10 @@ export const Pagination: React.FC<PaginationProps> = ({
   endIndex,
   totalItems,
 }) => {
+  const { languageStrings } = useLanguage();
+
+  const backText = languageStrings?.general_titles?.buttons?.back;
+  const nextText = languageStrings?.general_titles?.buttons?.next;
   if (totalPages <= 1) {
     return null;
   }
@@ -26,7 +31,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     <>
       <div className="projects-page__pagination">
         <Button
-          text="Anterior"
+          text={backText}
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
           className="pagination-btn"
@@ -44,7 +49,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         </div>
 
         <Button
-          text="Siguiente"
+          text={nextText}
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage === totalPages}
           className="pagination-btn"
