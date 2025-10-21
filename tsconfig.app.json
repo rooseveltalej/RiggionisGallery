@@ -20,8 +20,12 @@
     "paths": {
       "@/*": ["src/*"],
       "@/components/*": ["src/components/*"],
+      "@/components": ["src/components/index.ts"],
       "@/mini-components/*": ["src/mini-components/*"],
+      "@/pages": ["src/pages/index.ts"],
       "@/pages/*": ["src/pages/*"],
+      "@/hooks": ["src/hooks/index.ts"],
+      "@/hooks/*": ["src/hooks/*"],
       "@/utils/*": ["src/utils/*"],
       "@/styles/*": ["src/styles/*"],
       "@/assets/*": ["src/assets/*"],

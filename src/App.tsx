@@ -1,8 +1,9 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useLanguage } from '@/hooks';
 import { Footer } from '@/components';
 import { Spinner } from '@/mini-components';
-import Gallery from './pages/Gallery';
+import { Gallery, ProjectsPage } from '@/pages';
 
 function App() {
   const { languageStrings, loading } = useLanguage();
@@ -20,16 +21,21 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <main className="main-content">
-        <Gallery />
-      </main>
+    <BrowserRouter>
+      <div className="app">
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Gallery />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+          </Routes>
+        </main>
 
-      <Footer 
-        generalTitles={languageStrings.general_titles}
-        footerData={languageStrings.footer}
-      />
-    </div>
+        <Footer 
+          generalTitles={languageStrings.general_titles}
+          footerData={languageStrings.footer}
+        />
+      </div>
+    </BrowserRouter>
   );
 }
 
