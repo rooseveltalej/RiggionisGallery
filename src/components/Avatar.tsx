@@ -26,9 +26,7 @@ const Avatar: React.FC<AvatarProps> = ({ name, imageUrl }) => {
         aria-label={`Foto de perfil de ${name}`}
       >
         {showFallback ? (
-          <div className={styles["avatar-fallback"]} aria-hidden="true">
-            {initials}
-          </div>
+          <div className={styles["avatar-fallback"]}>{initials}</div>
         ) : (
           <Image
             src={imageUrl}
