@@ -1,5 +1,6 @@
 import React from 'react';
 import type { FilterState, FilterOptions } from './models/projectsPage.models';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface ProjectFiltersProps {
   filters: FilterState;
@@ -12,6 +13,9 @@ export const ProjectFiltersSection: React.FC<ProjectFiltersProps> = ({
   options,
   onFilterChange,
 }) => {
+  const { languageStrings } = useLanguage();
+  
+  const filterLabels = languageStrings?.gallery_page?.filter_labels;
   return (
     <div className="projects-page__filters">
       {options.techniques.length > 0 && (
@@ -22,7 +26,7 @@ export const ProjectFiltersSection: React.FC<ProjectFiltersProps> = ({
             value={filters.technique}
             onChange={(e) => onFilterChange('technique', e.target.value)}
           >
-            <option value="">Técnica</option>
+            <option value="">{filterLabels.technique}</option>
             {options.techniques.map((technique) => (
               <option key={technique} value={technique}>
                 {technique}
@@ -40,7 +44,7 @@ export const ProjectFiltersSection: React.FC<ProjectFiltersProps> = ({
             value={filters.support}
             onChange={(e) => onFilterChange('support', e.target.value)}
           >
-            <option value="">Soporte</option>
+            <option value="">{filterLabels.support}</option>
             {options.supports.map((support) => (
               <option key={support} value={support}>
                 {support}
@@ -58,7 +62,7 @@ export const ProjectFiltersSection: React.FC<ProjectFiltersProps> = ({
             value={filters.style}
             onChange={(e) => onFilterChange('style', e.target.value)}
           >
-            <option value="">Estilo</option>
+            <option value="">{filterLabels.style}</option>
             {options.styles.map((style) => (
               <option key={style} value={style}>
                 {style}
@@ -76,7 +80,7 @@ export const ProjectFiltersSection: React.FC<ProjectFiltersProps> = ({
             value={filters.availability}
             onChange={(e) => onFilterChange('availability', e.target.value)}
           >
-            <option value="">Disponibilidad</option>
+            <option value="">{filterLabels.availability}</option>
             {options.availabilities.map((availability) => (
               <option key={availability} value={availability}>
                 {availability}

@@ -11,7 +11,7 @@ export const ProjectsHeader: React.FC<ProjectsHeaderProps> = ({ onBackClick }) =
   const { languageStrings } = useLanguage();
   
   const title = languageStrings?.gallery_page?.title;
-  const backButtonText = languageStrings?.gallery_page?.buttons?.back;
+  const backButtonText = languageStrings?.general_titles?.buttons?.back;
   console.log(backButtonText)
 
 
