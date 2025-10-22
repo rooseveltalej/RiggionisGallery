@@ -11,6 +11,33 @@
   border-radius: 50%;
   background-color: #000;
   margin-bottom: 35px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-size: 8rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  user-select: none;
 }
 
 .avatar-name {
@@ -27,6 +54,10 @@
   .avatar-circle {
     width: 140px;
     height: 140px;
+  }
+
+  .avatar-fallback {
+    font-size: 2.5rem;
   }
 
   .avatar-name {
