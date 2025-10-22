@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { H2 } from "../mini-components/h2/H2";
 import styles from "./Avatar.module.css";
+import Image from "../mini-components/Image/Image";
 
 type AvatarProps = {
   name: string;
@@ -39,7 +40,7 @@ const Avatar: React.FC<AvatarProps> = ({ name, imageUrl }) => {
             {initials}
           </div>
         ) : (
-          <img
+          <Image
             src={imageUrl}
             alt={`Foto de perfil de ${name}`}
             className={styles["avatar-image"]}
