@@ -37,7 +37,7 @@
   display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .socialLinks {
     justify-content: center;
     gap: 30px;
