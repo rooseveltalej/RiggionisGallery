@@ -11,12 +11,12 @@ export const useProjectActions = () => {
   };
 
   const handleBuyProject = (project: Project) => {
-    const phoneNumber = languageStrings?.general_titles?.artist_info?.values?.phone?.replace(/[^\d]/g, '') || '5060000000';
+    const phoneNumber = languageStrings?.general_titles?.artist_info?.values?.phone?.replace(/[^\d]/g, '');
     openProjectWhatsApp(project, phoneNumber);
   };
 
   const handleWhatsApp = (project: Project) => {
-    const phoneNumber = languageStrings?.general_titles?.artist_info?.values?.phone?.replace(/[^\d]/g, '') || '5060000000';
+    const phoneNumber = languageStrings?.general_titles?.artist_info?.values?.phone?.replace(/[^\d]/g, '');
     openProjectWhatsApp(project, phoneNumber);
   };
 
