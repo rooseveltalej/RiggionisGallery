@@ -6,6 +6,31 @@
   flex-wrap: wrap;
 }
 
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border-radius: 4px;
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.social-link:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.social-link:active {
+  transform: scale(0.95);
+}
+
 .social-links img {
   width: 24px;
   height: 24px;
