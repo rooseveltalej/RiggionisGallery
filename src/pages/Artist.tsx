@@ -1,24 +1,13 @@
 import "./Artist.css";
-import data from "./artistProfile.json"; 
-
-function safe<T>(val: T | null | undefined, fallback: T): T {
-  return val ?? fallback;
-}
+import data from "./artistProfile.json";
+import { useArtistProfile } from "../hooks/useArtistProfile";
 
 export default function App() {
-  const profile = {
-    personName: safe(data.personName, "Nombre del Artista"),
-    fullName: safe(data.fullName, "Nombre Completo del Artista"),
-    title: safe(data.title, "Especialidad"),
-    degree: safe(data.degree, "Grado académico"),
-    avatarUrl: data.avatarUrl,
-    academic: Array.isArray(data.academic) ? data.academic : [],
-    experience: Array.isArray(data.experience) ? data.experience : [],
-    skills: Array.isArray(data.skills) ? data.skills : [],
-    languages: Array.isArray(data.languages) ? data.languages : [],
-    cv: data.cv || {},
-    contact: data.contact || {},
-  };
+  const { profile, loading} = useArtistProfile({ source: data });
+
+  if (loading || !profile) {
+    return <main className="page"><p>Cargando perfil…</p></main>;
+  }
 
   return (
     <main className="page">
@@ -59,9 +48,9 @@ export default function App() {
         <div className="academic-list">
           {profile.academic.map((it, idx) => (
             <div key={idx} className="academic-item">
-              <h3>{safe(it.title, "Título")}</h3>
-              <p>{safe(it.institution, "Institución")}</p>
-              <p>{safe(it.year, "Año")}</p>
+              <h3>{it.title}</h3>
+              <p>{it.institution}</p>
+              <p>{it.year}</p>
             </div>
           ))}
         </div>
@@ -74,10 +63,9 @@ export default function App() {
           {profile.experience.map((ex, idx) => (
             <article key={idx} className="exp-item">
               <h3 className="exp-heading">
-                {safe(ex.heading, "Experiencia en …")} {" "}
-                <span className="exp-years">({safe(ex.years, "Año - Año")})</span> :
+                {ex.heading} <span className="exp-years">({ex.years})</span> :
               </h3>
-              <p className="exp-desc">{safe(ex.description, "Descripción de la experiencia…")}</p>
+              <p className="exp-desc">{ex.description}</p>
             </article>
           ))}
         </div>
