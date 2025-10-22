@@ -7,10 +7,12 @@ import { ProjectsGrid } from '../components/projectsPage/ProjectsGrid';
 import { Pagination } from '../components/projectsPage/Pagination';
 import { ProjectsHeader } from '../components/projectsPage/ProjectsHeader';
 import type { FilterState, FilterOptions } from '../components/projectsPage/models/projectsPage.models';
+import { useProjectActions } from '@/hooks';
 import './ProjectsPage.css';
 
 const ProjectsPage: React.FC = () => {
   const navigate = useNavigate();
+  const { handleViewProject, handleBuyProject, handleWhatsApp, handleToggleFavorite } = useProjectActions();
   const projects: Project[] = projectsData as Project[];
   
   const [currentPage, setCurrentPage] = useState(1);
@@ -45,23 +47,6 @@ const ProjectsPage: React.FC = () => {
   const startIndex = (currentPage - 1) * projectsPerPage;
   const endIndex = startIndex + projectsPerPage;
   const paginatedProjects = filteredProjects.slice(startIndex, endIndex);
-
-  // Handlers
-  const handleViewProject = (project: Project) => {
-    console.log('Ver proyecto:', project);
-  };
-
-  const handleBuyProject = (project: Project) => {
-    console.log('Comprar proyecto:', project);
-  };
-
-  const handleWhatsApp = (project: Project) => {
-    console.log('Contactar por WhatsApp:', project);
-  };
-
-  const handleToggleFavorite = (project: Project) => {
-    console.log('Toggle favorito:', project);
-  };
 
   const handleFilterChange = (filterType: keyof FilterState, value: string) => {
     setFilters((prev) => ({

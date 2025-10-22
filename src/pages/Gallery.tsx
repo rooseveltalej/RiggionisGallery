@@ -3,35 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { ProjectCard } from '../components';
 import { H1 } from '../mini-components/h1/H1';
 import Button from '../mini-components/Button/Button';
-import { useLanguage } from '../hooks';
+import { useLanguage, useProjectActions } from '../hooks';
 import type { Project } from '../components/projectCard/ProjectCard.interface';
 import projectsData from '../data/projects.json';
 import './Gallery.css';
 
 const Gallery: React.FC = () => {
   const { languageStrings } = useLanguage();
+  const { handleViewProject, handleBuyProject, handleWhatsApp, handleToggleFavorite } = useProjectActions();
   const navigate = useNavigate();
   const projects: Project[] = (projectsData as Project[]).slice(0, 9);
-
-  const handleViewProject = (project: Project) => {
-    console.log('Ver proyecto:', project);
-    // TODO: AQUI VA LA LÓGICA PARA NAVEGAR A LA PÁGINA DE DETALLES DEL PROYECTO
-  };
-
-  const handleBuyProject = (project: Project) => {
-    console.log('Comprar proyecto:', project);
-    // TODO: AQUI VA LA LÓGICA PARA EL PROCESO DE COMPRA
-  };
-
-  const handleWhatsApp = (project: Project) => {
-    console.log('Contactar por WhatsApp:', project);
-    // TODO: AQUI VA LA LÓGICA PARA ABRIR WHATSAPP CON EL PROYECTO
-  };
-
-  const handleToggleFavorite = (project: Project) => {
-    console.log('Toggle favorito:', project);
-    // TODO: AQUI VA LA LÓGICA PARA MANEJAR FAVORITOS
-  };
 
 
 
