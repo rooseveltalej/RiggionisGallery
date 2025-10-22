@@ -1,0 +1,43 @@
+.whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  margin: 0.75rem 0;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.1s ease;
+  background-color: #25d366;
+  color: var(--text-inverse);
+}
+
+@supports (color: color-mix(in oklab, red, black)) {
+  .whatsapp-button:hover {
+    background-color: color-mix(in oklab, #25d366, black 12%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .whatsapp-button:active {
+    background-color: color-mix(in oklab, #25d366, black 20%);
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@supports not (color: color-mix(in oklab, red, black)) {
+  .whatsapp-button:hover {
+    background-color: #1da851;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
+}
+
+.button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
