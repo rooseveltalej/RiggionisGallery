@@ -1,28 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Paragraph from "../mini-components/paragraph/Paragraph";
 import styles from "./Avatar.module.css";
 import Image from "../mini-components/Image/Image";
+import { getInitials } from "../utils/textFormatters";
 
 type AvatarProps = {
   name: string;
   imageUrl?: string;
 };
 
-/**
- * Obtiene las iniciales del nombre (máximo 2 caracteres)
- */
-const getInitials = (name: string): string => {
-  const words = name.trim().split(/\s+/);
-  if (words.length === 1) {
-    return words[0].substring(0, 2).toUpperCase();
-  }
-  return (words[0][0] + words[words.length - 1][0]).toUpperCase();
-};
-
 const Avatar: React.FC<AvatarProps> = ({ name, imageUrl }) => {
   const [imageError, setImageError] = useState(false);
   const showFallback = !imageUrl || imageError;
-  const initials = getInitials(name);
+  const initials = useMemo(() => getInitials(name), [name]);
 
   const handleImageError = () => {
     setImageError(true);
