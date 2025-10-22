@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { H2 } from "../mini-components/h2/H2";
+import Paragraph from "../mini-components/paragraph/Paragraph";
 import styles from "./Avatar.module.css";
 import Image from "../mini-components/Image/Image";
 
@@ -49,7 +49,7 @@ const Avatar: React.FC<AvatarProps> = ({ name, imageUrl }) => {
           />
         )}
       </div>
-      <H2 className={styles["avatar-name"]}>{name}</H2>
+      <Paragraph className={styles["avatar-name"]}>{name}</Paragraph>
     </div>
   );
 };
