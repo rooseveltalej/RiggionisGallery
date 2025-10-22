@@ -17,7 +17,6 @@ type SocialLinksProps = {
 };
 
 const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
-  // Filtrar enlaces inválidos (sin href)
   const validLinks = links.filter(
     (link) => link.href && link.href.trim().length > 0
   );
@@ -28,7 +27,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
 
   return (
     <nav className={styles.socialLinks} aria-label="Enlaces de redes sociales">
-      {validLinks.map((link, index) => {
+      {links.map((link, index) => {
         const isExternal =
           link.target === "_blank" || link.href.startsWith("http");
         const defaultRel = isExternal ? "noopener noreferrer" : undefined;
@@ -40,6 +39,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
             target={link.target || (isExternal ? "_blank" : "_self")}
             rel={link.rel || defaultRel}
             aria-label={link.label || link.alt}
+            title={link.label || link.alt}
             className={styles.socialLink}
           >
             <IconWrapper icon={() => <Image src={link.iconSrc} alt="" />} />
