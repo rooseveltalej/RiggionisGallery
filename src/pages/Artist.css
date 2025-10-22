@@ -50,7 +50,7 @@ body {
 }
 
 .section-hero {
-    width: 100dvw;
+    width: 100%;
     min-height: var(--hero-min-height);
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -123,7 +123,7 @@ body {
 }
 
 .section-academic {
-    width: 100dvw;
+    width: 100%;
     padding: var(--section-padding) var(--gap-sm);
     text-align: center;
     background-color: var(--color-bg);
