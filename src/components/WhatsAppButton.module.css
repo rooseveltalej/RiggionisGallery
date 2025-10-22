@@ -1,4 +1,4 @@
-.whatsapp-button {
+.whatsappButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,21 +12,21 @@
   font-weight: 200;
 }
 
-.whatsapp-button img {
+.whatsappButton img {
   width: 20px;
   height: 20px;
   display: block;
 }
 
 @media (max-width: 768px) {
-  .whatsapp-button {
+  .whatsappButton {
     width: 100%;
     margin: 30px 0;
     padding: 10px 30px;
     font-size: 1.2em;
   }
 
-  .whatsapp-button img {
+  .whatsappButton img {
     width: 28px;
     height: 28px;
   }

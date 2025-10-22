@@ -5,14 +5,40 @@ import styles from "./WhatsAppButton.module.css";
 type WhatsAppButtonProps = {
   text: string;
   iconSrc: string;
+  phoneNumber?: string;
+  message?: string;
+  ariaLabel?: string;
 };
 
-const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ text, iconSrc }) => {
+const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
+  text,
+  iconSrc,
+  phoneNumber,
+  message,
+  ariaLabel,
+}) => {
+  const handleClick = () => {
+    if (phoneNumber) {
+      const encodedMessage = message ? encodeURIComponent(message) : "";
+      const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, "")}${
+        encodedMessage ? `?text=${encodedMessage}` : ""
+      }`;
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const defaultAriaLabel = phoneNumber
+    ? `Enviar mensaje de WhatsApp a ${phoneNumber}`
+    : "Botón de WhatsApp";
+
   return (
     <Button
-      className={styles["whatsapp-button"]}
+      className={styles.whatsappButton}
       text={text}
-      icon={<img src={iconSrc} alt="WhatsApp" />}
+      icon={iconSrc}
+      onClick={handleClick}
+      aria-label={ariaLabel || defaultAriaLabel}
+      title={ariaLabel || defaultAriaLabel}
     />
   );
 };
