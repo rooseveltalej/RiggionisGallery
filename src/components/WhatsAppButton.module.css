@@ -4,8 +4,8 @@
   align-items: center;
   gap: 12px;
   padding: 5px 20px;
-  background-color: #3a0a0c;
-  color: #fff;
+  background-color: var(--primary-color-dark);
+  color: var(--white);
   border: none;
   border-radius: 50px;
   cursor: pointer;

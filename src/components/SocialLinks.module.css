@@ -22,7 +22,7 @@
 }
 
 .socialLink:focus {
-  outline: 2px solid #667eea;
+  outline: 2px solid var(--accent-secondary);
   outline-offset: 4px;
   border-radius: 4px;
 }
