@@ -27,10 +27,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
   }
 
   return (
-    <nav
-      className={styles["social-links"]}
-      aria-label="Enlaces de redes sociales"
-    >
+    <nav className={styles.socialLinks} aria-label="Enlaces de redes sociales">
       {validLinks.map((link, index) => {
         const isExternal =
           link.target === "_blank" || link.href.startsWith("http");
@@ -43,7 +40,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
             target={link.target || (isExternal ? "_blank" : "_self")}
             rel={link.rel || defaultRel}
             aria-label={link.label || link.alt}
-            className={styles["social-link"]}
+            className={styles.socialLink}
           >
             <IconWrapper icon={() => <Image src={link.iconSrc} alt="" />} />
           </a>
