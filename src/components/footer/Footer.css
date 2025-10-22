@@ -108,14 +108,11 @@
 
 .footer-developers-list {
   list-style: none;
-  margin: 0;
+  margin: 0.5rem 0 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  .small-text {
-    font-size: 0.85rem;
-  }
   align-items: flex-end;
 }
 
@@ -129,6 +126,10 @@
 
 .footer-developer-name {
   font-weight: 400;
+}
+
+.small-text {
+  font-size: 0.85rem;
 }
 
 .footer-linkedin-icon {
