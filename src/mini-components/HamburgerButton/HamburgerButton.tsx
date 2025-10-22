@@ -24,6 +24,7 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({
       onClick={onClick}
       aria-expanded={isOpen}
       aria-label={ariaLabel}
+      title={isOpen ? "Cerrar menú" : "Abrir menú"}
       type="button"
       className={`hamburger-button ${className}`}
       color="transparent"
