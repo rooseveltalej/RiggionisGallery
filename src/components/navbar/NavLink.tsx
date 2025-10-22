@@ -13,6 +13,8 @@ const NavLink: React.FC<NavLinkProps> = ({ item, onClick }) => {
       className={`nav-link ${isActive ? "nav-link--active" : ""}`}
       onClick={onClick}
       aria-current={isActive ? "page" : undefined}
+      aria-label={`Navegar a ${item.label}`}
+      title={`Ir a ${item.label}`}
     >
       {item.label}
     </Link>
