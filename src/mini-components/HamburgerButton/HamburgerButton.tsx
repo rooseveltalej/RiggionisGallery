@@ -9,18 +9,27 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({
   ariaLabel = "Menú de navegación",
   className = "",
 }) => {
-  const hamburgerIcon = (
-    <div className={`hamburger-icon ${isOpen ? "hamburger-icon--active" : ""}`}>
-      <span className="hamburger-icon__bar"></span>
-      <span className="hamburger-icon__bar"></span>
-      <span className="hamburger-icon__bar"></span>
-    </div>
+  const HamburgerIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <svg
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+      className={`hamburger-icon ${isOpen ? "hamburger-icon--active" : ""} ${props.className ?? ""}`}
+      {...props}
+    >
+      <rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor" />
+      <rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor" />
+      <rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor" />
+    </svg>
   );
 
   return (
     <Button
       text=""
-      icon={hamburgerIcon}
+      icon={HamburgerIcon}
       onClick={onClick}
       aria-expanded={isOpen}
       aria-label={ariaLabel}

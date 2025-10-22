@@ -1,20 +1,25 @@
 import React from "react";
-import type { H2Props } from "./types";
-import { combineH2Classes, validateH2Content } from "./utils";
+import type { H2Props } from "./H2.interface";
+import { H2_BASE_CLASS, H2_DEFAULTS } from "../../utils/constants/textSizes";
 import "./H2.css";
 
 export const H2: React.FC<H2Props> = ({
   children,
-  className,
-  id,
-  ...restProps
+  color,
+  fontSize = H2_DEFAULTS.FONT_SIZE,
+  fontWeight = H2_DEFAULTS.FONT_WEIGHT,
+  className = "",
+  ...rest
 }) => {
-  const validatedChildren = validateH2Content(children);
-  const combinedClassName = combineH2Classes(className);
+  const style: React.CSSProperties = {
+    color,
+    fontSize,
+    fontWeight,
+  };
 
   return (
-    <h2 className={combinedClassName} id={id} {...restProps}>
-      {validatedChildren}
+    <h2 className={`${H2_BASE_CLASS} ${className}`.trim()} style={style} {...rest}>
+      {children}
     </h2>
   );
 };

@@ -1,10 +1,11 @@
 import React from "react";
 import type { ParagraphProps } from "./paragraph.interface";
+import { TEXT_SIZES } from "../../utils/constants/textSizes";
 
 const Paragraph: React.FC<ParagraphProps> = ({
   children,
   color,
-  fontSize,
+  fontSize = TEXT_SIZES.BASE,
   fontWeight,
   className = "",
 }) => {

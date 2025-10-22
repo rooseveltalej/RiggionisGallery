@@ -1,77 +1,34 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
-import Contact from "./pages/Contact";
-import { Navbar } from "./components/navbar";
-import { PageTransition } from "./components/PageTransition";
-import type { NavItem } from "./components/navbar";
-import logoBlanco from "./assets/images/logo/Blanco - Vino.png";
-
-const navigationItems: NavItem[] = [
-  { label: "Galería", path: "/galeria" },
-  { label: "Artista", path: "/artista" },
-  { label: "Contacto", path: "/contact" },
-  { label: "Cotizar", path: "/cotizar" },
-];
+import './App.css';
+import { useLanguage } from '@/hooks';
+import { Footer } from '@/components';
+import { Spinner } from '@/mini-components';
 
 function App() {
+  const { languageStrings, loading } = useLanguage();
+
+  if (loading) {
+    return (
+      <div className="app" style={{ justifyContent: 'center' }}>
+        <Spinner/>
+      </div>
+    );
+  }
+  
+  if (!languageStrings?.navbar || !languageStrings?.footer) {
+    return <div>Error: missing translations</div>;
+  }
+
   return (
-    <Router>
-      <Navbar
-        navItems={navigationItems}
-        logoSrc={logoBlanco}
-        logoAlt="Riggioni's Gallery"
+    <div className="app">
+      <main className="main-content">
+
+      </main>
+
+      <Footer 
+        generalTitles={languageStrings.general_titles}
+        footerData={languageStrings.footer}
       />
-      <Routes>
-        <Route
-          path="/contact"
-          element={
-            <PageTransition>
-              <Contact />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/galeria"
-          element={
-            <PageTransition>
-              <div style={{ padding: "2rem" }}>
-                Página de Galería (próximamente)
-              </div>
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/artista"
-          element={
-            <PageTransition>
-              <div style={{ padding: "2rem" }}>
-                Página del Artista (próximamente)
-              </div>
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/cotizar"
-          element={
-            <PageTransition>
-              <div style={{ padding: "2rem" }}>
-                Página de Cotización (próximamente)
-              </div>
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/"
-          element={
-            <PageTransition>
-              <div style={{ padding: "2rem" }}>
-                Bienvenido a Riggioni's Gallery
-              </div>
-            </PageTransition>
-          }
-        />
-      </Routes>
-    </Router>
+    </div>
   );
 }
 
