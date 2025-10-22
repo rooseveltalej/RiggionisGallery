@@ -10,11 +10,20 @@ const IconWrapper: FC<IconWrapperProps> = ({
   ...props 
 }) => {
   if (typeof icon === 'string') {
+    const imageStyle: React.CSSProperties = {
+      width: size,
+      height: size,
+    };
+
+    if (color === '#ffffff' || color === 'white' || color === '#fff') {
+      imageStyle.filter = 'brightness(0) invert(1)';
+    }
+
     return (
       <Image
         src={icon}
         alt="icon"
-        style={{ width: size, height: size }}
+        style={imageStyle}
         className={className}
       />
     );
