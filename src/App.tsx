@@ -1,13 +1,34 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Contact from "./pages/Contact";
+import './App.css';
+import { useLanguage } from '@/hooks';
+import { Footer } from '@/components';
+import { Spinner } from '@/mini-components';
 
 function App() {
+  const { languageStrings, loading } = useLanguage();
+
+  if (loading) {
+    return (
+      <div className="app" style={{ justifyContent: 'center' }}>
+        <Spinner/>
+      </div>
+    );
+  }
+  
+  if (!languageStrings?.navbar || !languageStrings?.footer) {
+    return <div>Error: missing translations</div>;
+  }
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </Router>
+    <div className="app">
+      <main className="main-content">
+
+      </main>
+
+      <Footer 
+        generalTitles={languageStrings.general_titles}
+        footerData={languageStrings.footer}
+      />
+    </div>
   );
 }
 

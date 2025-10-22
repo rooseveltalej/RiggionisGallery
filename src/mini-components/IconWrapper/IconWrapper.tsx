@@ -1,13 +1,26 @@
 import React, { type FC } from "react";
 import type { IconWrapperProps } from "./IconWrapper.interface";
+import Image from "../Image/Image";
 
 const IconWrapper: FC<IconWrapperProps> = ({ 
-  icon: Icon, 
-  size = "24px", 
-  color = "currentColor", 
+  icon,
+  size = "24px",
+  color = "currentColor",
   className = "",
   ...props 
 }) => {
+  if (typeof icon === 'string') {
+    return (
+      <Image
+        src={icon}
+        alt="icon"
+        style={{ width: size, height: size }}
+        className={className}
+      />
+    );
+  }
+
+  const Icon = icon;
   const style: React.CSSProperties = {
     width: size,
     height: size,
@@ -16,8 +29,8 @@ const IconWrapper: FC<IconWrapperProps> = ({
 
   return (
     <Icon 
-      className={`icon-wrapper ${className}`.trim()}
-      style={style}
+      style={style} 
+      className={className}
       {...props}
     />
   );

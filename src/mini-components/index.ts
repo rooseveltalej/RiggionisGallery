@@ -1,0 +1,11 @@
+export { H1 } from "./h1/H1";
+export { H2 } from "./h2/H2";
+export { H3 } from "./h3/H3";
+export { default as Paragraph } from "./paragraph/Paragraph";
+export { default as Select } from "./select/Select";
+export { default as Button } from "./Button/Button";
+export { default as Image } from "./Image/Image";
+export { default as IconWrapper } from "./IconWrapper/IconWrapper";
+export { default as TextField } from "./TextField/TextField";
+export { default as Arrows } from "./Arrows/Arrows";
+export { default as Spinner } from "./Spinner/Spinner";
