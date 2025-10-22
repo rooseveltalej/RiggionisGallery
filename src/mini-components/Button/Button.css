@@ -1,0 +1,37 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.1s ease;
+
+  background-color: var(--primary-color);
+  color: var(--text-inverse);
+}
+
+@supports (color: color-mix(in oklab, red, black)) {
+  .button:hover {
+    background-color: color-mix(in oklab, var(--primary-color), black 12%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .button:active {
+    background-color: color-mix(in oklab, var(--primary-color), black 20%);
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@supports not (color: color-mix(in oklab, red, black)) {
+  .button:hover {
+    background-color: var(--primary-color-dark);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
+}

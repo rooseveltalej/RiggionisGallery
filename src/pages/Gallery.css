@@ -1,0 +1,164 @@
+/* Variables CSS para Gallery */
+.gallery {
+  --gallery-primary-color: #7a1518;
+  --gallery-text-color: #333333;
+  --gallery-text-light: #666666;
+  --gallery-bg-color: #ffffff;
+  --gallery-border-color: #e0e0e0;
+  
+  /* Espaciado optimizado */
+  --gallery-padding: 1.5rem;
+  --gallery-padding-mobile: 1rem;
+  --gallery-gap: 1.5rem;
+  --gallery-gap-mobile: 1rem;
+  --gallery-header-margin: 2rem;
+  --gallery-header-margin-mobile: 1.5rem;
+  
+  /* Grid fijo para 3 columnas */
+  --gallery-grid-columns: repeat(3, 1fr);
+  --gallery-grid-columns-tablet: repeat(2, 1fr);
+  --gallery-grid-columns-mobile: repeat(1, 1fr);
+  
+  /* Typography más grande */
+  --gallery-title-size: 2rem;
+  --gallery-title-size-mobile: 1.75rem;
+  --gallery-title-weight: 700;
+  
+  /* Layout con scroll apropiado */
+  background-color: var(--gallery-bg-color);
+  padding: var(--gallery-padding);
+  width: 100%;
+  flex: 1;
+}
+
+.gallery__header {
+  text-align: center;
+  margin-bottom: var(--gallery-header-margin);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery__title {
+  color: var(--gallery-primary-color);
+  font-size: var(--gallery-title-size);
+  font-weight: var(--gallery-title-weight);
+  margin: 0;
+}
+
+.gallery__view-more-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  background-color: var(--gallery-primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  
+  /* Tipografía en rem */
+  min-width: 6rem;
+  height: 2.8125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery__view-more-btn:hover {
+  background-color: #5d0f12;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.gallery__view-more-btn:active {
+  transform: translateY(-50%) scale(0.98);
+}
+
+@media (max-width: 48rem) {
+  .gallery__header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .gallery__view-more-btn {
+    position: static;
+    transform: none;
+    width: 100%;
+  }
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: var(--gallery-grid-columns);
+  gap: var(--gallery-gap);
+  max-width: 75rem;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.gallery__card {
+  width: 100%;
+  max-width: 28.125rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  /* Override de variables del ProjectCard */
+  --projectcard-image-height: 28.125rem;
+  --projectcard-font-size-title: 1.6rem;
+  --projectcard-padding-card: 1.2rem;
+  --projectcard-button-width: 8.75rem;
+  --projectcard-button-height: 2.8125rem;
+  --projectcard-font-size-button: 0.95rem;
+}
+
+.gallery__card:hover {
+  transform: translateY(-0.25rem);
+}
+
+/* Responsive Design */
+@media (max-width: 64rem) {
+  .gallery {
+    padding: var(--gallery-padding-mobile);
+  }
+  
+  .gallery__header {
+    margin-bottom: var(--gallery-header-margin-mobile);
+  }
+  
+  .gallery__title {
+    font-size: var(--gallery-title-size-mobile);
+  }
+  
+  .gallery__grid {
+    grid-template-columns: var(--gallery-grid-columns-tablet);
+    gap: var(--gallery-gap-mobile);
+  }
+}
+
+@media (max-width: 48rem) {
+  .gallery {
+    padding: var(--gallery-padding-mobile);
+  }
+  
+  .gallery__grid {
+    grid-template-columns: var(--gallery-grid-columns-mobile);
+    gap: var(--gallery-gap-mobile);
+  }
+  
+  .gallery__card {
+    max-width: 20rem;
+  }
+}
+
+/* Gallery page styles */
+.gallery-page {
+  width: 100%;
+  min-height: calc(100vh - 12.5rem);
+  padding: 0;
+  margin: 0;
+}

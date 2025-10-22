@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useLanguage } from '@/hooks';
+import { Footer } from '@/components';
+import { Spinner } from '@/mini-components';
+import { Gallery, ProjectsPage } from '@/pages';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { languageStrings, loading } = useLanguage();
+
+  if (loading) {
+    return (
+      <div className="app" style={{ justifyContent: 'center' }}>
+        <Spinner/>
+      </div>
+    );
+  }
+  
+  if (!languageStrings?.navbar || !languageStrings?.footer) {
+    return <div>Error: missing translations</div>;
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <BrowserRouter>
+      <div className="app">
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Gallery />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+          </Routes>
+        </main>
+
+        <Footer 
+          generalTitles={languageStrings.general_titles}
+          footerData={languageStrings.footer}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

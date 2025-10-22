@@ -1,0 +1,35 @@
+.avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 200;
+}
+
+.avatar-circle {
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background-color: #000;
+  margin-bottom: 35px;
+}
+
+.avatar-name {
+  margin-top: 10px;
+  font-size: 2.2em;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .avatar {
+    margin-top: 200px;
+  }
+
+  .avatar-circle {
+    width: 140px;
+    height: 140px;
+  }
+
+  .avatar-name {
+    font-size: 1.5em;
+  }
+}

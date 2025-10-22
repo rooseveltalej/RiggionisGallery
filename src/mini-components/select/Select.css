@@ -1,0 +1,74 @@
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 12.5rem;
+}
+
+.select-icon-left {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.select {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 0.125rem solid var(--border-color);
+  background-color: var(--background-color);
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text-color);
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  border-radius: 1.5625rem;
+
+  background-image: url("/icons/arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.75rem 0.5rem;
+}
+
+.select.select-with-icon {
+  padding-left: 3rem;
+}
+
+.select:hover {
+  border-color: var(--border-hover-color);
+}
+
+.select:focus {
+  border-color: var(--border-focus-color);
+  box-shadow: var(--focus-shadow);
+}
+
+.select:disabled {
+  background-color: var(--background-disabled-color);
+  color: var(--text-disabled-color);
+  cursor: not-allowed;
+}
+
+.select option {
+  padding: 0.5rem 1rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.select option:hover {
+  background-color: var(--background-hover-color);
+}
+
+.select option:disabled {
+  color: var(--text-disabled-color);
+  background-color: var(--background-disabled-color);
+}
