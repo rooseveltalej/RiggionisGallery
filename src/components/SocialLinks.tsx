@@ -1,0 +1,22 @@
+import React from "react";
+import IconWrapper from "@/mini-components/IconWrapper/IconWrapper";
+import styles from "@/components/SocialLinks.module.css";
+import Image from "@/mini-components/Image/Image";
+type SocialLinksProps = {
+  links: { iconSrc: string; alt: string }[];
+};
+
+const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
+  return (
+    <div className={styles["social-links"]}>
+      {links.map((link, index) => (
+        <IconWrapper
+          key={index}
+          icon={() => <Image src={link.iconSrc} alt={link.alt} />}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default SocialLinks;

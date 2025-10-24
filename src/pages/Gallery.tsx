@@ -33,12 +33,14 @@ const Gallery: React.FC = () => {
     // TODO: AQUI VA LA LÓGICA PARA MANEJAR FAVORITOS
   };
 
+
+
   return (
     <div className="gallery">
       <div className="gallery__header">
-        <H1 className="gallery__title">{languageStrings?.gallery_page?.title || 'Galería de Proyectos'}</H1>
+        <H1 className="gallery__title">{languageStrings?.gallery_page?.title}</H1>
         <Button 
-          text="Ver más"
+          text={languageStrings?.general_titles?.see_more}
           onClick={() => navigate('/projects')}
           className="gallery__view-more-btn"
         />

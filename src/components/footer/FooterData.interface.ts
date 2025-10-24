@@ -16,10 +16,10 @@ export interface GeneralTitlesForFooter {
       email2: string;
     };
     social_media: {
-            instagram: string;
-            facebook: string;
-            linkedin: string;
-          };
+      instagram: string;
+      facebook: string;
+      linkedin: string;
+    };
   };
   whatsapp_messages: {
     contact_general: string;
@@ -30,7 +30,7 @@ export interface GeneralTitlesForFooter {
 
 export interface Developer {
   name: string;
-  linkedin: string;
+  linkedin?: string;
 }
 
 export interface FooterData {
@@ -38,5 +38,5 @@ export interface FooterData {
     title: string;
     team: Developer[];
   };
-  copyright: React.ReactNode;
+  copyright: string;
 }

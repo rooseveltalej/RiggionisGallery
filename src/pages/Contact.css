@@ -1,0 +1,41 @@
+/* Contact Page Layout Styles */
+.contact-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 220px;
+  min-height: 100vh;
+  padding: 60px 20px;
+}
+
+.social-links-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 70px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-page {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 40px 20px 80px 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 100vh;
+    height: 100vh;
+    width: 100%;
+  }
+
+  .social-links-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+    width: 100%;
+    margin-bottom: 40px;
+    flex-shrink: 0;
+  }
+}
