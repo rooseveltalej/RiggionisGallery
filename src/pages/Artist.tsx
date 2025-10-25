@@ -79,22 +79,6 @@ export default function ArtistPage() {
             </strong>
             <br />
             {labels?.degree} {values?.degree || profile?.title || "—"}
-            {(values?.email1 || values?.phone) && (
-              <>
-                <br />
-                {values?.email1 && (
-                  <>
-                    {labels?.email1} {values.email1}
-                    <br />
-                  </>
-                )}
-                {values?.phone && (
-                  <>
-                    {labels?.phone} {values.phone}
-                  </>
-                )}
-              </>
-            )}
           </Paragraph>
 
           {hasPhone ? (
@@ -192,12 +176,14 @@ export default function ArtistPage() {
             href={profile?.cv?.viewUrl || profile?.cv?.downloadUrl || "#"}
             target="_blank"
             rel="noopener noreferrer"
+            className="btn"
           />
 
           <LinkButton
             text={pageStrings?.buttons?.download_cv ?? "Descargar CV"}
             href={profile?.cv?.downloadUrl || profile?.cv?.viewUrl || "#"}
             download={profile?.cv?.filename || "CV.pdf"}
+            className="btn"
           />
         </div>
       </section>
