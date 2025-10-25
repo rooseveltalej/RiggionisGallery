@@ -105,7 +105,7 @@ export default function ArtistPage() {
                 whatsappMessages?.artist_info ??
                 "Hola, me gustaría conocer más sobre la artista."
               }
-              className="whatsapp-button"
+              className="btn-whatsapp"
               style={waStyle}
             />
           ) : contactHref ? (
