@@ -66,15 +66,6 @@ body {
     gap: 16px;
 }
 
-.avatar {
-    width: var(--avatar-size-lg);
-    height: var(--avatar-size-lg);
-    border-radius: 50%;
-    background: #1f1f1f;
-    object-fit: cover;
-    object-position: center;
-}
-
 .person-name {
     margin: 0;
     font-weight: 500;
