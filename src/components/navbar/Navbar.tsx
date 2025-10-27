@@ -43,8 +43,6 @@ const Navbar: React.FC<NavbarProps> = ({
       <div className="navbar__container">
         <NavLogo src={logoSrc} alt={logoAlt} linkTo="/" />
 
-        <LanguageSelector />
-
         <HamburgerButton isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
 
         <div
@@ -59,6 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({
               </li>
             ))}
           </ul>
+          <LanguageSelector />
         </div>
       </div>
     </nav>

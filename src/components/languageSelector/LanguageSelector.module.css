@@ -1,0 +1,38 @@
+.language-selector-wrapper {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.language-selector-select {
+  display: flex;
+  align-items: center;
+  background: var(--primary-color-dark);
+  color: #fff;
+  border: 2px solid #e5bdb7;
+  border-radius: 2rem;
+  padding: 0.5rem 2.5rem 0.5rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  box-shadow: none;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("/icons/arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  background-size: 1.2rem 0.8rem;
+}
+
+.language-selector-select:focus {
+  border-color: #fff;
+}
+
+.select-icon-left {
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+}

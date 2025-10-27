@@ -1,6 +1,7 @@
 import React from "react";
 import { useLanguage } from "@/hooks";
 import Select from "@/mini-components/select/Select";
+import styles from "@/components/languageSelector/LanguageSelector.module.css";
 
 const LanguageSelector: React.FC = () => {
   const { language, setLanguage, availableLanguages, languageStrings } =
@@ -15,12 +16,12 @@ const LanguageSelector: React.FC = () => {
   };
 
   return (
-    <div className="navbar__language-selector">
+    <div className={styles["language-selector-wrapper"]}>
       <Select
         options={selectOptions}
         value={language}
         onChange={handleLanguageChange}
-        className="navbar__select"
+        className={styles["language-selector-select"]}
         style={{ minWidth: 100 }}
       />
     </div>
