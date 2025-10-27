@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useLanguage } from "@/hooks";
 import { Footer } from "@/components";
+import { AVATAR_IMAGE_URL } from "@/utils/constants";
 import { Spinner } from "@/mini-components";
 import { Gallery, ProjectsPage } from "@/pages";
 import { Navbar } from "@/components/navbar";
@@ -31,7 +32,7 @@ function App() {
               path: "/projects",
             },
           ]}
-          logoSrc={"/icons/logo.svg"}
+          logoSrc={AVATAR_IMAGE_URL}
           logoAlt={languageStrings?.navbar?.logoAlt || "Logo"}
         />
         <main className="main-content">
