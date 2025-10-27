@@ -4,27 +4,23 @@ import Avatar from "../components/Avatar";
 import ContactInfo from "../components/ContactInfo";
 import SocialLinks from "../components/SocialLinks";
 import WhatsAppButton from "../components/WhatsAppButton";
-import {
-  AVATAR_NAME,
-  AVATAR_IMAGE_URL,
-  CONTACT_PHONE,
-  CONTACT_EMAILS,
-  SOCIAL_LINKS,
-  WHATSAPP_BUTTON_TEXT,
-  WHATSAPP_ICON_SRC,
-} from "../utils/constants";
+import { useContactData } from "../hooks";
 
 const Contact: React.FC = () => {
+  const { avatar, contact, social, whatsapp } = useContactData();
+
   return (
     <div className="contact-page">
-      <Avatar name={AVATAR_NAME} imageUrl={AVATAR_IMAGE_URL} />
+      <Avatar name={avatar.name} imageUrl={avatar.imageUrl} />
       <div className="contact-info">
-        <ContactInfo phone={CONTACT_PHONE} emails={CONTACT_EMAILS} />
+        <ContactInfo phone={contact.phone} emails={contact.emails} />
         <div className="social-links-container">
-          <SocialLinks links={SOCIAL_LINKS} />
+          <SocialLinks links={social} />
           <WhatsAppButton
-            text={WHATSAPP_BUTTON_TEXT}
-            iconSrc={WHATSAPP_ICON_SRC}
+            phoneNumber={whatsapp.phoneNumber}
+            text={whatsapp.text}
+            iconSrc={whatsapp.iconSrc}
+            message={whatsapp.message}
           />
         </div>
       </div>

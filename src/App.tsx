@@ -6,19 +6,15 @@ import { Spinner } from '@/mini-components';
 import { Gallery, ProjectsPage } from '@/pages';
 
 function App() {
-  const { languageStrings, loading } = useLanguage();
+    const { languageStrings, loading } = useLanguage();
 
-  if (loading) {
-    return (
-      <div className="app" style={{ justifyContent: 'center' }}>
-        <Spinner/>
-      </div>
-    );
-  }
-  
-  if (!languageStrings?.navbar || !languageStrings?.footer) {
-    return <div>Error: missing translations</div>;
-  }
+    if (loading) {
+        return (
+            <div className="app" style={{ justifyContent: "center" }}>
+                <Spinner />
+            </div>
+        );
+    }
 
   return (
     <BrowserRouter>

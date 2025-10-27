@@ -10,3 +10,5 @@ export { default as TextField } from "./TextField/TextField";
 export { default as Arrows } from "./Arrows/Arrows";
 export { default as Spinner } from "./Spinner/Spinner";
 export { default as WhatsAppButton } from "./WhatsAppButton/WhatsAppButton";
+export { default as LinkButton } from "./LinkButton/LinkButton";
+export { default as Avatar } from "./Avatar/Avatar";
