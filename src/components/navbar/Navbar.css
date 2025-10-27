@@ -18,6 +18,19 @@
   min-height: 4rem;
 }
 
+.navbar__language-selector {
+  margin-left: 1rem;
+}
+
+.navbar__select {
+  background: var(--primary-color);
+  color: var(--input-text);
+  border-radius: 4px;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+}
+
 .navbar__menu {
   display: flex;
   align-items: center;

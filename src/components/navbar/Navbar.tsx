@@ -3,6 +3,7 @@ import type { NavbarProps } from "./Navbar.interface";
 import NavLogo from "./NavLogo";
 import NavLink from "./NavLink";
 import { HamburgerButton } from "../../mini-components/HamburgerButton";
+import LanguageSelector from "../languageSelector/LanguageSelector";
 import "./Navbar.css";
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -41,6 +42,8 @@ const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="navbar__container">
         <NavLogo src={logoSrc} alt={logoAlt} linkTo="/" />
+
+        <LanguageSelector />
 
         <HamburgerButton isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
 
