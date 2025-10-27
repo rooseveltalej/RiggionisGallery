@@ -57,8 +57,8 @@ const Navbar: React.FC<NavbarProps> = ({
               </li>
             ))}
           </ul>
-          <LanguageSelector />
         </div>
+        <LanguageSelector />
       </div>
     </nav>
   );

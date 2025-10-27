@@ -41,39 +41,8 @@ function App() {
           </Routes>
         </main>
         <Footer
-          generalTitles={
-            languageStrings.general_titles ?? {
-              company_name: "Nombre de la empresa",
-              artist_info: {
-                labels: {
-                  name: "",
-                  degree: "",
-                  phone: "",
-                  email1: "",
-                  email2: "",
-                },
-                values: {
-                  name: "",
-                  degree: "",
-                  phone: "",
-                  email1: "",
-                  email2: "",
-                },
-                social_media: { instagram: "", facebook: "", linkedin: "" },
-              },
-              whatsapp_messages: {
-                contact_general: "",
-                quote_request: "",
-                artist_info: "",
-              },
-            }
-          }
-          footerData={
-            languageStrings.footer ?? {
-              copyright: "",
-              developers: { title: "", team: [] },
-            }
-          }
+          generalTitles={languageStrings.general_titles}
+          footerData={languageStrings.footer}
         />
       </div>
     </BrowserRouter>
