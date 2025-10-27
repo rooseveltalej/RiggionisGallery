@@ -4,19 +4,18 @@ import Button from '@/mini-components/Button/Button';
 import { H3 } from '@/mini-components/h3/H3';
 import { useProjectCard } from '@/hooks/useProjectCard';
 import { getImageAltText, getAriaLabels } from '@/utils/projectFormatters';
-import { ImageNavigation } from '@/components/projectCard/ImageNavigation';
-import { ImageIndicators } from '@/components/projectCard/ImageIndicators';
 import { ActionButtons } from '@/components/projectCard/ActionButtons';
 import type { ProjectCardProps } from '@/components/projectCard/ProjectCard.interface';
 import './ProjectCard.css';
 
 const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyProject,onWhatsApp,isFavorite: initialFavorite = false,className}) => {
   // Hook 
-  const {currentImageIndex, isFavorite,handlePrevImage,handleNextImage,goToImage,
-    handleToggleFavorite, handleTouchStart,handleTouchMove,handleTouchEnd,
-    isFirstImage,isLastImage,hasMultipleImages,currentImage,favoriteIconSrc,showOverlay} = useProjectCard({ project, initialFavorite });
+  const {isFavorite,handleToggleFavorite,favoriteIconSrc,showOverlay,handleTouchEnd} = useProjectCard({ project, initialFavorite });
   // Utils
   const ariaLabels = getAriaLabels(project);
+  // Obtener primera imagen con fallback
+  const firstImage = project.images?.[0] || '/icons/fallback.png';
+  
   return (
     <div
       className={`project-card ${className || ''}`.trim()}
@@ -26,32 +25,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyPro
     >
       <div 
         className="project-card__image-container"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         <Image
-          src={currentImage}
-          alt={getImageAltText(project, currentImageIndex)}
+          src={firstImage}
+          alt={getImageAltText(project, 0)}
           className="project-card__image"
-        />  
-        {/* Arrows para navegación de imágenes */}
-        {hasMultipleImages && (
-          <ImageNavigation
-            onPrevious={handlePrevImage}
-            onNext={handleNextImage}
-            isFirstImage={isFirstImage}
-            isLastImage={isLastImage}
-          />
-        )}
-        {/* Indicadores de imagen */}
-        {hasMultipleImages && (
-          <ImageIndicators
-            totalImages={project.images.length}
-            currentIndex={currentImageIndex}
-            onSelect={goToImage}
-          />
-        )}
+        />
         {/* Overlay con botones de acción */}
         <div className={`project-card__overlay ${showOverlay ? 'project-card__overlay--visible' : ''}`}>
           <div className="project-card__overlay-content">
