@@ -5,6 +5,8 @@
   --primary-color-dark: #3a0a0c;
   --primary-color-extra-dark: #0f0303;
   --accent-color: #e0b973;
+  --accent-secondary: #667eea;
+  --accent-purple: #764ba2;
 
   /* Neutros */
   --white: #fff;
@@ -52,4 +54,11 @@
   --error: #e53935;
   --warning: #ffb300;
   --info: #2196f3;
+
+  /* Gradientes */
+  --gradient-avatar-fallback: linear-gradient(
+    135deg,
+    var(--accent-secondary) 0%,
+    var(--accent-purple) 100%
+  );
 }
