@@ -1,9 +1,9 @@
 import React from "react";
 import "./Contact.css";
-import Avatar from "../components/Avatar";
-import ContactInfo from "../components/ContactInfo";
-import SocialLinks from "../components/SocialLinks";
-import WhatsAppButton from "../components/WhatsAppButton";
+import Avatar from "../components/avatar";
+import ContactInfo from "../components/contactInfo";
+import SocialLinks from "../components/socialLinks";
+import WhatsAppButton from "../components/whatsAppButton";
 import { useContactData } from "../hooks";
 
 const Contact: React.FC = () => {
