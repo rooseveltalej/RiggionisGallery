@@ -50,6 +50,10 @@ const Navbar: React.FC<NavbarProps> = ({
             isMobileMenuOpen ? "navbar__menu--open" : ""
           }`}
         >
+          <div className="navbar__language--mobile">
+            <LanguageSelector />
+          </div>
+
           <ul className="navbar__list">
             {navItems.map((item, index) => (
               <li key={`${item.path}-${index}`} className="navbar__item">
@@ -57,6 +61,9 @@ const Navbar: React.FC<NavbarProps> = ({
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="navbar__language--desktop">
           <LanguageSelector />
         </div>
       </div>

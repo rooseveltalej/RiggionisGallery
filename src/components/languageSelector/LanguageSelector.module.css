@@ -1,5 +1,4 @@
 .language-selector-wrapper {
-  margin-left: auto;
   display: flex;
   align-items: center;
 }
@@ -15,12 +14,9 @@
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  box-shadow: none;
-  outline: none;
+  cursor: pointer;
   transition: border-color 0.2s;
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   background-image: url("/icons/arrow.svg");
   background-repeat: no-repeat;
   background-position: right 1.2rem center;
@@ -29,10 +25,9 @@
 
 .language-selector-select:focus {
   border-color: var(--white);
+  outline: none;
 }
 
-.select-icon-left {
-  margin-right: 0.5rem;
-  display: flex;
-  align-items: center;
+.language-selector-select option {
+  text-align: center;
 }
