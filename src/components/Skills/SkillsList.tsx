@@ -1,14 +1,7 @@
 import React from "react";
-import { H2 } from "@/mini-components";
-import { SkillTag } from "@/components";
+import { H2, Paragraph } from "@/mini-components";
+import type { SkillsListProps } from "./SkillsList.interface";
 import "./SkillsList.css";
-
-export type SkillsListProps = {
-  title?: string;
-  groups: string[][];
-  className?: string;
-  titleClassName?: string;
-};
 
 const SkillsList: React.FC<SkillsListProps> = ({
   title = "Habilidades y Herramientas",
@@ -25,7 +18,7 @@ const SkillsList: React.FC<SkillsListProps> = ({
         <ul key={i} className="skills-row">
           {row.map((skill, j) => (
             <li key={j}>
-              <SkillTag text={skill} />
+              <Paragraph>{skill}</Paragraph>
             </li>
           ))}
         </ul>

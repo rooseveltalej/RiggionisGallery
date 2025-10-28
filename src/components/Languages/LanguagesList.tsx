@@ -1,14 +1,7 @@
 import React from "react";
-import { H2 } from "@/mini-components";
-import { SkillTag } from "@/components";
+import { H2, Paragraph } from "@/mini-components";
+import type { LanguagesListProps } from "./LanguagesList.interface";
 import "./LanguagesList.css";
-
-export type LanguagesListProps = {
-  title?: string;
-  languages: string[];
-  className?: string;
-  titleClassName?: string;
-};
 
 const LanguagesList: React.FC<LanguagesListProps> = ({
   title = "Idiomas",
@@ -24,7 +17,7 @@ const LanguagesList: React.FC<LanguagesListProps> = ({
       <ul className="lang-list">
         {languages.map((lang, i) => (
           <li key={i}>
-            <SkillTag text={lang} />
+            <Paragraph>{lang}</Paragraph>
           </li>
         ))}
       </ul>
