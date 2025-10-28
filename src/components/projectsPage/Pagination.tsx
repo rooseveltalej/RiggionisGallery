@@ -23,6 +23,10 @@ export const Pagination: React.FC<PaginationProps> = ({
 
   const backText = languageStrings?.general_titles?.buttons?.back;
   const nextText = languageStrings?.general_titles?.buttons?.next;
+  const paginationStrings = languageStrings?.gallery_page?.pagination ?? {};
+  const showingText = paginationStrings.showing;
+  const ofText = paginationStrings.of;
+  const projectsText = paginationStrings.projects;
   if (totalPages <= 1) {
     return null;
   }
@@ -56,11 +60,13 @@ export const Pagination: React.FC<PaginationProps> = ({
         />
       </div>
 
-      <div className="projects-page__info">
-        <p>
-          Mostrando {startIndex + 1}-{Math.min(endIndex, totalItems)} de {totalItems} proyectos
-        </p>
-      </div>
+      {totalItems > 0 && (
+        <div className="projects-page__info">
+          <p>
+            {showingText} {startIndex + 1}-{Math.min(endIndex, totalItems)} {ofText} {totalItems} {projectsText}
+          </p>
+        </div>
+      )}
     </>
   );
 };

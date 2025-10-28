@@ -1,6 +1,7 @@
 import React from 'react';
 import { ProjectCard } from '@/components';
 import type { Project } from '@/components/projectCard/ProjectCard.interface';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface ProjectsGridProps {
   projects: Project[];
@@ -17,10 +18,14 @@ export const ProjectsGrid: React.FC<ProjectsGridProps> = ({
   onWhatsApp,
   onToggleFavorite,
 }) => {
+  const { languageStrings } = useLanguage();
+  const emptyStateMessage =
+    languageStrings?.gallery_page?.no_results_message;
+
   if (projects.length === 0) {
     return (
       <div className="projects-page__no-results">
-        <p>No se encontraron proyectos con los filtros seleccionados.</p>
+        <p>{emptyStateMessage}</p>
       </div>
     );
   }
