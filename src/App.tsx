@@ -4,7 +4,7 @@ import { useLanguage } from "@/hooks";
 import { Footer } from "@/components";
 import { AVATAR_IMAGE_URL } from "@/utils/constants";
 import { Spinner } from "@/mini-components";
-import { Gallery, ProjectsPage, Contact } from "@/pages";
+import { Gallery, ProjectsPage, Contact, ArtistPage } from "@/pages";
 import { Navbar } from "@/components/navbar";
 
 function App() {
@@ -35,6 +35,10 @@ function App() {
               label: languageStrings?.navbar?.routes?.contact || "Contacto",
               path: "/contact",
             },
+            {
+              label: languageStrings?.navbar?.routes?.ArtistPage || "Artista",
+              path: "/artist",
+            },
           ]}
           logoSrc={AVATAR_IMAGE_URL}
           logoAlt={languageStrings?.navbar?.logoAlt || "Logo"}
@@ -44,6 +48,7 @@ function App() {
             <Route path="/" element={<Gallery />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/artist" element={<ArtistPage />} />
           </Routes>
         </main>
         <Footer
