@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Project } from '@/components/projectCard/ProjectCard.interface';
-import projectsData from '../data/projects.json';
 import { ProjectFiltersSection } from '../components/projectsPage/ProjectFiltersSection';
 import { ProjectsGrid } from '../components/projectsPage/ProjectsGrid';
 import { Pagination } from '../components/projectsPage/Pagination';
 import { ProjectsHeader } from '../components/projectsPage/ProjectsHeader';
 import type { FilterState, FilterOptions } from '../components/projectsPage/models/projectsPage.models';
-import { useProjectActions } from '@/hooks';
+import { useLanguage, useProjectActions } from '@/hooks';
 import './ProjectsPage.css';
 
 const ProjectsPage: React.FC = () => {
   const navigate = useNavigate();
+  const { languageStrings } = useLanguage();
   const { handleViewProject, handleBuyProject, handleWhatsApp, handleToggleFavorite } = useProjectActions();
-  const projects: Project[] = projectsData as Project[];
+  const projects = useMemo<Project[]>(() => {
+    const remoteProjects = languageStrings?.gallery_page?.projects;
+    if (Array.isArray(remoteProjects)) {
+      return remoteProjects as Project[];
+    }
+    return [];
+  }, [languageStrings]);
   
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<FilterState>({
@@ -26,12 +32,12 @@ const ProjectsPage: React.FC = () => {
   const projectsPerPage = 12;
 
   // Extraer valores únicos de los datos
-  const filterOptions: FilterOptions = {
+  const filterOptions: FilterOptions = useMemo(() => ({
     techniques: Array.from(new Set(projects.map(p => p.metadata?.technique).filter(Boolean))) as string[],
     supports: Array.from(new Set(projects.map(p => p.metadata?.support).filter(Boolean))) as string[],
     styles: Array.from(new Set(projects.map(p => p.metadata?.style).filter(Boolean))) as string[],
     availabilities: Array.from(new Set(projects.map(p => p.availability).filter(Boolean))) as string[],
-  };
+  }), [projects]);
 
   // Filtrar proyectos
   const filteredProjects = projects.filter((project) => {
