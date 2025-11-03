@@ -21,6 +21,7 @@
   background-repeat: no-repeat;
   background-position: right 1.2rem center;
   background-size: 1.2rem 0.8rem;
+  min-width: 100px;
 }
 
 .language-selector-select:focus {

@@ -31,7 +31,6 @@ const LanguageSelector: React.FC = () => {
         options={selectOptions}
         value={language}
         className={languageSelectorSelect}
-        style={{ minWidth: 100 }}
         aria-label={ARIA_LABEL}
         title={TITLE}
       />
