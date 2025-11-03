@@ -6,6 +6,9 @@ import styles from "@/components/languageSelector/LanguageSelector.module.css";
 const languageSelectorWrapper = styles["language-selector-wrapper"];
 const languageSelectorSelect = styles["language-selector-select"];
 
+const ARIA_LABEL = "Selector de idioma";
+const TITLE = "Selecciona tu idioma preferido";
+
 const LanguageSelector: React.FC = () => {
   const { language, availableLanguages, languageStrings } = useLanguage();
 
@@ -25,8 +28,8 @@ const LanguageSelector: React.FC = () => {
         value={language}
         className={languageSelectorSelect}
         style={{ minWidth: 100 }}
-        aria-label="Selector de idioma"
-        title="Selecciona tu idioma preferido"
+        aria-label={ARIA_LABEL}
+        title={TITLE}
       />
     </div>
   );
