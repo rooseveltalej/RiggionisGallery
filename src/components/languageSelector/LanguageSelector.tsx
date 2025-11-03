@@ -22,7 +22,11 @@ const LanguageSelector: React.FC = () => {
   );
 
   return (
-    <div className={languageSelectorWrapper}>
+    <nav
+      className={languageSelectorWrapper}
+      role="navigation"
+      aria-label={ARIA_LABEL}
+    >
       <Select
         options={selectOptions}
         value={language}
@@ -31,7 +35,7 @@ const LanguageSelector: React.FC = () => {
         aria-label={ARIA_LABEL}
         title={TITLE}
       />
-    </div>
+    </nav>
   );
 };
 
