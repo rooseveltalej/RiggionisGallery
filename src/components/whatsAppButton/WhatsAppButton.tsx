@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../mini-components/Button/Button";
+import Button from "../../mini-components/Button/Button";
 import styles from "./WhatsAppButton.module.css";
 
 type WhatsAppButtonProps = {

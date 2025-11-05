@@ -3,6 +3,7 @@ import type { NavbarProps } from "./Navbar.interface";
 import NavLogo from "./NavLogo";
 import NavLink from "./NavLink";
 import { HamburgerButton } from "../../mini-components/HamburgerButton";
+import LanguageSelector from "../languageSelector/LanguageSelector";
 import "./Navbar.css";
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -49,6 +50,10 @@ const Navbar: React.FC<NavbarProps> = ({
             isMobileMenuOpen ? "navbar__menu--open" : ""
           }`}
         >
+          <div className="navbar__language--mobile">
+            <LanguageSelector />
+          </div>
+
           <ul className="navbar__list">
             {navItems.map((item, index) => (
               <li key={`${item.path}-${index}`} className="navbar__item">
@@ -56,6 +61,10 @@ const Navbar: React.FC<NavbarProps> = ({
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="navbar__language--desktop">
+          <LanguageSelector />
         </div>
       </div>
     </nav>
