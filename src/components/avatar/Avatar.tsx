@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from "react";
-import Paragraph from "../mini-components/paragraph/Paragraph";
+import Paragraph from "../../mini-components/paragraph/Paragraph";
 import styles from "./Avatar.module.css";
-import Image from "../mini-components/Image/Image";
-import { getInitials } from "../utils/textFormatters";
+import Image from "../../mini-components/Image/Image";
+import { getInitials } from "../../utils/textFormatters";
 
 type AvatarProps = {
   name: string;
