@@ -1,5 +1,5 @@
 import React from "react";
-import { H2, H3, Paragraph } from "@/mini-components";
+import { H2, H3 } from "@/mini-components";
 import type { ExperienceListProps } from "./ExperienceList.interface";
 import "./ExperienceList.css";
 
@@ -10,15 +10,27 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
   if (!items || items.length === 0) return null;
 
   return (
-    <section className="section-experience">
-      <H2 className="exp-title">{title}</H2>
+    <section className="section-experience" aria-labelledby="experience-title">
+      <H2 id="experience-title" className="exp-title">
+        {title}
+      </H2>
       <div className="exp-list">
-        {items.map((ex, idx) => (
-          <article key={idx} className="exp-item">
+        {items.map((ex) => (
+          <article key={ex.heading} className="exp-item">
             <H3 className="exp-heading">
-              {ex.heading} {ex.years ? <span className="exp-years">({ex.years})</span> : null} :
+              {ex.heading}{" "}
+              {ex.years && (
+                <span className="exp-years" aria-label={`Duración ${ex.years}`}>
+                  ({ex.years})
+                </span>
+              )}
+              :
             </H3>
-            {ex.description && <Paragraph className="exp-desc">{ex.description}</Paragraph>}
+            {ex.description && (
+              <span className="exp-desc" aria-label={`Descripción de ${ex.heading}`}>
+                {ex.description}
+              </span>
+            )}
           </article>
         ))}
       </div>
