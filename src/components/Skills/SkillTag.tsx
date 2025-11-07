@@ -1,11 +1,17 @@
 import React from "react";
 
 export type SkillTagProps = React.HTMLAttributes<HTMLSpanElement> & {
-  text: string;
+    text: string;
 };
 
-const SkillTag: React.FC<SkillTagProps> = ({ text, className = "", ...rest }) => (
-  <span className={`skill-tag ${className}`} {...rest}>{text}</span>
+const SkillTag: React.FC<SkillTagProps> = ({
+    text,
+    className = "",
+    ...rest
+}) => (
+    <span {...rest} className={`skill-tag ${className}`}>
+        {text}
+    </span>
 );
 
 export default SkillTag;
