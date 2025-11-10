@@ -5,3 +5,8 @@ export { default as Avatar } from "./avatar";
 export { default as ContactInfo } from "./contactInfo";
 export { default as SocialLinks } from "./socialLinks";
 export { default as WhatsAppButton } from "./whatsAppButton";
+export { default as HeroSection } from "./heroSection";
+export { default as AcademicList } from "./academicList";
+export { default as ExperienceList } from "./ExperienceList";
+export { default as CVButtons } from "./cvButtons";
+export type {ContactConfig} from "./heroSection/HeroSection.interface";
