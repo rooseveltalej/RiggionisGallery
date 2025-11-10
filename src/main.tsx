@@ -3,12 +3,14 @@ import { createRoot } from 'react-dom/client';
 import './styles/main.css';
 import './App.css';
 import App from './App.tsx';
-import { LanguageProvider } from './contexts';
+import { LanguageProvider, FavoritesProvider } from './contexts';
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <LanguageProvider>
-      <App />
+      <FavoritesProvider>
+        <App />
+      </FavoritesProvider>
     </LanguageProvider>
   </StrictMode>,
 );

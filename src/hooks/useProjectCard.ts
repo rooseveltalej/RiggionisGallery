@@ -1,29 +1,28 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
+import { useFavoritesContext } from '@/contexts/FavoritesContext';
 import type { Project } from '@/components/projectCard/ProjectCard.interface';
 
 interface UseProjectCardProps {
   project: Project;
-  initialFavorite?: boolean;
   onToggleFavorite?: (project: Project) => void;
 }
 
 /**
  * Hook for handling ProjectCard logic
- * Includes: favorite state and mobile overlay toggle
+ * Includes: favorite state (synced with localStorage) and mobile overlay toggle
  */
-export const useProjectCard = ({project,initialFavorite = false,onToggleFavorite,}: UseProjectCardProps) => {
-  const [isFavorite, setIsFavorite] = useState(initialFavorite);
+export const useProjectCard = ({project,onToggleFavorite,}: UseProjectCardProps) => {
+  const { isFavorite: checkIsFavorite, toggleFavorite } = useFavoritesContext();
   const [showOverlay, setShowOverlay] = useState(false); // State to show overlay on mobile devices
 
-  useEffect(() => {
-    setIsFavorite(initialFavorite);
-  }, [initialFavorite]);
+  // Get favorite state from context (localStorage)
+  const isFavorite = checkIsFavorite(project.id);
 
   const handleToggleFavorite = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
-    setIsFavorite(prev => !prev);
+    toggleFavorite(project.id);
     onToggleFavorite?.(project);
-  }, [onToggleFavorite, project]);
+  }, [toggleFavorite, project, onToggleFavorite]);
 
   // Touch handler para toggle overlay en móviles (tap simple)
   const handleTouchEnd = useCallback(() => {

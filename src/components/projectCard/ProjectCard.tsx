@@ -8,9 +8,9 @@ import { ActionButtons } from '@/components/projectCard/ActionButtons';
 import type { ProjectCardProps } from '@/components/projectCard/ProjectCard.interface';
 import './ProjectCard.css';
 
-const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyProject,onWhatsApp,isFavorite: initialFavorite = false,className}) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyProject,onWhatsApp,className}) => {
   // Hook 
-  const {isFavorite,handleToggleFavorite,favoriteIconSrc,showOverlay,handleTouchEnd} = useProjectCard({ project, initialFavorite });
+  const {isFavorite,handleToggleFavorite,favoriteIconSrc,showOverlay,handleTouchEnd} = useProjectCard({ project });
   // Utils
   const ariaLabels = getAriaLabels(project);
   // Obtener primera imagen con fallback
