@@ -1,27 +1,47 @@
 import "./Quote.css";
 
-const stackedSizes = [
-  { label: "30×30 cm", ratio: "1 / 1", position: { column: "1 / 2", row: "1 / 2" } },
-  { label: "50×40 cm", ratio: "5 / 4", position: { column: "1 / 2", row: "2 / 3" } },
-  { label: "40×100 cm", ratio: "2 / 5", position: { column: "1 / 2", row: "3 / 4" } },
+const sizeGrid = [
+  // Columna 1 (izquierda)
+  {
+    label: "30×30 cm",
+    ratio: "1 / 1",
+    position: { column: "1 / 2", row: "1 / 2" },
+  },
+  {
+    label: "40×40 cm",
+    ratio: "1 / 1",
+    position: { column: "1 / 2", row: "2 / 3" },
+  },
+  {
+    label: "60×30 cm",
+    ratio: "2 / 1",
+    position: { column: "1 / 2", row: "3 / 4" },
+  },
+
+  // Columna 2 (centro)
+  {
+    label: "80×60 cm",
+    ratio: "4 / 3",
+    position: { column: "2 / 3", row: "1 / 3" },
+  },
+  {
+    label: "50×40 cm",
+    ratio: "5 / 4",
+    position: { column: "2 / 3", row: "3 / 4" },
+  },
+
+  // Columna 3 (derecha)
+  {
+    label: "120×80 cm",
+    ratio: "3 / 2",
+    position: { column: "3 / 4", row: "1 / 3" },
+  },
+  {
+    label: "40×100 cm",
+    ratio: "2 / 5",
+    position: { column: "3 / 4", row: "3 / 4" },
+  },
 ];
-
-const mosaicTop = {
-  label: "80×60 cm",
-  ratio: "4 / 3",
-  position: { column: "2 / 3", row: "1 / 3" },
-};
-
-const mosaicBottom = [
-  { label: "60×120 cm", ratio: "1 / 2" },
-  { label: "70×50 cm", ratio: "7 / 5" },
-];
-
-const heroSize = {
-  label: "120×80 cm",
-  ratio: "3 / 2",
-  position: { column: "3 / 4", row: "1 / 4" },
-};
 
 const techniqueOptions = ["Óleo", "Acrílico", "Mixta", "Acuarela"];
 const supportOptions = ["Lienzo", "Papel de algodón", "Madera", "Metal"];
@@ -46,42 +66,24 @@ const QuotePage: React.FC = () => {
           </p>
 
           <div className="quote-page__sizes-grid">
-            {[...stackedSizes, mosaicTop, heroSize].map((size) => (
+            {sizeGrid.map((size) => (
               <div
-                key={size.label}
-                className={`size-card${
-                  size === heroSize ? " size-card--hero" : ""
-                }`}
+                key={size.label + size.position.column + size.position.row}
+                className="size-card"
                 style={{
                   gridColumn: size.position.column,
                   gridRow: size.position.row,
                 }}
               >
-                <div
-                  className="size-card__figure"
-                  style={{ aspectRatio: size.ratio }}
-                >
+                <div className="size-card__figure">
+                  <div
+                    className="size-card__art"
+                    style={{ aspectRatio: size.ratio }}
+                  />
                   <span>{size.label}</span>
                 </div>
               </div>
             ))}
-
-            <div
-              className="size-card size-card--split"
-              style={{ gridColumn: "2 / 3", gridRow: "3 / 4" }}
-            >
-              <div className="size-card__split-grid">
-                {mosaicBottom.map((size) => (
-                  <div
-                    key={size.label}
-                    className="size-card__figure"
-                    style={{ aspectRatio: size.ratio }}
-                  >
-                    <span>{size.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
 
