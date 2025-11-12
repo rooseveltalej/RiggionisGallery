@@ -6,7 +6,14 @@ import Button from "@/mini-components/Button/Button";
 import Image from "@/mini-components/Image/Image";
 import { useLanguage } from "@/hooks";
 import type { Project as ProjectType } from "@/components/projectCard/ProjectCard.interface";
+import ejemplo1 from "@/assets/images/testing/ejemplo1.jpg?url";
+import ejemplo2 from "@/assets/images/testing/ejemplo2.jpg?url";
+import ejemplo3 from "@/assets/images/testing/ejemplo3.jpg?url";
+import ejemplo4 from "@/assets/images/testing/ejemplo4.jpg?url";
 import "./Project.css";
+
+// Imágenes temporales para desarrollo
+const TEMP_IMAGES = [ejemplo1, ejemplo2, ejemplo3, ejemplo4];
 
 interface ProjectDetailsProps {
   projectId?: string;
@@ -58,12 +65,22 @@ const Project: React.FC<ProjectDetailsProps> = () => {
     price,
   } = project;
 
+  // TODO: Usar imágenes reales de Firebase Storage cuando estén disponibles
+  // Por ahora FORZAMOS el uso de imágenes temporales de desarrollo
+  console.log("Imágenes del proyecto:", images);
+  console.log("Imágenes temporales que vamos a usar:", TEMP_IMAGES);
+  const displayImages = TEMP_IMAGES; // Temporalmente usar siempre las imágenes de prueba
+
   const handlePrevImage = () => {
-    setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? displayImages.length - 1 : prev - 1
+    );
   };
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentImageIndex((prev) =>
+      prev === displayImages.length - 1 ? 0 : prev + 1
+    );
   };
 
   const formatPrice = (price?: { amount: number; currency: string }) => {
@@ -96,7 +113,7 @@ const Project: React.FC<ProjectDetailsProps> = () => {
 
         {/* Carrusel de imágenes */}
         <div className="project-carousel">
-          {images.length > 1 && (
+          {displayImages.length > 1 && (
             <button
               className="carousel-arrow carousel-arrow-left"
               onClick={handlePrevImage}
@@ -110,20 +127,22 @@ const Project: React.FC<ProjectDetailsProps> = () => {
             {/* Imagen principal */}
             <div className="carousel-main-image">
               <Image
-                src={images[currentImageIndex]}
+                src={displayImages[currentImageIndex]}
                 alt={`${title} - Imagen ${currentImageIndex + 1}`}
                 className="main-image"
               />
             </div>
 
             {/* Miniaturas laterales */}
-            {images.length > 1 && (
+            {displayImages.length > 1 && (
               <div className="carousel-thumbnails">
-                {images
+                {displayImages
                   .filter((_, idx) => idx !== currentImageIndex)
                   .slice(0, 2)
                   .map((img) => {
-                    const actualIndex = images.findIndex((i) => i === img);
+                    const actualIndex = displayImages.findIndex(
+                      (i) => i === img
+                    );
                     return (
                       <div
                         key={actualIndex}
@@ -142,7 +161,7 @@ const Project: React.FC<ProjectDetailsProps> = () => {
             )}
           </div>
 
-          {images.length > 1 && (
+          {displayImages.length > 1 && (
             <button
               className="carousel-arrow carousel-arrow-right"
               onClick={handleNextImage}
