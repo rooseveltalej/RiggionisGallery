@@ -113,18 +113,25 @@ const Project: React.FC<ProjectDetailsProps> = () => {
 
         {/* Carrusel de imágenes */}
         <div className="project-carousel">
-          {displayImages.length > 1 && (
-            <button
-              className="carousel-arrow carousel-arrow-left"
-              onClick={handlePrevImage}
-              aria-label="Imagen anterior"
-            >
-              ‹
-            </button>
-          )}
-
           <div className="carousel-images">
-            {/* Imagen principal */}
+            {/* Imagen izquierda */}
+            {displayImages.length > 1 && (
+              <div className="carousel-side-image carousel-left">
+                <Image
+                  src={
+                    displayImages[
+                      currentImageIndex === 0
+                        ? displayImages.length - 1
+                        : currentImageIndex - 1
+                    ]
+                  }
+                  alt={`${title} - Imagen anterior`}
+                  className="side-image"
+                />
+              </div>
+            )}
+
+            {/* Imagen principal (centro) */}
             <div className="carousel-main-image">
               <Image
                 src={displayImages[currentImageIndex]}
@@ -133,42 +140,42 @@ const Project: React.FC<ProjectDetailsProps> = () => {
               />
             </div>
 
-            {/* Miniaturas laterales */}
+            {/* Imagen derecha */}
             {displayImages.length > 1 && (
-              <div className="carousel-thumbnails">
-                {displayImages
-                  .filter((_, idx) => idx !== currentImageIndex)
-                  .slice(0, 2)
-                  .map((img) => {
-                    const actualIndex = displayImages.findIndex(
-                      (i) => i === img
-                    );
-                    return (
-                      <div
-                        key={actualIndex}
-                        className="thumbnail-wrapper"
-                        onClick={() => setCurrentImageIndex(actualIndex)}
-                      >
-                        <Image
-                          src={img}
-                          alt={`${title} - Miniatura ${actualIndex + 1}`}
-                          className="thumbnail-image"
-                        />
-                      </div>
-                    );
-                  })}
+              <div className="carousel-side-image carousel-right">
+                <Image
+                  src={
+                    displayImages[
+                      currentImageIndex === displayImages.length - 1
+                        ? 0
+                        : currentImageIndex + 1
+                    ]
+                  }
+                  alt={`${title} - Imagen siguiente`}
+                  className="side-image"
+                />
               </div>
             )}
           </div>
 
+          {/* Botones de navegación */}
           {displayImages.length > 1 && (
-            <button
-              className="carousel-arrow carousel-arrow-right"
-              onClick={handleNextImage}
-              aria-label="Imagen siguiente"
-            >
-              ›
-            </button>
+            <div className="carousel-controls">
+              <button
+                className="carousel-arrow carousel-arrow-left"
+                onClick={handlePrevImage}
+                aria-label="Imagen anterior"
+              >
+                ‹
+              </button>
+              <button
+                className="carousel-arrow carousel-arrow-right"
+                onClick={handleNextImage}
+                aria-label="Imagen siguiente"
+              >
+                ›
+              </button>
+            </div>
           )}
         </div>
 
