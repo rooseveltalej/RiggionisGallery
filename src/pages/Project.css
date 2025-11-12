@@ -119,8 +119,8 @@
 /* Contenido */
 .project-content {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
   padding: 0 1rem;
 }
 
@@ -197,6 +197,8 @@
   gap: 1.5rem;
   align-items: center;
   justify-content: flex-start;
+  border-left: 1px solid var(--border-color);
+  padding-left: 2rem;
 }
 
 .availability-badge {
@@ -287,6 +289,11 @@
   .project-actions {
     flex-direction: row;
     justify-content: center;
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+    padding-left: 0;
+    padding-top: 2rem;
+    margin-top: 2rem;
   }
 }
 
@@ -336,6 +343,11 @@
   .project-actions {
     flex-direction: column;
     width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+    padding-left: 0;
+    padding-top: 2rem;
+    margin-top: 2rem;
   }
 }
 
