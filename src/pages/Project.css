@@ -255,6 +255,75 @@
   opacity: 0.6;
 }
 
+/* Todas las fotografías */
+.all-photos-section {
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--primary-color-dark);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.photo-item {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.photo-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.photo-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.view-more-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 0.75rem 2.5rem;
+  background-color: transparent;
+  color: var(--primary-color-dark);
+  border: 2px solid var(--primary-color-dark);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-more-btn:hover {
+  background-color: var(--primary-color-dark);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* Proyectos relacionados */
+.related-projects-section {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  width: 100%;
+}
+
 /* Proyecto no encontrado */
 .project-not-found {
   display: flex;
@@ -293,6 +362,11 @@
 
   .project-content {
     grid-template-columns: 1fr;
+  }
+
+  .photos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 
   .project-actions {
@@ -394,5 +468,10 @@
 
   .detail-label {
     min-width: auto;
+  }
+
+  .photos-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }

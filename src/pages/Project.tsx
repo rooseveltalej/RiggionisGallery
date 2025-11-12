@@ -253,6 +253,29 @@ const Project: React.FC<ProjectDetailsProps> = () => {
             />
           </div>
         </div>
+
+        {/* Todas las fotografías */}
+        <div className="all-photos-section">
+          <h2 className="section-title">Todas las fotografías</h2>
+          <div className="photos-grid">
+            {displayImages.map((image, index) => (
+              <div key={index} className="photo-item">
+                <Image
+                  src={image}
+                  alt={`${title} - Foto ${index + 1}`}
+                  className="photo-thumbnail"
+                />
+              </div>
+            ))}
+          </div>
+          <button className="view-more-btn">Ver más</button>
+        </div>
+
+        {/* Proyectos relacionados */}
+        <div className="related-projects-section">
+          <h2 className="section-title">Proyectos relacionados</h2>
+          {/* Carrusel se agregará más adelante */}
+        </div>
       </div>
     </div>
   );
