@@ -85,9 +85,9 @@ const Project: React.FC<ProjectDetailsProps> = () => {
 
   const formatPrice = (price?: { amount: number; currency: string }) => {
     if (!price) return "Consultar precio";
-    return new Intl.NumberFormat("es-AR", {
+    return new Intl.NumberFormat("es-CR", {
       style: "currency",
-      currency: price.currency === "USD" ? "USD" : "ARS",
+      currency: price.currency === "USD" ? "USD" : "CRC",
       minimumFractionDigits: 0,
     }).format(price.amount);
   };
