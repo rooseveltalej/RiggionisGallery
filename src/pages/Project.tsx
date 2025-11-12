@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { H1 } from "@/mini-components/h1/H1";
 import Paragraph from "@/mini-components/paragraph/Paragraph";
 import Button from "@/mini-components/Button/Button";
 import Image from "@/mini-components/Image/Image";
-import projectsData from "@/data/projects.json";
+import { useLanguage } from "@/hooks";
+import type { Project as ProjectType } from "@/components/projectCard/ProjectCard.interface";
 import "./Project.css";
 
 interface ProjectDetailsProps {
@@ -14,19 +15,35 @@ interface ProjectDetailsProps {
 const Project: React.FC<ProjectDetailsProps> = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { languageStrings } = useLanguage();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Obtener proyectos desde Remote Config
+  const projects = useMemo<ProjectType[]>(() => {
+    const remoteProjects = languageStrings?.gallery_page?.projects;
+    if (Array.isArray(remoteProjects)) {
+      return remoteProjects as ProjectType[];
+    }
+    return [];
+  }, [languageStrings]);
+
   // Buscar el proyecto por ID
-  const project = projectsData.find((p) => p.id === id);
+  const project = projects.find((p) => p.id === id);
+
+  // Debug: ver qué IDs tenemos disponibles
+  console.log("ID buscado:", id);
+  console.log("Proyectos disponibles:", projects.length);
+  console.log(
+    "IDs disponibles:",
+    projects.map((p) => p.id)
+  );
+  console.log("Proyecto encontrado:", project);
 
   if (!project) {
     return (
       <div className="project-not-found">
         <H1>Proyecto no encontrado</H1>
-        <Button
-          text="Volver a la galería"
-          onClick={() => navigate("/gallery")}
-        />
+        <Button text="Volver a la galería" onClick={() => navigate("/")} />
       </div>
     );
   }
@@ -49,7 +66,8 @@ const Project: React.FC<ProjectDetailsProps> = () => {
     setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
-  const formatPrice = (price: { amount: number; currency: string }) => {
+  const formatPrice = (price?: { amount: number; currency: string }) => {
+    if (!price) return "Consultar precio";
     return new Intl.NumberFormat("es-AR", {
       style: "currency",
       currency: price.currency === "USD" ? "USD" : "ARS",
