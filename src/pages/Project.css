@@ -194,7 +194,7 @@
 .project-actions {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 7rem;
   align-items: center;
   justify-content: flex-start;
   border-left: 1px solid var(--border-color);
@@ -235,7 +235,7 @@
   min-width: 200px;
   padding: 1rem 2rem;
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 500;
   background-color: var(--primary-color-dark);
   color: var(--white);
   border: none;
