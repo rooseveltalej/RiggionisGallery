@@ -1,4 +1,5 @@
 import React from "react";
+import { H3 } from "@/mini-components/h3/H3";
 import Paragraph from "@/mini-components/paragraph/Paragraph";
 import type { ProjectDetailsListProps } from "./ProjectDetailsList.interface";
 import "./ProjectDetailsList.css";
@@ -63,7 +64,7 @@ export const ProjectDetailsList: React.FC<ProjectDetailsListProps> = ({
 
       {/* Descripción */}
       <div className="project-description-section">
-        <h3 className="description-title">Descripción de la obra:</h3>
+        <H3 className="description-title">Descripción de la obra:</H3>
         <Paragraph className="project-description">{description}</Paragraph>
       </div>
     </div>
