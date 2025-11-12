@@ -34,17 +34,7 @@ const Project: React.FC<ProjectDetailsProps> = () => {
     return [];
   }, [languageStrings]);
 
-  // Buscar el proyecto por ID
   const project = projects.find((p) => p.id === id);
-
-  // Debug: ver qué IDs tenemos disponibles
-  console.log("ID buscado:", id);
-  console.log("Proyectos disponibles:", projects.length);
-  console.log(
-    "IDs disponibles:",
-    projects.map((p) => p.id)
-  );
-  console.log("Proyecto encontrado:", project);
 
   if (!project) {
     return (
@@ -55,21 +45,10 @@ const Project: React.FC<ProjectDetailsProps> = () => {
     );
   }
 
-  const {
-    title,
-    description,
-    images = [],
-    metadata,
-    year,
-    availability,
-    price,
-  } = project;
+  const { title, description, metadata, year, availability, price } = project;
 
   // TODO: Usar imágenes reales de Firebase Storage cuando estén disponibles
-  // Por ahora FORZAMOS el uso de imágenes temporales de desarrollo
-  console.log("Imágenes del proyecto:", images);
-  console.log("Imágenes temporales que vamos a usar:", TEMP_IMAGES);
-  const displayImages = TEMP_IMAGES; // Temporalmente usar siempre las imágenes de prueba
+  const displayImages = TEMP_IMAGES;
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prev) =>
@@ -100,8 +79,7 @@ const Project: React.FC<ProjectDetailsProps> = () => {
   };
 
   const handleBuy = () => {
-    // Lógica para comprar
-    console.log("Comprar proyecto:", project.id);
+    // TODO: Implementar lógica de compra con WhatsApp
   };
 
   return (
