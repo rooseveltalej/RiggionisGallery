@@ -113,6 +113,17 @@ const Project: React.FC<ProjectDetailsProps> = () => {
 
         {/* Carrusel de imágenes */}
         <div className="project-carousel">
+          {/* Botón izquierdo */}
+          {displayImages.length > 1 && (
+            <button
+              className="carousel-arrow carousel-arrow-left"
+              onClick={handlePrevImage}
+              aria-label="Imagen anterior"
+            >
+              ‹
+            </button>
+          )}
+
           <div className="carousel-images">
             {/* Imagen izquierda */}
             {displayImages.length > 1 && (
@@ -158,24 +169,15 @@ const Project: React.FC<ProjectDetailsProps> = () => {
             )}
           </div>
 
-          {/* Botones de navegación */}
+          {/* Botón derecho */}
           {displayImages.length > 1 && (
-            <div className="carousel-controls">
-              <button
-                className="carousel-arrow carousel-arrow-left"
-                onClick={handlePrevImage}
-                aria-label="Imagen anterior"
-              >
-                ‹
-              </button>
-              <button
-                className="carousel-arrow carousel-arrow-right"
-                onClick={handleNextImage}
-                aria-label="Imagen siguiente"
-              >
-                ›
-              </button>
-            </div>
+            <button
+              className="carousel-arrow carousel-arrow-right"
+              onClick={handleNextImage}
+              aria-label="Imagen siguiente"
+            >
+              ›
+            </button>
           )}
         </div>
 

@@ -33,10 +33,10 @@
 .project-carousel {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
   padding: 2rem 0;
   width: 100%;
 }
@@ -46,8 +46,6 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  width: 100%;
-  max-width: 1100px;
   position: relative;
 }
 
@@ -92,34 +90,30 @@
   object-fit: cover;
 }
 
-.carousel-controls {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-}
-
 .carousel-arrow {
-  background-color: var(--primary-color);
+  background-color: transparent;
   border: none;
-  font-size: 2rem;
-  color: var(--white);
+  font-size: 3rem;
+  color: var(--primary-color);
   cursor: pointer;
-  padding: 0.5rem 1.5rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: color 0.3s ease, transform 0.2s ease;
   user-select: none;
   min-width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .carousel-arrow:hover {
-  background-color: var(--primary-color-light);
-  transform: translateY(-2px);
+  color: var(--primary-color-light);
+  transform: scale(1.15);
 }
 
 .carousel-arrow:active {
-  transform: translateY(0) scale(0.95);
+  transform: scale(0.9);
 }
 
 /* Contenido */
@@ -257,6 +251,10 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+  .project-carousel {
+    gap: 1.5rem;
+  }
+
   .carousel-images {
     gap: 1rem;
   }
@@ -269,6 +267,12 @@
   .carousel-side-image {
     width: 160px;
     height: 120px;
+  }
+
+  .carousel-arrow {
+    font-size: 2rem;
+    min-width: 50px;
+    height: 50px;
   }
 
   .project-content {
@@ -286,13 +290,17 @@
     padding: 1rem 0.5rem;
   }
 
+  .project-carousel {
+    gap: 1rem;
+  }
+
   .carousel-images {
     gap: 0.75rem;
   }
 
   .carousel-main-image {
-    width: 350px;
-    height: 250px;
+    width: 320px;
+    height: 240px;
   }
 
   .carousel-side-image {
@@ -301,9 +309,10 @@
   }
 
   .carousel-arrow {
-    font-size: 1.5rem;
-    padding: 0.4rem 1rem;
-    min-width: 50px;
+    font-size: 1.75rem;
+    padding: 0.5rem 0.75rem;
+    min-width: 45px;
+    height: 45px;
   }
 
   .project-content {
@@ -328,6 +337,7 @@
 @media (max-width: 480px) {
   .project-carousel {
     padding: 1rem 0;
+    gap: 0.5rem;
   }
 
   .carousel-images {
@@ -335,19 +345,20 @@
   }
 
   .carousel-main-image {
-    width: 280px;
-    height: 200px;
+    width: 240px;
+    height: 180px;
   }
 
   .carousel-side-image {
-    width: 80px;
-    height: 60px;
+    width: 70px;
+    height: 52px;
   }
 
   .carousel-arrow {
-    font-size: 1.2rem;
-    padding: 0.3rem 0.8rem;
+    font-size: 1.5rem;
+    padding: 0.4rem 0.6rem;
     min-width: 40px;
+    height: 40px;
   }
 
   .detail-item {
