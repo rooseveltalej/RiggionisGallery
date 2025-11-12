@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { H1 } from "@/mini-components/h1/H1";
-import Paragraph from "@/mini-components/paragraph/Paragraph";
+import { H2 } from "@/mini-components/h2/H2";
 import Button from "@/mini-components/Button/Button";
-import Image from "@/mini-components/Image/Image";
 import { useLanguage } from "@/hooks";
+import { ImageCarousel, ProjectDetailsList, PhotoGallery } from "@/components";
 import type { Project as ProjectType } from "@/components/projectCard/ProjectCard.interface";
 import ejemplo1 from "@/assets/images/testing/ejemplo1.jpg?url";
 import ejemplo2 from "@/assets/images/testing/ejemplo2.jpg?url";
@@ -85,142 +85,43 @@ const Project: React.FC<ProjectDetailsProps> = () => {
     // TODO: Implementar funcionalidad para ver más fotos (modal, lightbox, etc.)
   };
 
+  // Formatear datos para los componentes
+  const formattedPrice = formatPrice(price);
+  const formattedDimensions = formatDimensions();
+
   return (
     <div className="project-page">
       <div className="project-container">
         {/* Título */}
-        <div className="project-header">
+        <header className="project-header">
           <H1 className="project-title">{title}</H1>
-        </div>
+        </header>
 
         {/* Carrusel de imágenes */}
-        <div className="project-carousel">
-          {/* Botón izquierdo */}
-          {displayImages.length > 1 && (
-            <button
-              className="carousel-arrow carousel-arrow-left"
-              onClick={handlePrevImage}
-              aria-label="Imagen anterior"
-            >
-              ‹
-            </button>
-          )}
-
-          <div className="carousel-images">
-            {/* Imagen izquierda */}
-            {displayImages.length > 1 && (
-              <div
-                className="carousel-side-image carousel-left"
-                onClick={handlePrevImage}
-              >
-                <Image
-                  src={
-                    displayImages[
-                      currentImageIndex === 0
-                        ? displayImages.length - 1
-                        : currentImageIndex - 1
-                    ]
-                  }
-                  alt={`${title} - Imagen anterior`}
-                  className="side-image"
-                />
-              </div>
-            )}
-
-            {/* Imagen principal (centro) */}
-            <div className="carousel-main-image">
-              <Image
-                src={displayImages[currentImageIndex]}
-                alt={`${title} - Imagen ${currentImageIndex + 1}`}
-                className="main-image"
-              />
-            </div>
-
-            {/* Imagen derecha */}
-            {displayImages.length > 1 && (
-              <div
-                className="carousel-side-image carousel-right"
-                onClick={handleNextImage}
-              >
-                <Image
-                  src={
-                    displayImages[
-                      currentImageIndex === displayImages.length - 1
-                        ? 0
-                        : currentImageIndex + 1
-                    ]
-                  }
-                  alt={`${title} - Imagen siguiente`}
-                  className="side-image"
-                />
-              </div>
-            )}
-          </div>
-
-          {/* Botón derecho */}
-          {displayImages.length > 1 && (
-            <button
-              className="carousel-arrow carousel-arrow-right"
-              onClick={handleNextImage}
-              aria-label="Imagen siguiente"
-            >
-              ›
-            </button>
-          )}
-        </div>
+        <ImageCarousel
+          images={displayImages}
+          title={title}
+          currentIndex={currentImageIndex}
+          onPrevious={handlePrevImage}
+          onNext={handleNextImage}
+        />
 
         {/* Información del proyecto */}
         <div className="project-content">
-          {/* Detalles técnicos */}
-          <div className="project-details">
-            <div className="detail-item">
-              <span className="detail-label">Título:</span>
-              <span className="detail-value">{title}</span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">Técnica:</span>
-              <span className="detail-value">
-                {metadata?.technique || "N/A"}
-              </span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">Soporte:</span>
-              <span className="detail-value">{metadata?.support || "N/A"}</span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">Estilo:</span>
-              <span className="detail-value">{metadata?.style || "N/A"}</span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">Autor:</span>
-              <span className="detail-value">Mónica Rigioni</span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">Año:</span>
-              <span className="detail-value">{year}</span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">Dimensiones:</span>
-              <span className="detail-value">{formatDimensions()}</span>
-            </div>
-
-            {/* Precio */}
-            <div className="project-price">
-              <span className="price-label">Precio:</span>
-              <span className="price-value">{formatPrice(price)}</span>
-            </div>
-
-            {/* Descripción */}
-            <div className="project-description-section">
-              <h3 className="description-title">Descripción de la obra:</h3>
-              <Paragraph className="project-description">
-                {description}
-              </Paragraph>
-            </div>
-          </div>
+          <ProjectDetailsList
+            title={title}
+            technique={metadata?.technique}
+            support={metadata?.support}
+            style={metadata?.style}
+            author="Mónica Rigioni"
+            year={year?.toString() || "N/A"}
+            dimensions={formattedDimensions}
+            price={formattedPrice}
+            description={description || "Sin descripción disponible"}
+          />
 
           {/* Acciones */}
-          <div className="project-actions">
+          <aside className="project-actions" aria-label="Acciones del proyecto">
             <div className="availability-badge">
               <span
                 className={`availability-status ${
@@ -228,6 +129,8 @@ const Project: React.FC<ProjectDetailsProps> = () => {
                     ? "status-available"
                     : "status-sold"
                 }`}
+                role="status"
+                aria-label={`Estado: ${availability}`}
               >
                 {availability}
               </span>
@@ -238,33 +141,26 @@ const Project: React.FC<ProjectDetailsProps> = () => {
               onClick={handleBuy}
               disabled={availability !== "Disponible"}
             />
-          </div>
+          </aside>
         </div>
 
-        {/* Todas las fotografías */}
-        <div className="all-photos-section">
-          <h2 className="section-title">Todas las fotografías</h2>
-          <div className="photos-grid">
-            {displayImages.map((image, index) => (
-              <div key={index} className="photo-item">
-                <Image
-                  src={image}
-                  alt={`${title} - Foto ${index + 1}`}
-                  className="photo-thumbnail"
-                />
-              </div>
-            ))}
-          </div>
-          <button className="view-more-btn" onClick={handleViewMore}>
-            Ver más
-          </button>
-        </div>
+        {/* Galería de fotografías */}
+        <PhotoGallery
+          images={displayImages}
+          title={title}
+          onViewMore={handleViewMore}
+        />
 
         {/* Proyectos relacionados */}
-        <div className="related-projects-section">
-          <h2 className="section-title">Proyectos relacionados</h2>
+        <section
+          className="related-projects-section"
+          aria-labelledby="related-projects-title"
+        >
+          <H2 id="related-projects-title" className="section-title">
+            Proyectos relacionados
+          </H2>
           {/* Carrusel se agregará más adelante */}
-        </div>
+        </section>
       </div>
     </div>
   );
