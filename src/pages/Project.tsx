@@ -89,6 +89,7 @@ const Project: React.FC<ProjectDetailsProps> = () => {
       style: "currency",
       currency: price.currency === "USD" ? "USD" : "CRC",
       minimumFractionDigits: 0,
+      currencyDisplay: "narrowSymbol",
     }).format(price.amount);
   };
 
