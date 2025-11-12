@@ -4,7 +4,7 @@ import { useLanguage } from "@/hooks";
 import { Footer } from "@/components";
 import { AVATAR_IMAGE_URL } from "@/utils/constants";
 import { Spinner } from "@/mini-components";
-import { Gallery, ProjectsPage, Contact, ArtistPage } from "@/pages";
+import { Gallery, ProjectsPage, Contact, ArtistPage, Project } from "@/pages";
 import { Navbar } from "@/components/navbar";
 
 function App() {
@@ -47,6 +47,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Gallery />} />
             <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/project/:id" element={<Project />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/artist" element={<ArtistPage />} />
           </Routes>
