@@ -106,7 +106,10 @@ const Project: React.FC<ProjectDetailsProps> = () => {
           <div className="carousel-images">
             {/* Imagen izquierda */}
             {displayImages.length > 1 && (
-              <div className="carousel-side-image carousel-left">
+              <div
+                className="carousel-side-image carousel-left"
+                onClick={handlePrevImage}
+              >
                 <Image
                   src={
                     displayImages[
@@ -132,7 +135,10 @@ const Project: React.FC<ProjectDetailsProps> = () => {
 
             {/* Imagen derecha */}
             {displayImages.length > 1 && (
-              <div className="carousel-side-image carousel-right">
+              <div
+                className="carousel-side-image carousel-right"
+                onClick={handleNextImage}
+              >
                 <Image
                   src={
                     displayImages[
