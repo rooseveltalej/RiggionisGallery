@@ -53,9 +53,11 @@ const SimilarProjects: React.FC<SimilarProjectsProps> = ({
     return null;
   }
 
+  const relatedProjectsTitle = languageStrings?.general_titles?.related_projects || 'Proyectos relacionados';
+
   return (
     <section className={`similar-projects ${className}`.trim()}>
-      <H2 className="similar-projects__title">Proyectos relacionados</H2>
+      <H2 className="similar-projects__title">{relatedProjectsTitle}</H2>
       
       <div className="similar-projects__grid">
         {similarProjects.map(project => (
