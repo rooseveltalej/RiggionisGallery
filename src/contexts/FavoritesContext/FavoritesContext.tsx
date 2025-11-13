@@ -1,5 +1,5 @@
-import React, { createContext, useContext } from 'react';
-import type { ReactNode } from 'react';
+import React, { createContext, useContext,useMemo } from 'react';
+import type { ReactNode} from 'react';
 import { useFavorites } from '@/hooks/useFavorites';
 
 interface FavoritesContextValue {
@@ -24,8 +24,9 @@ interface FavoritesProviderProps {
 export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }) => {
   const favoritesData = useFavorites();
 
+  const contextValue = useMemo(() => favoritesData, [favoritesData.favorites, favoritesData.isLoaded]);
   return (
-    <FavoritesContext.Provider value={favoritesData}>
+    <FavoritesContext.Provider value={contextValue}>
       {children}
     </FavoritesContext.Provider>
   );

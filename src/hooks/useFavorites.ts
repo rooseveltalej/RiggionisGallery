@@ -11,6 +11,7 @@ export const useFavorites = () => {
 
   // Load favorites from localStorage on mount
   useEffect(() => {
+    if (typeof window === 'undefined') return; 
     try {
       const storedFavorites = localStorage.getItem(FAVORITES_KEY);
       if (storedFavorites) {

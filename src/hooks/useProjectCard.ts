@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useFavoritesContext } from '@/contexts/FavoritesContext';
 import type { Project } from '@/components/projectCard/ProjectCard.interface';
 
@@ -16,7 +16,7 @@ export const useProjectCard = ({project,onToggleFavorite,}: UseProjectCardProps)
   const [showOverlay, setShowOverlay] = useState(false); // State to show overlay on mobile devices
 
   // Get favorite state from context (localStorage)
-  const isFavorite = checkIsFavorite(project.id);
+  const isFavorite = useMemo(() => checkIsFavorite(project.id), [checkIsFavorite, project.id]);
 
   const handleToggleFavorite = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();

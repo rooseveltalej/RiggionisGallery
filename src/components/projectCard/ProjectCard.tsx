@@ -51,13 +51,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyPro
           {/* Chips de información - solo visible en hover o cuando showOverlay está activo */}
         <div className={`project-card__info-chips ${showOverlay ? 'project-card__info-chips--visible' : ''}`}>
           {project.metadata?.technique && (
-            <H3 className="project-card__chip">{project.metadata.technique} </H3>
+            <span className="project-card__chip">{project.metadata.technique} </span>
           )}
           {project.metadata?.support && (
-            <H3 className="project-card__chip">{project.metadata.support} </H3>
+            <span className="project-card__chip">{project.metadata.support} </span>
           )}
           {project.metadata?.style && (
-            <H3 className="project-card__chip">{project.metadata.style} </H3>
+            <span className="project-card__chip">{project.metadata.style} </span>
           )}
         </div>
       </div>
