@@ -25,13 +25,13 @@ const Project: React.FC<ProjectDetailsProps> = () => {
   const { languageStrings } = useLanguage();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const projects = useMemo<ProjectType[]>(() => {
-    const remoteProjects = languageStrings?.gallery_page?.projects;
-    if (Array.isArray(remoteProjects)) {
-      return remoteProjects as ProjectType[];
-    }
-    return [];
-  }, [languageStrings]);
+  const projects = useMemo<ProjectType[]>(
+    () =>
+      Array.isArray(languageStrings?.gallery_page?.projects)
+        ? languageStrings.gallery_page.projects
+        : [],
+    [languageStrings]
+  );
 
   const project = projects.find((p) => p.id === id);
 
