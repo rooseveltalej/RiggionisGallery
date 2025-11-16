@@ -22,34 +22,26 @@ export const ProjectDetailsList: React.FC<ProjectDetailsListProps> = ({
       aria-label="Detalles del proyecto"
     >
       <dl className="details-list">
-        <div className="detail-item">
-          <dt className="detail-label">Título:</dt>
-          <dd className="detail-value">{title || "N/A"}</dd>
-        </div>
-        <div className="detail-item">
-          <dt className="detail-label">Técnica:</dt>
-          <dd className="detail-value">{technique || "N/A"}</dd>
-        </div>
-        <div className="detail-item">
-          <dt className="detail-label">Soporte:</dt>
-          <dd className="detail-value">{support || "N/A"}</dd>
-        </div>
-        <div className="detail-item">
-          <dt className="detail-label">Estilo:</dt>
-          <dd className="detail-value">{style || "N/A"}</dd>
-        </div>
-        <div className="detail-item">
-          <dt className="detail-label">Autor:</dt>
-          <dd className="detail-value">{author}</dd>
-        </div>
-        <div className="detail-item">
-          <dt className="detail-label">Año:</dt>
-          <dd className="detail-value">{year}</dd>
-        </div>
-        <div className="detail-item">
-          <dt className="detail-label">Dimensiones:</dt>
-          <dd className="detail-value">{dimensions || "N/A"}</dd>
-        </div>
+        <dt className="detail-label">Título:</dt>
+        <dd className="detail-value">{title || "N/A"}</dd>
+
+        <dt className="detail-label">Técnica:</dt>
+        <dd className="detail-value">{technique || "N/A"}</dd>
+
+        <dt className="detail-label">Soporte:</dt>
+        <dd className="detail-value">{support || "N/A"}</dd>
+
+        <dt className="detail-label">Estilo:</dt>
+        <dd className="detail-value">{style || "N/A"}</dd>
+
+        <dt className="detail-label">Autor:</dt>
+        <dd className="detail-value">{author}</dd>
+
+        <dt className="detail-label">Año:</dt>
+        <dd className="detail-value">{year}</dd>
+
+        <dt className="detail-label">Dimensiones:</dt>
+        <dd className="detail-value">{dimensions || "N/A"}</dd>
       </dl>
 
       {/* Precio */}
