@@ -3,6 +3,16 @@ import Image from "@/mini-components/Image/Image";
 import type { ImageCarouselProps } from "./ImageCarousel.interface";
 import "./ImageCarousel.css";
 
+const handleKeyDown = (
+  e: React.KeyboardEvent<HTMLDivElement>,
+  callback: () => void
+) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    callback();
+  }
+};
+
 export const ImageCarousel: React.FC<ImageCarouselProps> = ({
   images,
   title,
@@ -50,12 +60,7 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
             onClick={onPrevious}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                onPrevious();
-              }
-            }}
+            onKeyDown={(e) => handleKeyDown(e, onPrevious)}
             aria-label="Clic para ver imagen anterior"
           >
             <Image
@@ -84,12 +89,7 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
             onClick={onNext}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                onNext();
-              }
-            }}
+            onKeyDown={(e) => handleKeyDown(e, onNext)}
             aria-label="Clic para ver imagen siguiente"
           >
             <Image
