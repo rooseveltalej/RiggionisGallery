@@ -45,11 +45,7 @@ export const ProjectDetailsList: React.FC<ProjectDetailsListProps> = ({
       </dl>
 
       {/* Precio */}
-      <div
-        className="project-price"
-        role="contentinfo"
-        aria-label="Precio del proyecto"
-      >
+      <div className="project-price" aria-label="Precio del proyecto">
         <span className="price-label">Precio:</span>
         <span className="price-value">{price}</span>
       </div>
