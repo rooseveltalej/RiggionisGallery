@@ -39,6 +39,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
               src={image}
               alt={`${title} - Foto ${index + 1}`}
               className="photo-thumbnail"
+              loading="lazy"
             />
           </li>
         ))}
