@@ -3,4 +3,5 @@ export interface PhotoGalleryProps {
   title: string;
   onViewMore: () => void;
   onViewImage?: (image: string, index: number) => void;
+  limit?: number;
 }

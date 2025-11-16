@@ -9,6 +9,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   title,
   onViewMore,
   onViewImage,
+  limit = 6,
 }) => {
   if (!images || images.length === 0) {
     return null;
@@ -42,14 +43,16 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
           </li>
         ))}
       </ul>
-      <button
-        className="view-more-btn"
-        onClick={onViewMore}
-        type="button"
-        aria-label="Ver más fotografías"
-      >
-        Ver más
-      </button>
+      {onViewMore && images.length >= limit && (
+        <button
+          className="view-more-btn"
+          onClick={onViewMore}
+          type="button"
+          aria-label="Ver más fotografías"
+        >
+          Ver más
+        </button>
+      )}
     </section>
   );
 };
