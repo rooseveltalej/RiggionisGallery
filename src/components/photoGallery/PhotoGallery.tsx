@@ -8,6 +8,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   images,
   title,
   onViewMore,
+  onViewImage,
 }) => {
   if (!images || images.length === 0) {
     return null;
@@ -25,6 +26,13 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
             className="photo-item"
             tabIndex={0}
             aria-label={`Fotografía ${index + 1} de ${images.length}`}
+            onClick={() => onViewImage?.(image, index)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onViewImage?.(image, index);
+              }
+            }}
           >
             <Image
               src={image}
