@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "@/mini-components/Image/Image";
+import Button from "@/mini-components/Button/Button";
 import type { ImageCarouselProps } from "./ImageCarousel.interface";
 import "./ImageCarousel.css";
 
@@ -32,14 +33,12 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
     >
       {/* Botón izquierdo */}
       {hasMultipleImages && (
-        <button
+        <Button
+          text="‹"
           className="carousel-arrow carousel-arrow-left"
           onClick={onPrevious}
           aria-label="Ver imagen anterior"
-          type="button"
-        >
-          ‹
-        </button>
+        />
       )}
 
       <div className="carousel-images">
@@ -89,14 +88,12 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
 
       {/* Botón derecho */}
       {hasMultipleImages && (
-        <button
+        <Button
+          text="›"
           className="carousel-arrow carousel-arrow-right"
           onClick={onNext}
           aria-label="Ver imagen siguiente"
-          type="button"
-        >
-          ›
-        </button>
+        />
       )}
 
       {/* Indicador de posición para lectores de pantalla */}
