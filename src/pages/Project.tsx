@@ -5,6 +5,7 @@ import { H2 } from "@/mini-components/h2/H2";
 import Button from "@/mini-components/Button/Button";
 import { useLanguage } from "@/hooks";
 import { ImageCarousel, ProjectDetailsList, PhotoGallery } from "@/components";
+import { formatPrice, formatDimensions } from "@/utils/projectFormatters";
 import type { Project as ProjectType } from "@/components/projectCard/ProjectCard.interface";
 import ejemplo1 from "@/assets/images/testing/ejemplo1.jpg?url";
 import ejemplo2 from "@/assets/images/testing/ejemplo2.jpg?url";
@@ -61,22 +62,6 @@ const Project: React.FC<ProjectDetailsProps> = () => {
     );
   };
 
-  const formatPrice = (price?: { amount: number; currency: string }) => {
-    if (!price) return "Consultar precio";
-    return new Intl.NumberFormat("es-CR", {
-      style: "currency",
-      currency: price.currency === "USD" ? "USD" : "CRC",
-      minimumFractionDigits: 0,
-      currencyDisplay: "narrowSymbol",
-    }).format(price.amount);
-  };
-
-  const formatDimensions = () => {
-    if (!metadata?.dimensions) return "";
-    const { width, height, unit } = metadata.dimensions;
-    return `${width}${unit} x ${height}${unit}`;
-  };
-
   const handleBuy = () => {
     // TODO: Implementar lógica de compra con WhatsApp
   };
@@ -87,7 +72,7 @@ const Project: React.FC<ProjectDetailsProps> = () => {
 
   // Formatear datos para los componentes
   const formattedPrice = formatPrice(price);
-  const formattedDimensions = formatDimensions();
+  const formattedDimensions = formatDimensions(metadata?.dimensions);
 
   return (
     <div className="project-page">
