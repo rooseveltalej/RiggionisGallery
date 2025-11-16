@@ -7,26 +7,20 @@ export const useProjectActions = () => {
   const navigate = useNavigate();
   const { languageStrings } = useLanguage();
 
+  const extractArtistPhone = () => {
+    return languageStrings?.general_titles?.artist_info?.values?.phone?.replace(
+      /[^\d]/g,
+      ""
+    );
+  };
+
   const handleViewProject = (project: Project) => {
     navigate(`/project/${project.id}`);
   };
 
-  const handleBuyProject = (project: Project) => {
-    const phoneNumber =
-      languageStrings?.general_titles?.artist_info?.values?.phone?.replace(
-        /[^\d]/g,
-        ""
-      );
-    openProjectWhatsApp(project, phoneNumber);
-  };
-
-  const handleWhatsApp = (project: Project) => {
-    const phoneNumber =
-      languageStrings?.general_titles?.artist_info?.values?.phone?.replace(
-        /[^\d]/g,
-        ""
-      );
-    openProjectWhatsApp(project, phoneNumber);
+  const handleContactArtist = (project: Project) => {
+    const phone = extractArtistPhone();
+    openProjectWhatsApp(project, phone);
   };
 
   const handleToggleFavorite = (project: Project) => {
@@ -36,8 +30,7 @@ export const useProjectActions = () => {
 
   return {
     handleViewProject,
-    handleBuyProject,
-    handleWhatsApp,
+    handleContactArtist,
     handleToggleFavorite,
   };
 };
