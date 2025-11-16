@@ -51,8 +51,13 @@ export const ProjectDetailsList: React.FC<ProjectDetailsListProps> = ({
       </div>
 
       {/* Descripción */}
-      <div className="project-description-section">
-        <H3 className="description-title">Descripción de la obra:</H3>
+      <div
+        className="project-description-section"
+        aria-labelledby="description-title"
+      >
+        <H3 id="description-title" className="description-title">
+          Descripción de la obra:
+        </H3>
         <Paragraph className="project-description">{description}</Paragraph>
       </div>
     </div>
