@@ -18,12 +18,11 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
       <H2 id="gallery-title" className="gallery-title">
         Todas las fotografías
       </H2>
-      <div className="photos-grid" role="list">
+      <ul className="photos-grid">
         {images.map((image, index) => (
-          <div
+          <li
             key={index}
             className="photo-item"
-            role="listitem"
             tabIndex={0}
             aria-label={`Fotografía ${index + 1} de ${images.length}`}
           >
@@ -32,9 +31,9 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
               alt={`${title} - Foto ${index + 1}`}
               className="photo-thumbnail"
             />
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
       <button
         className="view-more-btn"
         onClick={onViewMore}

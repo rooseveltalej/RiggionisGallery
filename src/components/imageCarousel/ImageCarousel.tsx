@@ -3,16 +3,6 @@ import Image from "@/mini-components/Image/Image";
 import type { ImageCarouselProps } from "./ImageCarousel.interface";
 import "./ImageCarousel.css";
 
-const handleKeyDown = (
-  e: React.KeyboardEvent<HTMLDivElement>,
-  callback: () => void
-) => {
-  if (e.key === "Enter" || e.key === " ") {
-    e.preventDefault();
-    callback();
-  }
-};
-
 export const ImageCarousel: React.FC<ImageCarouselProps> = ({
   images,
   title,
@@ -55,20 +45,18 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
       <div className="carousel-images">
         {/* Imagen izquierda */}
         {hasMultipleImages && (
-          <div
+          <button
             className="carousel-side-image carousel-left"
             onClick={onPrevious}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => handleKeyDown(e, onPrevious)}
             aria-label="Clic para ver imagen anterior"
+            type="button"
           >
             <Image
               src={images[previousIndex]}
               alt={`${title} - Imagen ${previousIndex + 1}`}
               className="side-image"
             />
-          </div>
+          </button>
         )}
 
         {/* Imagen principal (centro) */}
@@ -84,20 +72,18 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({
 
         {/* Imagen derecha */}
         {hasMultipleImages && (
-          <div
+          <button
             className="carousel-side-image carousel-right"
             onClick={onNext}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => handleKeyDown(e, onNext)}
             aria-label="Clic para ver imagen siguiente"
+            type="button"
           >
             <Image
               src={images[nextIndex]}
               alt={`${title} - Imagen ${nextIndex + 1}`}
               className="side-image"
             />
-          </div>
+          </button>
         )}
       </div>
 
