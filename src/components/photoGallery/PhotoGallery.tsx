@@ -1,6 +1,7 @@
 import React from "react";
 import { H2 } from "@/mini-components/h2/H2";
 import Image from "@/mini-components/Image/Image";
+import Button from "@/mini-components/Button/Button";
 import type { PhotoGalleryProps } from "./PhotoGallery.interface";
 import "./PhotoGallery.css";
 
@@ -45,14 +46,12 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
         ))}
       </ul>
       {onViewMore && images.length >= limit && (
-        <button
+        <Button
+          text="Ver más"
           className="view-more-btn"
           onClick={onViewMore}
-          type="button"
           aria-label="Ver más fotografías"
-        >
-          Ver más
-        </button>
+        />
       )}
     </section>
   );
