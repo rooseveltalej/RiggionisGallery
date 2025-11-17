@@ -1,5 +1,6 @@
 import React from "react";
 import { LinkButton } from "@/mini-components";
+import Button from "@/mini-components/Button/Button";
 import type { CVButtonsProps } from "./CVButtons.types";
 
 const CVButtons: React.FC<CVButtonsProps> = ({
@@ -12,23 +13,31 @@ const CVButtons: React.FC<CVButtonsProps> = ({
 }) => {
   const isValidUrl = (url?: string | null): url is string => {
     if (!url) return false;
-    try { new URL(url); return true; } catch { return false; }
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
   };
 
   const validView = isValidUrl(viewUrl) ? viewUrl : undefined;
   const validDownload = isValidUrl(downloadUrl) ? downloadUrl : undefined;
 
-  const DisabledButton: React.FC<{ label: string; hint: string }> = ({ label, hint }) => (
-    <button
-      type="button"
+  const DisabledButton: React.FC<{ label: string; hint: string }> = ({
+    label,
+    hint,
+  }) => (
+    <Button
+      text={label}
       className={`${className} is-disabled`}
-      onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
-      aria-disabled="true"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
       disabled
-      title={hint}
-    >
-      {label}
-    </button>
+      aria-label={hint}
+    />
   );
 
   return (
@@ -62,10 +71,12 @@ const CVButtons: React.FC<CVButtonsProps> = ({
           title={downloadText}
         />
       ) : (
-        <DisabledButton label={downloadText} hint="Enlace de descarga no disponible" />
+        <DisabledButton
+          label={downloadText}
+          hint="Enlace de descarga no disponible"
+        />
       )}
     </div>
-    
   );
 };
 
