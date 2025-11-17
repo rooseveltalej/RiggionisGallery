@@ -3,12 +3,15 @@ import Image from '@/mini-components/Image/Image';
 import Button from '@/mini-components/Button/Button';
 import { H3 } from '@/mini-components/h3/H3';
 import { useProjectCard } from '@/hooks/useProjectCard';
+import { useProjectLikesCount } from '@/hooks/useProjectLikesCount';
 import { getImageAltText, getAriaLabels } from '@/utils/projectFormatters';
 import { ActionButtons } from '@/components/projectCard/ActionButtons';
 import type { ProjectCardProps } from '@/components/projectCard/ProjectCard.interface';
 import './ProjectCard.css';
 
 const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyProject,onWhatsApp,className}) => {
+  // Hook for likes count
+  const { likesCount, loading: loadingLikes } = useProjectLikesCount(project.id, project.title);
   // Hook 
   const {isFavorite,handleToggleFavorite,favoriteIconSrc,showOverlay,handleTouchEnd} = useProjectCard({ project });
   // Utils
@@ -61,10 +64,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyPro
           )}
         </div>
       </div>
-      {/* Título fuera del contenedor de imagen */}
+ {/* Título fuera del contenedor de imagen */}
       <div className="project-card__title-container">
         <H3 className="project-card__title">{project.title}</H3>
-        {/* Ícono de favorito junto al título */}
+        <div className="project-card__favorite-section">
+          {/* Contador de likes */}
+          {!loadingLikes && (
+            <span className="project-card__likes-count" aria-label={`${likesCount} likes`}>
+              {likesCount}
+            </span>
+          )} 
+          {/* Indicador de carga mientras se obtienen los likes */}
+          {loadingLikes && (
+            <span className="project-card__likes-count" style={{ opacity: 0.5 }}>
+              ...
+            </span>
+          )}
+          {/* Ícono de favorito junto al título */}
         <Button 
           key={`favorite-${isFavorite}`}
           text=""
@@ -75,6 +91,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyPro
         />
       </div>
     </div>
+   </div>
   );
 };
 export default ProjectCard;

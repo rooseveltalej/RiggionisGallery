@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { incrementProjectFavorites, decrementProjectFavorites } from '@/firebase/firestore';
 /**
  * Hook to manage favorites using localStorage
  * Persists favorites across browser sessions
@@ -39,7 +40,10 @@ export const useFavorites = () => {
 
   // Toggle favorite status for a project
   const toggleFavorite = useCallback(
-    (projectId: string) => {
+    async (projectId: string, projectName: string) => {
+      const wasFavorite = favorites.has(projectId);
+      
+      // Update local state
       setFavorites((prev) => {
         const newFavorites = new Set(prev);
         if (newFavorites.has(projectId)) {
@@ -50,32 +54,66 @@ export const useFavorites = () => {
         saveFavorites(newFavorites);
         return newFavorites;
       });
+
+      // Update Firebase counter in background
+      try {
+        if (wasFavorite) {
+          await decrementProjectFavorites(projectId);
+        } else {
+          await incrementProjectFavorites(projectId, projectName);
+        }
+      } catch (error) {
+        console.error('Error updating Firebase favorites count:', error);
+        // Revert local state if Firebase update fails
+        setFavorites((prev) => {
+          const revertedFavorites = new Set(prev);
+          if (wasFavorite) {
+            revertedFavorites.add(projectId);
+          } else {
+            revertedFavorites.delete(projectId);
+          }
+          saveFavorites(revertedFavorites);
+          return revertedFavorites;
+        });
+      }
     },
-    [saveFavorites]
+    [favorites, saveFavorites]
   );
 
   // Add a project to favorites
   const addFavorite = useCallback(
-    (projectId: string) => {
+    async (projectId: string, projectName: string) => {
       setFavorites((prev) => {
         const newFavorites = new Set(prev);
         newFavorites.add(projectId);
         saveFavorites(newFavorites);
         return newFavorites;
       });
+
+      try {
+        await incrementProjectFavorites(projectId, projectName);
+      } catch (error) {
+        console.error('Error adding favorite to Firebase:', error);
+      }
     },
     [saveFavorites]
   );
 
   // Remove a project from favorites
   const removeFavorite = useCallback(
-    (projectId: string) => {
+    async (projectId: string) => {
       setFavorites((prev) => {
         const newFavorites = new Set(prev);
         newFavorites.delete(projectId);
         saveFavorites(newFavorites);
         return newFavorites;
       });
+
+      try {
+        await decrementProjectFavorites(projectId);
+      } catch (error) {
+        console.error('Error removing favorite from Firebase:', error);
+      }
     },
     [saveFavorites]
   );

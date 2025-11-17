@@ -5,8 +5,8 @@ import { useFavorites } from '@/hooks/useFavorites';
 interface FavoritesContextValue {
   favorites: Set<string>;
   isLoaded: boolean;
-  toggleFavorite: (projectId: string) => void;
-  addFavorite: (projectId: string) => void;
+  toggleFavorite: (projectId: string, projectName: string) => void;
+  addFavorite: (projectId: string, projectName: string) => void;
   removeFavorite: (projectId: string) => void;
   isFavorite: (projectId: string) => boolean;
 }

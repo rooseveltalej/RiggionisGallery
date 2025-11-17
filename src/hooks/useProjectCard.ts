@@ -18,9 +18,10 @@ export const useProjectCard = ({project,onToggleFavorite,}: UseProjectCardProps)
   // Get favorite state from context (localStorage)
   const isFavorite = useMemo(() => checkIsFavorite(project.id), [checkIsFavorite, project.id]);
 
-  const handleToggleFavorite = useCallback((event: React.MouseEvent) => {
+ const handleToggleFavorite = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
-    toggleFavorite(project.id);
+    // Update favorite state and Firebase
+    toggleFavorite(project.id, project.title);
     onToggleFavorite?.(project);
   }, [toggleFavorite, project, onToggleFavorite]);
 
