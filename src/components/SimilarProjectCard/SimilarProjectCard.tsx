@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from '@/mini-components/Image/Image';
 import { H3 } from '@/mini-components/h3/H3';
 import type { SimilarProjectCardProps } from './SimilarProjectCard.interface';
 import './SimilarProjectCard.css';
+
+type MetadataKey = 'technique' | 'support' | 'style';
+
+const METADATA_KEYS: MetadataKey[] = ['technique', 'support', 'style'];
 
 const SimilarProjectCard: React.FC<SimilarProjectCardProps> = ({ 
   project, 
   className = '',
   onViewProject
 }) => {
-  const [showChips, setShowChips] = useState(false);
-  
   const firstImage = project.images?.[0] || '/icons/fallback.png';
 
   const handleClick = () => {
@@ -19,23 +21,12 @@ const SimilarProjectCard: React.FC<SimilarProjectCardProps> = ({
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleClick();
-    }
-  };
-
   return (
-    <div 
+    <button 
       className={`similar-project-card ${className}`.trim()}
       onClick={handleClick}
-      onKeyDown={handleKeyDown}
-      onMouseEnter={() => setShowChips(true)}
-      onMouseLeave={() => setShowChips(false)}
-      tabIndex={0}
-      role="button"
       aria-label={`Ver proyecto ${project.title}`}
+      type="button"
     >
       <div className="similar-project-card__image-wrapper">
         <Image
@@ -44,22 +35,21 @@ const SimilarProjectCard: React.FC<SimilarProjectCardProps> = ({
           className="similar-project-card__image"
         />
         
-        <div className={`similar-project-card__chips ${showChips ? 'similar-project-card__chips--visible' : ''}`}>
-          {project.metadata?.technique && (
-            <H3 className="similar-project-card__chip">{project.metadata.technique}</H3>
-          )}
-          {project.metadata?.support && (
-            <H3 className="similar-project-card__chip">{project.metadata.support}</H3>
-          )}
-          {project.metadata?.style && (
-            <H3 className="similar-project-card__chip">{project.metadata.style}</H3>
-          )}
+        <div className="similar-project-card__chips">
+          {METADATA_KEYS.map((key) => {
+            const value = project.metadata?.[key];
+            return value ? (
+              <H3 key={key} className="similar-project-card__chip">
+                {value}
+              </H3>
+            ) : null;
+          })}
         </div>
       </div>
       
       <H3 className="similar-project-card__title">{project.title}</H3>
-    </div>
+    </button>
   );
 };
 
-export default React.memo(SimilarProjectCard);
+export default SimilarProjectCard;
