@@ -12,7 +12,7 @@ function App() {
 
   if (loading) {
     return (
-      <div className="app" style={{ justifyContent: "center" }}>
+      <div className="app-loading">
         <Spinner />
       </div>
     );
