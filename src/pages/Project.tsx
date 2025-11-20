@@ -1,20 +1,12 @@
 import React, { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { H1 } from "@/mini-components/h1/H1";
-import { H2 } from "@/mini-components/h2/H2";
 import Button from "@/mini-components/Button/Button";
 import { useLanguage } from "@/hooks";
-import { ImageCarousel, ProjectDetailsList, PhotoGallery } from "@/components";
+import { ImageCarousel, ProjectDetailsList, PhotoGallery, SimilarProjects } from "@/components";
 import { formatPrice, formatDimensions } from "@/utils/projectFormatters";
 import type { Project as ProjectType } from "@/components/projectCard/ProjectCard.interface";
-import ejemplo1 from "@/assets/images/testing/ejemplo1.jpg?url";
-import ejemplo2 from "@/assets/images/testing/ejemplo2.jpg?url";
-import ejemplo3 from "@/assets/images/testing/ejemplo3.jpg?url";
-import ejemplo4 from "@/assets/images/testing/ejemplo4.jpg?url";
 import "./Project.css";
-
-// Imágenes temporales para desarrollo
-const TEMP_IMAGES = [ejemplo1, ejemplo2, ejemplo3, ejemplo4];
 
 interface ProjectDetailsProps {
   projectId?: string;
@@ -45,10 +37,10 @@ const Project: React.FC<ProjectDetailsProps> = () => {
     );
   }
 
-  const { title, description, metadata, year, availability, price } = project;
+  const { title, description, metadata, year, availability, price, images } = project;
 
-  // TODO: Usar imágenes reales de Firebase Storage cuando estén disponibles
-  const displayImages = TEMP_IMAGES;
+
+  const displayImages = images && images.length > 0 ? images : ['/icons/fallback.png'];
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prev) =>
@@ -73,6 +65,7 @@ const Project: React.FC<ProjectDetailsProps> = () => {
   // Formatear datos para los componentes
   const formattedPrice = formatPrice(price);
   const formattedDimensions = formatDimensions(metadata?.dimensions);
+  const relatedProjectsTitle = languageStrings?.general_titles?.related_projects || 'Proyectos relacionados';
 
   return (
     <div className="project-page">
@@ -137,15 +130,11 @@ const Project: React.FC<ProjectDetailsProps> = () => {
         />
 
         {/* Proyectos relacionados */}
-        <section
-          className="related-projects-section"
-          aria-labelledby="related-projects-title"
-        >
-          <H2 id="related-projects-title" className="section-title">
-            Proyectos relacionados
-          </H2>
-          {/* Carrusel se agregará más adelante */}
-        </section>
+        <SimilarProjects 
+          projectId={id || ''} 
+          projects={projects}
+          title={relatedProjectsTitle}
+        />
       </div>
     </div>
   );
