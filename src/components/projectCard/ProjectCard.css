@@ -184,6 +184,10 @@
   transition: var(--projectcard-transition-base);
 }
 
+.project-card__likes-count--loading {
+  opacity: 0.5;
+}
+
 .project-card:hover .project-card__likes-count {
   background: rgba(122, 21, 24, 0.15);
   transform: scale(1.05);
@@ -214,7 +218,7 @@
 }
 
 /* Overlay visible for tap (mobile/touch) */
-.project-card__overlay--visible {
+.project-card__overlay[data-mobile-visible="true"] {
   opacity: 1;
   pointer-events: auto;
 }
@@ -308,7 +312,7 @@
 }
 
 /* Show chips when the overlay is visible (mobile) */
-.project-card__info-chips--visible {
+.project-card__info-chips[data-mobile-visible="true"] {
   opacity: 1;
 }
 
