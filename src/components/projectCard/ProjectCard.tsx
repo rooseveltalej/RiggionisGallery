@@ -8,9 +8,9 @@ import { ActionButtons } from '@/components/projectCard/ActionButtons';
 import type { ProjectCardProps } from '@/components/projectCard/ProjectCard.interface';
 import './ProjectCard.css';
 
-const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyProject,onWhatsApp,isFavorite: initialFavorite = false,className}) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyProject,onWhatsApp,className}) => {
   // Hook 
-  const {isFavorite,handleToggleFavorite,favoriteIconSrc,showOverlay,handleTouchEnd} = useProjectCard({ project, initialFavorite });
+  const {isFavorite,handleToggleFavorite,favoriteIconSrc,showOverlay,handleTouchEnd} = useProjectCard({ project });
   // Utils
   const ariaLabels = getAriaLabels(project);
   // Obtener primera imagen con fallback
@@ -51,13 +51,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyPro
           {/* Chips de información - solo visible en hover o cuando showOverlay está activo */}
         <div className={`project-card__info-chips ${showOverlay ? 'project-card__info-chips--visible' : ''}`}>
           {project.metadata?.technique && (
-            <H3 className="project-card__chip">{project.metadata.technique} </H3>
+            <span className="project-card__chip">{project.metadata.technique} </span>
           )}
           {project.metadata?.support && (
-            <H3 className="project-card__chip">{project.metadata.support} </H3>
+            <span className="project-card__chip">{project.metadata.support} </span>
           )}
           {project.metadata?.style && (
-            <H3 className="project-card__chip">{project.metadata.style} </H3>
+            <span className="project-card__chip">{project.metadata.style} </span>
           )}
         </div>
       </div>

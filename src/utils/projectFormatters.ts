@@ -1,33 +1,48 @@
-import type { Project, CurrencyCode, Price } from '@/components/projectCard/ProjectCard.interface';
+import type {
+  Project,
+  CurrencyCode,
+  Price,
+} from "@/components/projectCard/ProjectCard.interface";
 
 /**
  * Format the price of a project according to the currency
  * @param price -  amount and currency (USD | CRC | EUR)
- * @returns Formatted string with the price (e.g.: "$1,850 USD", "₡925,500 CRC", "€1,700 EUR")
+ * @param fallbackText - Text to show if price is not available (default: "Consultar precio")
+ * @returns Formatted string with the price (e.g.: "$1,850", "\u20a1925,500", "\u20ac1,700")
  */
-export const formatPrice = (price?: Price): string => {
-  if (!price) return '';
-  
-  const currencySymbols: Record<CurrencyCode, string> = {
-    USD: '$',
-    CRC: '₡',
-    EUR: '€'
-  };
-  const symbol = currencySymbols[price.currency];
-  const formattedAmount = new Intl.NumberFormat('en-US').format(price.amount);
-  
-  return `${symbol}${formattedAmount} ${price.currency}`;
+export const formatPrice = (
+  price?: Price,
+  fallbackText = "Consultar precio"
+): string => {
+  if (!price) return fallbackText;
+
+  return new Intl.NumberFormat("es-CR", {
+    style: "currency",
+    currency:
+      price.currency === "USD"
+        ? "USD"
+        : price.currency === "EUR"
+        ? "EUR"
+        : "CRC",
+    minimumFractionDigits: 0,
+    currencyDisplay: "narrowSymbol",
+  }).format(price.amount);
 };
 
 /**
  * Format the dimensions of a project
  * @param dimensions - Object with width, height and unit
- * @returns Formatted string (e.g.: "80 x 60 cm")
+ * @returns Formatted string (e.g.: "80cm x 60cm")
  */
-export const formatDimensions = (dimensions?: {width: number; height: number; unit: string;}): string => {
-  if (!dimensions) return '';
-  
-  return `${dimensions.width} x ${dimensions.height} ${dimensions.unit}`;
+export const formatDimensions = (dimensions?: {
+  width: number;
+  height: number;
+  unit: string;
+}): string => {
+  if (!dimensions) return "";
+
+  const { width, height, unit } = dimensions;
+  return `${width}${unit} x ${height}${unit}`;
 };
 
 /**
@@ -36,25 +51,23 @@ export const formatDimensions = (dimensions?: {width: number; height: number; un
  * @returns Formatted message for WhatsApp
  */
 export const generateWhatsAppMessage = (project: Project): string => {
-  const parts = [
-    `Hola! Me interesa la obra "${project.title}"`,
-  ];
-  
+  const parts = [`Hola! Me interesa la obra "${project.title}"`];
+
   if (project.year) {
     parts.push(`(${project.year})`);
   }
-  
+
   if (project.price) {
     parts.push(`Precio: ${formatPrice(project.price)}`);
   }
-  
+
   if (project.metadata?.dimensions) {
     parts.push(`Dimensiones: ${formatDimensions(project.metadata.dimensions)}`);
   }
-  
-  parts.push('¿Podrías darme más información?');
-  
-  return parts.join(' ');
+
+  parts.push("¿Podrías darme más información?");
+
+  return parts.join(" ");
 };
 
 /**
@@ -62,12 +75,15 @@ export const generateWhatsAppMessage = (project: Project): string => {
  * @param project - Project to inquire about
  * @param phoneNumber - WhatsApp phone number (international format)
  */
-export const openProjectWhatsApp = (project: Project, phoneNumber: string): void => {
+export const openProjectWhatsApp = (
+  project: Project,
+  phoneNumber: string
+): void => {
   const message = generateWhatsAppMessage(project);
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-  
-  window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+  window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 };
 /**
  * Generates the alt text for an image of the project
@@ -75,7 +91,10 @@ export const openProjectWhatsApp = (project: Project, phoneNumber: string): void
  * @param imageIndex - Index of the image
  * @returns String for the alt attribute
  */
-export const getImageAltText = (project: Project, imageIndex: number): string => {
+export const getImageAltText = (
+  project: Project,
+  imageIndex: number
+): string => {
   return `${project.title} - Image ${imageIndex + 1}`;
 };
 
