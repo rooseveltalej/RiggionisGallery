@@ -30,6 +30,8 @@ export const useProjectActions = () => {
 
   return {
     handleViewProject,
+    handleBuyProject: handleContactArtist,
+    handleWhatsApp: handleContactArtist,
     handleContactArtist,
     handleToggleFavorite,
   };

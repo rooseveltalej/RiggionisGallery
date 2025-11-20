@@ -53,5 +53,6 @@ export interface ProjectCardProps {
   onBuyProject?: (project: Project) => void;
   onWhatsApp?: (project: Project) => void;
   onToggleFavorite?: (project: Project) => void;
+  isFavorite?: boolean;
   className?: string;
 }
