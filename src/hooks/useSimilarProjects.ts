@@ -18,6 +18,7 @@ export const useSimilarProjects = ({
   projectId,
   projects
 }: UseSimilarProjectsProps): UseSimilarProjectsReturn => {
+  
   const similarProjects = useMemo(() => {
     if (!projects || !Array.isArray(projects)) {
       return [];
@@ -49,8 +50,7 @@ export const useSimilarProjects = ({
   }, [projects, projectId]);
 
   const handleViewProject = useCallback((id: string) => {
-    //TODO: Implementar navegación o acción al ver el proyecto
-    console.log('View project:', id);
+    window.location.href = `/project/${id}`;
   }, []);
 
   return {
