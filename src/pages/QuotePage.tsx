@@ -1,156 +1,264 @@
+import { useEffect, useMemo, useState } from "react";
+import { useLanguage } from "@/hooks";
+import QuoteAspectRatioGrid from "@/components/quote/QuoteAspectRatioGrid";
+import QuoteOrientationToggle from "@/components/quote/QuoteOrientationToggle";
+import QuoteSizeSelector from "@/components/quote/QuoteSizeSelector";
+import QuotePreviewCard from "@/components/quote/QuotePreviewCard";
+import QuoteParametersForm from "@/components/quote/QuoteParametersForm";
+import type {
+  QuoteOrientation,
+  QuotePageContent,
+  QuotePriceHighlight,
+  QuotePriceTone,
+} from "@/components/quote/types";
 import "./Quote.css";
 
-const sizeGrid = [
-  // Columna 1 (izquierda)
-  {
-    label: "30×30 cm",
-    ratio: "1 / 1",
-    position: { column: "1 / 2", row: "1 / 2" },
-  },
-  {
-    label: "40×40 cm",
-    ratio: "1 / 1",
-    position: { column: "1 / 2", row: "2 / 3" },
-  },
-  {
-    label: "60×30 cm",
-    ratio: "2 / 1",
-    position: { column: "1 / 2", row: "3 / 4" },
-  },
+const PRICE_TONES: QuotePriceTone[] = ["min", "avg", "max"];
 
-  // Columna 2 (centro)
-  {
-    label: "80×60 cm",
-    ratio: "4 / 3",
-    position: { column: "2 / 3", row: "1 / 3" },
-  },
-  {
-    label: "50×40 cm",
-    ratio: "5 / 4",
-    position: { column: "2 / 3", row: "3 / 4" },
-  },
+const parseSizeArea = (size: string): number | null => {
+  const [width, height] = size.split("x").map(Number);
+  if (!width || !height) {
+    return null;
+  }
+  return width * height;
+};
 
-  // Columna 3 (derecha)
-  {
-    label: "120×80 cm",
-    ratio: "3 / 2",
-    position: { column: "3 / 4", row: "1 / 3" },
-  },
-  {
-    label: "40×100 cm",
-    ratio: "2 / 5",
-    position: { column: "3 / 4", row: "3 / 4" },
-  },
-];
+const formatSizeForOrientation = (
+  size: string,
+  orientation: QuoteOrientation,
+  lockOrientation: boolean
+) => {
+  if (lockOrientation || orientation === "horizontal") {
+    return size;
+  }
 
-const techniqueOptions = ["Óleo", "Acrílico", "Mixta", "Acuarela"];
-const supportOptions = ["Lienzo", "Papel de algodón", "Madera", "Metal"];
-const styleOptions = ["Abstracto", "Figurativo", "Minimalista", "Paisaje"];
+  const [width, height] = size.split("x");
+  if (!width || !height) {
+    return size;
+  }
 
-const priceHighlights = [
-  { label: "Precio mínimo", value: "$1,200 USD", tone: "min" },
-  { label: "Precio estimado", value: "$1,850 USD", tone: "avg" },
-  { label: "Precio máximo", value: "$2,600 USD", tone: "max" },
-];
+  return `${height}x${width}`;
+};
 
-const QuotePage: React.FC = () => {
+const getPreferredOrientation = (relation: string): QuoteOrientation => {
+  const [width, height] = relation.split(":").map(Number);
+  if (!width || !height) {
+    return "horizontal";
+  }
+  return width >= height ? "horizontal" : "vertical";
+};
+
+const QuotePage = () => {
+  const { language, languageStrings, loading } = useLanguage();
+  const quoteContent = languageStrings?.quote_page as QuotePageContent | undefined;
+  const aspectRatioOptions = quoteContent?.options?.aspect_ratios ?? [];
+
+  const [selectedRelation, setSelectedRelation] = useState("");
+  const [orientation, setOrientation] = useState<QuoteOrientation>("horizontal");
+  const [selectedSize, setSelectedSize] = useState("");
+
+  useEffect(() => {
+    if (!aspectRatioOptions.length) {
+      setSelectedRelation("");
+      setSelectedSize("");
+      return;
+    }
+
+    const currentOption =
+      aspectRatioOptions.find((option) => option.relation === selectedRelation) ??
+      aspectRatioOptions[0];
+
+    if (currentOption.relation !== selectedRelation) {
+      setSelectedRelation(currentOption.relation);
+      setSelectedSize(currentOption.sizes[0] ?? "");
+      return;
+    }
+
+    if (currentOption.sizes.length === 0) {
+      setSelectedSize("");
+      return;
+    }
+
+    if (!currentOption.sizes.includes(selectedSize)) {
+      setSelectedSize(currentOption.sizes[0] ?? "");
+    }
+  }, [aspectRatioOptions, selectedRelation, selectedSize]);
+
+  const selectedOption = useMemo(
+    () =>
+      aspectRatioOptions.find((option) => option.relation === selectedRelation),
+    [aspectRatioOptions, selectedRelation]
+  );
+
+  const lockOrientation = selectedOption?.lock_orientation ?? false;
+  const currentSizes = selectedOption?.sizes ?? [];
+
+  useEffect(() => {
+    if (!selectedOption) {
+      return;
+    }
+
+    if (selectedOption.lock_orientation) {
+      setOrientation("horizontal");
+      return;
+    }
+
+    setOrientation(getPreferredOrientation(selectedOption.relation));
+  }, [selectedOption?.relation, selectedOption?.lock_orientation]);
+
+  const previewAspectRatio = useMemo(() => {
+    const [width, height] = selectedRelation.split(":").map(Number);
+    if (!width || !height) {
+      return "1 / 1";
+    }
+
+    if (!lockOrientation && orientation === "vertical") {
+      return `${height} / ${width}`;
+    }
+
+    return `${width} / ${height}`;
+  }, [selectedRelation, orientation, lockOrientation]);
+
+  const locale = language === "english" ? "en-US" : "es-CR";
+  const currency = quoteContent?.pricing?.currency ?? "USD";
+  const priceFormatter = useMemo(
+    () =>
+      new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency,
+        maximumFractionDigits: 0,
+      }),
+    [locale, currency]
+  );
+
+  const priceHighlights: QuotePriceHighlight[] = useMemo(() => {
+    if (!quoteContent?.pricing || !selectedSize) {
+      return [];
+    }
+
+    const area = parseSizeArea(selectedSize);
+    const tiers = quoteContent.pricing.tiers ?? [];
+    if (!area || !tiers.length) {
+      return [];
+    }
+
+    const tier =
+      tiers.find((item) => area <= item.max_area) ?? tiers[tiers.length - 1];
+    const labels = quoteContent.pricing.labels;
+
+    if (!tier || !labels) {
+      return [];
+    }
+
+    return PRICE_TONES.map((tone) => {
+      const label = labels[tone];
+      const value = tier?.[tone];
+      if (!label || typeof value !== "number") {
+        return null;
+      }
+      return {
+        label,
+        tone,
+        value: priceFormatter.format(value),
+      };
+    }).filter((item): item is QuotePriceHighlight => Boolean(item));
+  }, [quoteContent, selectedSize, priceFormatter]);
+
+  if (
+    loading ||
+    !quoteContent ||
+    !quoteContent.selection_panel ||
+    !quoteContent.form_panel ||
+    !quoteContent.options ||
+    !quoteContent.pricing ||
+    !quoteContent.orientation_labels
+  ) {
+    return null;
+  }
+
+  const selectionCopy = quoteContent.selection_panel;
+  const orientationLabels = quoteContent.orientation_labels;
+
+  const formatSizeWithUnit = (size: string) =>
+    `${formatSizeForOrientation(size, orientation, lockOrientation)} ${
+      selectionCopy.sizeUnit
+    }`;
+
+  const displaySize = selectedSize
+    ? formatSizeWithUnit(selectedSize)
+    : selectionCopy.sizePlaceholder;
+
+  const orientationLabel = lockOrientation
+    ? selectionCopy.orientationFreeLabel
+    : orientationLabels[orientation] ?? orientation;
+
   return (
     <section className="quote-page">
       <div className="quote-page__wrapper">
         <div className="quote-page__sizes-panel">
-          <p className="quote-page__eyebrow">Cotizar Obra</p>
-          <h1>Seleccione el tamaño</h1>
-          <p className="quote-page__description">
-            Explore formatos sugeridos para la obra. Cada bloque representa una proporción
-            distinta para ayudarle a visualizar el espacio que ocupará la pieza en sala.
-          </p>
+          <p className="quote-page__eyebrow">{selectionCopy.eyebrow}</p>
+          <h1>{selectionCopy.title}</h1>
+          <p className="quote-page__description">{selectionCopy.description}</p>
 
-          <div className="quote-page__sizes-grid">
-            {sizeGrid.map((size) => (
-              <div
-                key={size.label + size.position.column + size.position.row}
-                className="size-card"
-                style={{
-                  gridColumn: size.position.column,
-                  gridRow: size.position.row,
+          <div className="quote-page__selection-flow">
+            <div className="quote-page__field">
+              <label>{selectionCopy.ratioLabel}</label>
+              <QuoteAspectRatioGrid
+                options={aspectRatioOptions}
+                selectedRelation={selectedRelation}
+                onSelect={(option) => {
+                  setSelectedRelation(option.relation);
+                  setSelectedSize(option.sizes[0] ?? "");
+                  setOrientation(
+                    option.lock_orientation
+                      ? "horizontal"
+                      : getPreferredOrientation(option.relation)
+                  );
                 }}
-              >
-                <div className="size-card__figure">
-                  <div
-                    className="size-card__art"
-                    style={{ aspectRatio: size.ratio }}
-                  />
-                  <span>{size.label}</span>
-                </div>
+                sizeCountSuffix={selectionCopy.sizeCountSuffix}
+              />
+            </div>
+
+            {!lockOrientation && (
+              <div className="quote-page__field">
+                <label>{selectionCopy.orientationLabel}</label>
+                <QuoteOrientationToggle
+                  orientation={orientation}
+                  labels={orientationLabels}
+                  onChange={setOrientation}
+                />
               </div>
-            ))}
+            )}
+
+            <div className="quote-page__field">
+              <label>{selectionCopy.sizeLabel}</label>
+              <QuoteSizeSelector
+                sizes={currentSizes}
+                selectedSize={selectedSize}
+                onSelect={setSelectedSize}
+                formatSize={formatSizeWithUnit}
+              />
+            </div>
           </div>
+
+          <QuotePreviewCard
+            eyebrow={selectionCopy.previewLabel}
+            displaySize={displaySize}
+            relation={selectedRelation}
+            orientationLabel={orientationLabel}
+            aspectRatio={previewAspectRatio}
+          />
         </div>
 
-        <div className="quote-page__form-panel">
-          <p className="quote-page__eyebrow quote-page__eyebrow--muted">Parámetros</p>
-          <h2>Curar la técnica y estilo</h2>
-          <p className="quote-page__description">
-            Seleccione la técnica, soporte y estética deseada para ofrecerle un rango de valores
-            acorde a su solicitud.
-          </p>
-
-          <div className="quote-page__fields">
-            <div className="quote-page__field">
-              <label htmlFor="technique-select">Técnica</label>
-              <select id="technique-select" name="technique" defaultValue="">
-                <option value="" disabled>
-                  Seleccione una técnica
-                </option>
-                {techniqueOptions.map((technique) => (
-                  <option key={technique} value={technique}>
-                    {technique}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="quote-page__field">
-              <label htmlFor="support-select">Soporte</label>
-              <select id="support-select" name="support" defaultValue="">
-                <option value="" disabled>
-                  Seleccione un soporte
-                </option>
-                {supportOptions.map((support) => (
-                  <option key={support} value={support}>
-                    {support}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="quote-page__field">
-              <label htmlFor="style-select">Estilo</label>
-              <select id="style-select" name="style" defaultValue="">
-                <option value="" disabled>
-                  Seleccione un estilo
-                </option>
-                {styleOptions.map((style) => (
-                  <option key={style} value={style}>
-                    {style}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="quote-page__prices">
-            {priceHighlights.map((price) => (
-              <div
-                key={price.label}
-                className={`price-row price-row--${price.tone}`}
-              >
-                <span>{price.label}</span>
-                <strong>{price.value}</strong>
-              </div>
-            ))}
-          </div>
-        </div>
+        <QuoteParametersForm
+          copy={quoteContent.form_panel}
+          options={{
+            techniques: quoteContent.options.techniques ?? [],
+            supports: quoteContent.options.supports ?? [],
+            styles: quoteContent.options.styles ?? [],
+          }}
+          priceHighlights={priceHighlights}
+        />
       </div>
     </section>
   );
