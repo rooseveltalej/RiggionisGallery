@@ -1,14 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { incrementProjectFavorites, decrementProjectFavorites } from '@/firebase/firestore';
 /**
  * Hook to manage favorites using localStorage
  * Persists favorites across browser sessions
+ * Supports cross-tab synchronization via storage events
  */
 
 const FAVORITES_KEY = 'riggionis-gallery-favorites';
 export const useFavorites = () => {
-  const [favorites, setFavorites] = useState<Set<string>>(new Set());
+  const [favoritesArray, setFavoritesArray] = useState<string[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const favorites = useMemo(() => new Set(favoritesArray), [favoritesArray]);
 
   // Load favorites from localStorage on mount
   useEffect(() => {
@@ -17,7 +19,7 @@ export const useFavorites = () => {
       const storedFavorites = localStorage.getItem(FAVORITES_KEY);
       if (storedFavorites) {
         const parsed = JSON.parse(storedFavorites);
-        setFavorites(new Set(parsed));
+        setFavoritesArray(Array.isArray(parsed) ? parsed : []);
       }
       setIsLoaded(true);
     } catch (error) {
@@ -25,13 +27,31 @@ export const useFavorites = () => {
       setIsLoaded(true);
     }
   }, []);
+  // Listen for storage changes from other tabs/windows
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleStorageChange = (event: StorageEvent) => {
+      if (event.key === FAVORITES_KEY && event.newValue) {
+        try {
+          const parsed = JSON.parse(event.newValue);
+          setFavoritesArray(Array.isArray(parsed) ? parsed : []);
+        } catch (error) {
+          console.error('Error parsing storage event:', error);
+        }
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   // Save favorites to localStorage whenever they change
-  const saveFavorites = useCallback((newFavorites: Set<string>) => {
+  const saveFavorites = useCallback((newFavoritesArray: string[]) => {
     try {
       localStorage.setItem(
         FAVORITES_KEY,
-        JSON.stringify(Array.from(newFavorites))
+        JSON.stringify(newFavoritesArray)
       );
     } catch (error) {
       console.error('Error saving favorites to localStorage:', error);
@@ -44,36 +64,30 @@ export const useFavorites = () => {
       const wasFavorite = favorites.has(projectId);
       
       // Update local state
-      setFavorites((prev) => {
-        const newFavorites = new Set(prev);
-        if (newFavorites.has(projectId)) {
-          newFavorites.delete(projectId);
-        } else {
-          newFavorites.add(projectId);
-        }
-        saveFavorites(newFavorites);
-        return newFavorites;
+      setFavoritesArray((prev) => {
+        const newArray = wasFavorite
+          ? prev.filter(id => id !== projectId)
+          : [...prev, projectId];
+        saveFavorites(newArray);
+        return newArray;
       });
 
       // Update Firebase counter in background
       try {
         if (wasFavorite) {
-          await decrementProjectFavorites(projectId);
+          await decrementProjectFavorites(projectId, projectName);
         } else {
           await incrementProjectFavorites(projectId, projectName);
         }
       } catch (error) {
         console.error('Error updating Firebase favorites count:', error);
         // Revert local state if Firebase update fails
-        setFavorites((prev) => {
-          const revertedFavorites = new Set(prev);
-          if (wasFavorite) {
-            revertedFavorites.add(projectId);
-          } else {
-            revertedFavorites.delete(projectId);
-          }
-          saveFavorites(revertedFavorites);
-          return revertedFavorites;
+        setFavoritesArray((prev) => {
+          const revertedArray = wasFavorite
+            ? [...prev, projectId]
+            : prev.filter(id => id !== projectId);
+          saveFavorites(revertedArray);
+          return revertedArray;
         });
       }
     },
@@ -83,11 +97,11 @@ export const useFavorites = () => {
   // Add a project to favorites
   const addFavorite = useCallback(
     async (projectId: string, projectName: string) => {
-      setFavorites((prev) => {
-        const newFavorites = new Set(prev);
-        newFavorites.add(projectId);
-        saveFavorites(newFavorites);
-        return newFavorites;
+      setFavoritesArray((prev) => {
+        if (prev.includes(projectId)) return prev;
+        const newArray = [...prev, projectId];
+        saveFavorites(newArray);
+        return newArray;
       });
 
       try {
@@ -101,16 +115,15 @@ export const useFavorites = () => {
 
   // Remove a project from favorites
   const removeFavorite = useCallback(
-    async (projectId: string) => {
-      setFavorites((prev) => {
-        const newFavorites = new Set(prev);
-        newFavorites.delete(projectId);
-        saveFavorites(newFavorites);
-        return newFavorites;
+    async (projectId: string, projectName: string) => {
+      setFavoritesArray((prev) => {
+        const newArray = prev.filter(id => id !== projectId);
+        saveFavorites(newArray);
+        return newArray;
       });
 
       try {
-        await decrementProjectFavorites(projectId);
+        await decrementProjectFavorites(projectId, projectName);
       } catch (error) {
         console.error('Error removing favorite from Firebase:', error);
       }

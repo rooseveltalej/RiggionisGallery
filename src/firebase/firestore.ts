@@ -47,9 +47,10 @@ export const incrementProjectFavorites = async (projectId: string, projectName: 
  * Decrement the favorites count for a project
  * Only decrements if count is greater than 0
  * @param projectId - The ID of the project
+ * @param projectName - The name of the project
  * @returns Promise<void>
  */
-export const decrementProjectFavorites = async (projectId: string) => {
+export const decrementProjectFavorites = async (projectId: string, projectName: string) => {
   try {
     const projectRef = doc(db, "favorite projects", projectId);
     const projectSnap = await getDoc(projectRef);
@@ -63,6 +64,12 @@ export const decrementProjectFavorites = async (projectId: string) => {
           likeCount: increment(-1)
         });
       }
+    } else {
+      // Document doesn't exist, create it with likeCount = 0
+      await setDoc(projectRef, {
+        projectName,
+        likeCount: 0,
+      });
     }
   } catch (error) {
     console.error("Error decrementing favorites count:", error);
