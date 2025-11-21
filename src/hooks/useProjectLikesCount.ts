@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '@/firebase/config';
 import { getProjectFavoritesCount } from '@/firebase/firestore';
@@ -14,12 +14,6 @@ export const useProjectLikesCount = (projectId: string, projectName?: string) =>
   const [likesCount, setLikesCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [refreshKey, setRefreshKey] = useState<number>(0);
-
-  // Function to trigger a refresh
-  const refresh = useCallback(() => {
-    setRefreshKey(prev => prev + 1);
-  }, []);
   
   useEffect(() => {
     let unsubscribe: (() => void) | undefined;
@@ -67,12 +61,11 @@ export const useProjectLikesCount = (projectId: string, projectName?: string) =>
         unsubscribe();
       }
     };
-  }, [projectId, projectName, refreshKey]);
+  }, [projectId]);
 
   return {
     likesCount,
     loading,
     error,
-    refresh,
   };
 };

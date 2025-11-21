@@ -1,5 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { useFavoritesContext } from '@/contexts/FavoritesContext';
+import { useProjectLikesCount } from '@/hooks/useProjectLikesCount';
+import { getAriaLabels } from '@/utils/projectFormatters';
 import type { Project } from '@/components/projectCard/ProjectCard.interface';
 
 interface UseProjectCardProps {
@@ -14,9 +16,18 @@ interface UseProjectCardProps {
 export const useProjectCard = ({project,onToggleFavorite,}: UseProjectCardProps) => {
   const { isFavorite: checkIsFavorite, toggleFavorite } = useFavoritesContext();
   const [showOverlay, setShowOverlay] = useState(false); // State to show overlay on mobile devices
+  const { likesCount, loading: loadingLikes } = useProjectLikesCount(project.id, project.title); // Get likes count
 
   // Get favorite state from context (localStorage)
-  const isFavorite = useMemo(() => checkIsFavorite(project.id), [checkIsFavorite, project.id]);
+  const isFavorite= useMemo(
+    () => checkIsFavorite(project.id),
+    [checkIsFavorite, project.id]
+  );
+  // Get aria labels for accessibility
+  const ariaLabels = useMemo(
+    () => getAriaLabels(project),
+    [project]
+  );
 
  const handleToggleFavorite = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
@@ -31,13 +42,14 @@ export const useProjectCard = ({project,onToggleFavorite,}: UseProjectCardProps)
   }, []);
 
   const favoriteIconSrc = isFavorite ? "/icons/favorite-filled.svg" : "/icons/favorite.svg";
-
   return {
     // States
     isFavorite,
     favoriteIconSrc,
     showOverlay,
-    
+    likesCount,
+    loadingLikes,
+    ariaLabels,
     // Handlers
     handleToggleFavorite,
     handleTouchEnd,
