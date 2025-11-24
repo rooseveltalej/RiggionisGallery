@@ -2,9 +2,8 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useLanguage } from "@/hooks";
 import { Footer } from "@/components";
-import { AVATAR_IMAGE_URL } from "@/utils/constants";
 import { Spinner } from "@/mini-components";
-import { Gallery, ProjectsPage, Contact, ArtistPage } from "@/pages";
+import { Gallery, ProjectsPage, Contact, ArtistPage, Project } from "@/pages";
 import { Navbar } from "@/components/navbar";
 
 function App() {
@@ -12,7 +11,7 @@ function App() {
 
   if (loading) {
     return (
-      <div className="app" style={{ justifyContent: "center" }}>
+      <div className="app-loading">
         <Spinner />
       </div>
     );
@@ -40,13 +39,14 @@ function App() {
               path: "/artist",
             },
           ]}
-          logoSrc={AVATAR_IMAGE_URL}
+          logoSrc={"/icons/logoBlanco.svg"}
           logoAlt={languageStrings?.navbar?.logoAlt || "Logo"}
         />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Gallery />} />
             <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/project/:id" element={<Project />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/artist" element={<ArtistPage />} />
           </Routes>

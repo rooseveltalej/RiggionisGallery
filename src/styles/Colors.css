@@ -25,6 +25,9 @@
   --border-hover-color: var(--gray-500);
   --border-focus-color: var(--primary-color);
   --focus-shadow: 0 0 0 0.125rem rgba(90, 17, 20, 0.25);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.3);
 
   /* Texto */
   --text-color: var(--black);
