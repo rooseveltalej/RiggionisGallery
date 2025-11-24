@@ -18,20 +18,21 @@
 }
 
 .nav-logo__image {
-  height: 7rem;
+  height: 6rem;
   width: auto;
   object-fit: contain;
   display: block;
+  margin: 0.5rem;
 }
 
 @media (max-width: 768px) {
   .nav-logo__image {
-    height: 5rem;
+    height: 4.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .nav-logo__image {
-    height: 4rem;
+    height: 3.5rem;
   }
 }

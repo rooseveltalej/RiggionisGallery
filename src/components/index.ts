@@ -16,3 +16,5 @@ export type { ContactConfig } from "./heroSection/HeroSection.interface";
 export type { ImageCarouselProps } from "./imageCarousel";
 export type { ProjectDetailsListProps } from "./projectDetailsList";
 export type { PhotoGalleryProps } from "./photoGallery";
+export { default as SimilarProjects } from './SimilarProjects/SimilarProjects';
+export { default as SimilarProjectCard } from './SimilarProjectCard/SimilarProjectCard';
