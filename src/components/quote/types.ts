@@ -71,3 +71,9 @@ export interface QuotePriceHighlight {
   value: string;
   tone: QuotePriceTone;
 }
+
+export interface QuoteFormValues {
+  technique: string;
+  support: string;
+  style: string;
+}

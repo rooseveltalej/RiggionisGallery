@@ -333,3 +333,17 @@
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 }
+
+.quote-page__form-and-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      
+  gap: 2rem;                 
+  width: 100%;
+}
+
+.quote-page__form-and-actions .button {
+  width: 100%;
+  max-width: 360px;         
+  align-self: center;
+}
