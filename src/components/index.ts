@@ -12,6 +12,8 @@ export { default as CVButtons } from "./cvButtons";
 export { ImageCarousel } from "./imageCarousel";
 export { ProjectDetailsList } from "./projectDetailsList";
 export { PhotoGallery } from "./photoGallery";
+export { default as SkillsList } from "./Skills/SkillsList";
+export { default as LanguagesList } from "./Languages/LanguagesList";
 export type { ContactConfig } from "./heroSection/HeroSection.interface";
 export type { ImageCarouselProps } from "./imageCarousel";
 export type { ProjectDetailsListProps } from "./projectDetailsList";
