@@ -413,16 +413,29 @@ This project was developed as part of an educational program. If you wish to con
 
 ---
 
-## 📄 License
-
-This project is private and for educational purposes.
-
----
-
 ## 📞 Contact
 
-**Developer:** Roosevelt Alejandro  
+**Developer:** Kevin Jiménez  
+**GitHub:** [@Khraben](https://github.com/Khraben)
+
+
+**Developer:** Walter Lazo  
+**GitHub:** [@Walter-Lz](https://github.com/Walter-Lz)
+
+**Developer:** Roosevelt Perez  
 **GitHub:** [@rooseveltalej](https://github.com/rooseveltalej)
+
+**Developer:** Daniel Porras  
+**GitHub:** [@mortalcr](https://github.com/mortalcr)
+
+
+**Developer:** Anthony Jiménez  
+**GitHub:** [@AntJimenezZ](https://github.com/AntJimenezZ)
+
+**Client (Dev):** Jeremy Soto  
+**GitHub:** [@P3T3Rr](https://github.com/P3T3Rr)
+**GitLab:** [@P3T3Rr](https://gitlab.com/P3T3Rr)
+
 
 **Artist:** Mónica Riggioni  
 **Website:** [Vercel Deployment](https://riggionigallery.vercel.app)
