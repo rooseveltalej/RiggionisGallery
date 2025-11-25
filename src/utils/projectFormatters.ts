@@ -1,6 +1,5 @@
 import type {
   Project,
-  CurrencyCode,
   Price,
 } from "@/components/projectCard/ProjectCard.interface";
 

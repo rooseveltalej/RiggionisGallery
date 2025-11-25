@@ -9,6 +9,8 @@ import {
     AcademicList,
     ExperienceList,
     CVButtons,
+    SkillsList,
+    LanguagesList,
 } from "@/components";
 
 export default function ArtistPage() {

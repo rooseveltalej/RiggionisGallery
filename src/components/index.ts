@@ -18,3 +18,5 @@ export type { ProjectDetailsListProps } from "./projectDetailsList";
 export type { PhotoGalleryProps } from "./photoGallery";
 export { default as SimilarProjects } from './SimilarProjects/SimilarProjects';
 export { default as SimilarProjectCard } from './SimilarProjectCard/SimilarProjectCard';
+export { default as SkillsList } from './Skills/SkillsList';
+export {default as LanguagesList } from './Languages/LanguagesList';
