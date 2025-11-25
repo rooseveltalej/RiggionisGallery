@@ -11,7 +11,7 @@ import type {
  */
 export const formatPrice = (
   price?: Price,
-  fallbackText = "Consultar precio"
+  fallbackText = "Consultar precio",
 ): string => {
   if (!price) return fallbackText;
 
@@ -21,8 +21,8 @@ export const formatPrice = (
       price.currency === "USD"
         ? "USD"
         : price.currency === "EUR"
-        ? "EUR"
-        : "CRC",
+          ? "EUR"
+          : "CRC",
     minimumFractionDigits: 0,
     currencyDisplay: "narrowSymbol",
   }).format(price.amount);
@@ -76,7 +76,7 @@ export const generateWhatsAppMessage = (project: Project): string => {
  */
 export const openProjectWhatsApp = (
   project: Project,
-  phoneNumber: string
+  phoneNumber: string,
 ): void => {
   const message = generateWhatsAppMessage(project);
   const encodedMessage = encodeURIComponent(message);
@@ -92,7 +92,7 @@ export const openProjectWhatsApp = (
  */
 export const getImageAltText = (
   project: Project,
-  imageIndex: number
+  imageIndex: number,
 ): string => {
   return `${project.title} - Image ${imageIndex + 1}`;
 };

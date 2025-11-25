@@ -30,7 +30,9 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
   border-radius: 1.5625rem;
 
   background-image: url("/icons/arrow.svg");

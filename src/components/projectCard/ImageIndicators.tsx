@@ -1,8 +1,12 @@
-import React from 'react';
-import Button from '@/mini-components/Button/Button';
-import type { ImageIndicatorsProps } from  '@/components/projectCard/ActionCard.interface';
+import React from "react";
+import Button from "@/mini-components/Button/Button";
+import type { ImageIndicatorsProps } from "@/components/projectCard/ActionCard.interface";
 
-export const ImageIndicators: React.FC<ImageIndicatorsProps> = ({totalImages,currentIndex,onSelect,}) => {
+export const ImageIndicators: React.FC<ImageIndicatorsProps> = ({
+  totalImages,
+  currentIndex,
+  onSelect,
+}) => {
   return (
     <div className="project-card__image-indicators">
       {Array.from({ length: totalImages }, (_, index) => (
@@ -10,7 +14,7 @@ export const ImageIndicators: React.FC<ImageIndicatorsProps> = ({totalImages,cur
           key={index}
           text=""
           className={`project-card__indicator ${
-            index === currentIndex ? 'active' : ''
+            index === currentIndex ? "active" : ""
           }`}
           onClick={(e) => {
             e.stopPropagation();

@@ -1,18 +1,26 @@
-import React, { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import type { Project } from '@/components/projectCard/ProjectCard.interface';
-import { ProjectFiltersSection } from '../components/projectsPage/ProjectFiltersSection';
-import { ProjectsGrid } from '../components/projectsPage/ProjectsGrid';
-import { Pagination } from '../components/projectsPage/Pagination';
-import { ProjectsHeader } from '../components/projectsPage/ProjectsHeader';
-import type { FilterState, FilterOptions } from '../components/projectsPage/models/projectsPage.models';
-import { useLanguage, useProjectActions } from '@/hooks';
-import './ProjectsPage.css';
+import React, { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import type { Project } from "@/components/projectCard/ProjectCard.interface";
+import { ProjectFiltersSection } from "../components/projectsPage/ProjectFiltersSection";
+import { ProjectsGrid } from "../components/projectsPage/ProjectsGrid";
+import { Pagination } from "../components/projectsPage/Pagination";
+import { ProjectsHeader } from "../components/projectsPage/ProjectsHeader";
+import type {
+  FilterState,
+  FilterOptions,
+} from "../components/projectsPage/models/projectsPage.models";
+import { useLanguage, useProjectActions } from "@/hooks";
+import "./ProjectsPage.css";
 
 const ProjectsPage: React.FC = () => {
   const navigate = useNavigate();
   const { languageStrings } = useLanguage();
-  const { handleViewProject, handleBuyProject, handleWhatsApp, handleToggleFavorite } = useProjectActions();
+  const {
+    handleViewProject,
+    handleBuyProject,
+    handleWhatsApp,
+    handleToggleFavorite,
+  } = useProjectActions();
   const projects = useMemo<Project[]>(() => {
     const remoteProjects = languageStrings?.gallery_page?.projects;
     if (Array.isArray(remoteProjects)) {
@@ -20,31 +28,52 @@ const ProjectsPage: React.FC = () => {
     }
     return [];
   }, [languageStrings]);
-  
+
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<FilterState>({
-    technique: '',
-    support: '',
-    style: '',
-    availability: '',
+    technique: "",
+    support: "",
+    style: "",
+    availability: "",
   });
 
   const projectsPerPage = 12;
 
   // Extraer valores únicos de los datos
-  const filterOptions: FilterOptions = useMemo(() => ({
-    techniques: Array.from(new Set(projects.map(p => p.metadata?.technique).filter(Boolean))) as string[],
-    supports: Array.from(new Set(projects.map(p => p.metadata?.support).filter(Boolean))) as string[],
-    styles: Array.from(new Set(projects.map(p => p.metadata?.style).filter(Boolean))) as string[],
-    availabilities: Array.from(new Set(projects.map(p => p.availability).filter(Boolean))) as string[],
-  }), [projects]);
+  const filterOptions: FilterOptions = useMemo(
+    () => ({
+      techniques: Array.from(
+        new Set(projects.map((p) => p.metadata?.technique).filter(Boolean)),
+      ) as string[],
+      supports: Array.from(
+        new Set(projects.map((p) => p.metadata?.support).filter(Boolean)),
+      ) as string[],
+      styles: Array.from(
+        new Set(projects.map((p) => p.metadata?.style).filter(Boolean)),
+      ) as string[],
+      availabilities: Array.from(
+        new Set(projects.map((p) => p.availability).filter(Boolean)),
+      ) as string[],
+    }),
+    [projects],
+  );
 
   // Filtrar proyectos
   const filteredProjects = projects.filter((project) => {
-    const technique = !filters.technique || (project.metadata?.technique && project.metadata.technique === filters.technique);
-    const support = !filters.support || (project.metadata?.support && project.metadata.support === filters.support);
-    const style = !filters.style || (project.metadata?.style && project.metadata.style === filters.style);
-    const availability = !filters.availability || (project.availability && project.availability === filters.availability);
+    const technique =
+      !filters.technique ||
+      (project.metadata?.technique &&
+        project.metadata.technique === filters.technique);
+    const support =
+      !filters.support ||
+      (project.metadata?.support &&
+        project.metadata.support === filters.support);
+    const style =
+      !filters.style ||
+      (project.metadata?.style && project.metadata.style === filters.style);
+    const availability =
+      !filters.availability ||
+      (project.availability && project.availability === filters.availability);
 
     return technique && support && style && availability;
   });
@@ -57,7 +86,7 @@ const ProjectsPage: React.FC = () => {
   const handleFilterChange = (filterType: keyof FilterState, value: string) => {
     setFilters((prev) => ({
       ...prev,
-      [filterType]: prev[filterType] === value ? '' : value,
+      [filterType]: prev[filterType] === value ? "" : value,
     }));
     setCurrentPage(1);
   };
@@ -67,7 +96,7 @@ const ProjectsPage: React.FC = () => {
   };
 
   const handleBackToGallery = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -75,14 +104,14 @@ const ProjectsPage: React.FC = () => {
       <ProjectsHeader onBackClick={handleBackToGallery} />
 
       <div className="projects-page__container">
-        <ProjectFiltersSection 
+        <ProjectFiltersSection
           filters={filters}
           options={filterOptions}
           onFilterChange={handleFilterChange}
         />
 
         <div className="projects-page__content">
-          <ProjectsGrid 
+          <ProjectsGrid
             projects={paginatedProjects}
             onViewProject={handleViewProject}
             onBuyProject={handleBuyProject}
@@ -90,7 +119,7 @@ const ProjectsPage: React.FC = () => {
             onToggleFavorite={handleToggleFavorite}
           />
 
-          <Pagination 
+          <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}

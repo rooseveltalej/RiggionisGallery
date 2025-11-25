@@ -1,19 +1,19 @@
 export const TEXT_SIZES = {
   // Extra Small
-  XS: '0.75rem',     // 12px
-  
+  XS: "0.75rem", // 12px
+
   // Small
-  SM: '0.875rem',    // 14px
-  
+  SM: "0.875rem", // 14px
+
   // Base/Medium
-  BASE: '1rem',      // 16px
-  MD: '1rem',        // 16px (alias)
-  
+  BASE: "1rem", // 16px
+  MD: "1rem", // 16px (alias)
+
   // Large
-  LG: '1.125rem',    // 18px
+  LG: "1.125rem", // 18px
 } as const;
 
-export type TextSize = typeof TEXT_SIZES[keyof typeof TEXT_SIZES];
+export type TextSize = (typeof TEXT_SIZES)[keyof typeof TEXT_SIZES];
 
 export const FONT_SIZES = {
   CAPTION: TEXT_SIZES.XS,

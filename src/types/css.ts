@@ -1,4 +1,3 @@
 export type CSSVars = {
-    [key: `--${string}`]: string | number;
-  };
-  
+  [key: `--${string}`]: string | number;
+};

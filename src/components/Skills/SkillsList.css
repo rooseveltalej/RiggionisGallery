@@ -1,24 +1,23 @@
 .skills-list {
-    text-align: center;
-  }
-  
-  .skills-title {
-    margin: 0 0 26px;
-    font-weight: 500;
-  }
-  
-  .skills-row {
-    list-style: none;
-    padding: 0;
-    margin: 28px 0 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 24px 56px;
-  }
-  
-  .skills-row li {
-    color: #444;
-    font-size: 15px;
-  }
-  
+  text-align: center;
+}
+
+.skills-title {
+  margin: 0 0 26px;
+  font-weight: 500;
+}
+
+.skills-row {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px 56px;
+}
+
+.skills-row li {
+  color: #444;
+  font-size: 15px;
+}

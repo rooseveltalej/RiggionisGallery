@@ -33,7 +33,7 @@ const QuoteParametersForm = ({
   };
 
   const handleTechniqueChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     const value = event.target.value;
     setTechnique(value);
@@ -44,9 +44,7 @@ const QuoteParametersForm = ({
     });
   };
 
-  const handleSupportChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleSupportChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setSupport(value);
     emitChange({
@@ -76,7 +74,9 @@ const QuoteParametersForm = ({
 
       <div className="quote-page__fields">
         <div className="quote-page__field">
-          <label htmlFor="technique-select">{copy.inputs.technique.label}</label>
+          <label htmlFor="technique-select">
+            {copy.inputs.technique.label}
+          </label>
           <select
             id="technique-select"
             name="technique"

@@ -10,7 +10,7 @@ export const useProjectActions = () => {
   const extractArtistPhone = () => {
     return languageStrings?.general_titles?.artist_info?.values?.phone?.replace(
       /[^\d]/g,
-      ""
+      "",
     );
   };
 

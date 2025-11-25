@@ -59,7 +59,9 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
   opacity: 0;
   transform: translateY(0.625rem);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .similar-project-card:hover .similar-project-card__chips {
@@ -96,7 +98,7 @@
     min-width: 12.5rem;
     max-width: 12.5rem;
   }
-  
+
   .similar-project-card__chip {
     font-size: 0.6rem;
     padding: 0.15rem 0.45rem;
@@ -117,7 +119,7 @@
     min-width: 11.25rem;
     max-width: 11.25rem;
   }
-  
+
   .similar-project-card__title {
     font-size: 0.85rem;
   }

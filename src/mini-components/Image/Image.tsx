@@ -1,7 +1,14 @@
-import React, {useEffect} from 'react';
-import type { ImageProps } from './Image.interface'; ;
+import React, { useEffect } from "react";
+import type { ImageProps } from "./Image.interface";
 
-const Image: React.FC<ImageProps> = ({ src, alt, className, style, onError, ...rest }) => {
+const Image: React.FC<ImageProps> = ({
+  src,
+  alt,
+  className,
+  style,
+  onError,
+  ...rest
+}) => {
   const [imgSrc, setImgSrc] = React.useState(src);
 
   useEffect(() => {
@@ -13,8 +20,10 @@ const Image: React.FC<ImageProps> = ({ src, alt, className, style, onError, ...r
       alt={alt}
       className={className}
       style={style}
-      loading='lazy'
-      onError={() => {setImgSrc('/icons/fallback.png');}}
+      loading="lazy"
+      onError={() => {
+        setImgSrc("/icons/fallback.png");
+      }}
       {...rest}
     />
   );

@@ -1,4 +1,4 @@
-import type { Project } from '@/components/projectCard/ProjectCard.interface';
+import type { Project } from "@/components/projectCard/ProjectCard.interface";
 
 export interface FilterState {
   technique: string;

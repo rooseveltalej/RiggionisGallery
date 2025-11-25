@@ -1,34 +1,44 @@
 import React from "react";
 import type { ArrowsProps } from "./Arrows.interface";
 import "./Arrows.css";
-const Arrows: React.FC<ArrowsProps> = ({ direction, onClick, size, color, disabled, style, ...rest }) => {
+const Arrows: React.FC<ArrowsProps> = ({
+  direction,
+  onClick,
+  size,
+  color,
+  disabled,
+  style,
+  ...rest
+}) => {
   const isLeft = direction === "left";
-  
+
   const getSvgSize = () => {
-    if (typeof size === 'string') {
+    if (typeof size === "string") {
       switch (size) {
-        case 'sm': return '16px';
-        case 'md': return '24px';
-        case 'lg': return '32px'
-        default: return '24px';
+        case "sm":
+          return "16px";
+        case "md":
+          return "24px";
+        case "lg":
+          return "32px";
+        default:
+          return "24px";
       }
     }
-    return typeof size === 'number' ? `${size}px` : '24px';
+    return typeof size === "number" ? `${size}px` : "24px";
   };
   const svgSize = getSvgSize();
-  
+
   return (
     <button
       onClick={onClick}
       disabled={disabled}
       className={`arrow ${isLeft ? "left" : "right"} ${disabled ? "disabled" : ""}`}
-      style={{color: color,
-        ...style,
-      }}
+      style={{ color: color, ...style }}
       aria-label={isLeft ? "Ir a la izquierda" : "Ir a la derecha"}
       {...rest}
     >
-     <svg
+      <svg
         width={svgSize}
         height={svgSize}
         viewBox="0 0 24 24"

@@ -1,6 +1,6 @@
-import React, { createContext, useContext,useMemo } from 'react';
-import type { ReactNode} from 'react';
-import { useFavorites } from '@/hooks/useFavorites';
+import React, { createContext, useContext, useMemo } from "react";
+import type { ReactNode } from "react";
+import { useFavorites } from "@/hooks/useFavorites";
 
 interface FavoritesContextValue {
   favorites: Set<string>;
@@ -11,7 +11,9 @@ interface FavoritesContextValue {
   isFavorite: (projectId: string) => boolean;
 }
 
-const FavoritesContext = createContext<FavoritesContextValue | undefined>(undefined);
+const FavoritesContext = createContext<FavoritesContextValue | undefined>(
+  undefined,
+);
 
 interface FavoritesProviderProps {
   children: ReactNode;
@@ -21,17 +23,35 @@ interface FavoritesProviderProps {
  * Provider for Favorites Context
  * Manages favorites state across the application using localStorage
  */
-export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }) => {
-
-  const { favorites, isLoaded, toggleFavorite, addFavorite, removeFavorite, isFavorite } = useFavorites();
-  const contextValue = useMemo(() => ({
-  favorites,
-  isLoaded,
-  toggleFavorite,
-  addFavorite,
-  removeFavorite,
-  isFavorite,
-  }), [favorites, isLoaded, toggleFavorite, addFavorite, removeFavorite, isFavorite]);
+export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({
+  children,
+}) => {
+  const {
+    favorites,
+    isLoaded,
+    toggleFavorite,
+    addFavorite,
+    removeFavorite,
+    isFavorite,
+  } = useFavorites();
+  const contextValue = useMemo(
+    () => ({
+      favorites,
+      isLoaded,
+      toggleFavorite,
+      addFavorite,
+      removeFavorite,
+      isFavorite,
+    }),
+    [
+      favorites,
+      isLoaded,
+      toggleFavorite,
+      addFavorite,
+      removeFavorite,
+      isFavorite,
+    ],
+  );
 
   return (
     <FavoritesContext.Provider value={contextValue}>
@@ -47,7 +67,9 @@ export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }
 export const useFavoritesContext = (): FavoritesContextValue => {
   const context = useContext(FavoritesContext);
   if (!context) {
-    throw new Error('useFavoritesContext must be used within FavoritesProvider');
+    throw new Error(
+      "useFavoritesContext must be used within FavoritesProvider",
+    );
   }
   return context;
 };

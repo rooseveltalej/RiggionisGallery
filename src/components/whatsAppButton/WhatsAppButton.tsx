@@ -46,7 +46,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
       window.open(
         whatsappUrl,
         target,
-        isExternal ? "noopener,noreferrer" : undefined
+        isExternal ? "noopener,noreferrer" : undefined,
       );
     }
   };

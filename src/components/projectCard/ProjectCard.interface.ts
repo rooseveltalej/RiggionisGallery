@@ -1,5 +1,5 @@
 // Interfaces y tipos para ProjectCard
-export type AvailabilityStatus = "Disponible" | "Vendido" | "Agotado" ;
+export type AvailabilityStatus = "Disponible" | "Vendido" | "Agotado";
 export type CurrencyCode = "USD" | "CRC" | "EUR";
 export type WeightUnit = "kg" | "g" | "lb";
 export type DimensionUnit = "cm" | "in" | "m";
@@ -15,7 +15,7 @@ export interface Depth {
 export interface ProjectDimensions {
   width: number;
   height: number;
-  unit: DimensionUnit;   
+  unit: DimensionUnit;
 }
 export interface Price {
   amount: number;
@@ -34,15 +34,15 @@ export interface Project {
   title: string;
   description?: string;
   images: string[]; // Array URLs Images
-  metadata?:{
-      technique?: string;
-      support?: string;
-      style?: string; // Style artistic
-      dimensions?: ProjectDimensions;
+  metadata?: {
+    technique?: string;
+    support?: string;
+    style?: string; // Style artistic
+    dimensions?: ProjectDimensions;
   };
   year?: number;
-  availability?: AvailabilityStatus; 
-  price?: Price; 
+  availability?: AvailabilityStatus;
+  price?: Price;
   weight?: Weight;
   depth?: Depth;
 }

@@ -18,7 +18,7 @@ const LanguageSelector: React.FC = () => {
         value: lang,
         label: languageStrings?.navbar?.languages?.[lang] || lang,
       })),
-    [availableLanguages, languageStrings]
+    [availableLanguages, languageStrings],
   );
 
   return (

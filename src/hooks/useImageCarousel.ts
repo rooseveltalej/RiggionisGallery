@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 interface UseImageCarouselProps {
   images: string[];
@@ -9,7 +9,10 @@ interface UseImageCarouselProps {
  * Hook for handling image carousel logic
  * Includes: navigation with buttons and touch gestures (swipe)
  */
-export const useImageCarousel = ({images, initialIndex = 0}: UseImageCarouselProps) => {
+export const useImageCarousel = ({
+  images,
+  initialIndex = 0,
+}: UseImageCarouselProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(initialIndex);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -20,19 +23,22 @@ export const useImageCarousel = ({images, initialIndex = 0}: UseImageCarouselPro
   // Image navigation
   const handlePrevImage = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
-    setCurrentImageIndex(prev => {
+    setCurrentImageIndex((prev) => {
       const newIndex = Math.max(0, prev - 1);
       return newIndex;
     });
   }, []);
 
-  const handleNextImage = useCallback((event: React.MouseEvent) => {
-    event.stopPropagation();
-    setCurrentImageIndex(prev => {
-      const newIndex = Math.min(images.length - 1, prev + 1);
-      return newIndex;
-    });
-  }, [images.length]);
+  const handleNextImage = useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation();
+      setCurrentImageIndex((prev) => {
+        const newIndex = Math.min(images.length - 1, prev + 1);
+        return newIndex;
+      });
+    },
+    [images.length],
+  );
 
   const goToImage = useCallback((index: number) => {
     setCurrentImageIndex(index);
@@ -52,7 +58,7 @@ export const useImageCarousel = ({images, initialIndex = 0}: UseImageCarouselPro
     if (!touchStart || !touchEnd) {
       return;
     }
-    
+
     const distance = touchStart - touchEnd;
     const absoluteDistance = Math.abs(distance);
     const isLeftSwipe = distance > minSwipeDistance;
@@ -62,19 +68,25 @@ export const useImageCarousel = ({images, initialIndex = 0}: UseImageCarouselPro
     if (absoluteDistance > minSwipeDistance) {
       if (isLeftSwipe && currentImageIndex < images.length - 1) {
         // Swipe left: next image
-        setCurrentImageIndex(prev => prev + 1);
+        setCurrentImageIndex((prev) => prev + 1);
       }
-      
+
       if (isRightSwipe && currentImageIndex > 0) {
         // Swipe right: previous image
-        setCurrentImageIndex(prev => prev - 1);
+        setCurrentImageIndex((prev) => prev - 1);
       }
     }
 
     // Reset
     setTouchStart(null);
     setTouchEnd(null);
-  }, [touchStart, touchEnd, currentImageIndex, images.length, minSwipeDistance]);
+  }, [
+    touchStart,
+    touchEnd,
+    currentImageIndex,
+    images.length,
+    minSwipeDistance,
+  ]);
 
   const isFirstImage = currentImageIndex === 0;
   const isLastImage = currentImageIndex === images.length - 1;
@@ -88,7 +100,7 @@ export const useImageCarousel = ({images, initialIndex = 0}: UseImageCarouselPro
     isLastImage,
     hasMultipleImages,
     currentImage,
-    
+
     // Navigation handlers
     handlePrevImage,
     handleNextImage,

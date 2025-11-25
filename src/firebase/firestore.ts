@@ -1,10 +1,4 @@
-import {
-  doc,
-  getDoc,
-  setDoc,
-  increment,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, getDoc, setDoc, increment, updateDoc } from "firebase/firestore";
 import { db } from "./config.js";
 
 /**o.
@@ -12,7 +6,10 @@ import { db } from "./config.js";
  * @param projectId - Unique project ID
  * @param projectName - Project name
  */
-export const incrementProjectFavorites = async (projectId: string, projectName: string) => {
+export const incrementProjectFavorites = async (
+  projectId: string,
+  projectName: string,
+) => {
   try {
     const projectRef = doc(db, "favorite projects", projectId);
     const projectSnap = await getDoc(projectRef);
@@ -41,18 +38,21 @@ export const incrementProjectFavorites = async (projectId: string, projectName: 
  * @param projectName - The name of the project
  * @returns Promise<void>
  */
-export const decrementProjectFavorites = async (projectId: string, projectName: string) => {
+export const decrementProjectFavorites = async (
+  projectId: string,
+  projectName: string,
+) => {
   try {
     const projectRef = doc(db, "favorite projects", projectId);
     const projectSnap = await getDoc(projectRef);
-    
+
     if (projectSnap.exists()) {
       const currentCount = projectSnap.data().likeCount || 0;
-      
+
       // Only decrement if count is greater than 0
       if (currentCount > 0) {
         await updateDoc(projectRef, {
-          likeCount: increment(-1)
+          likeCount: increment(-1),
         });
       }
     } else {
@@ -74,11 +74,14 @@ export const decrementProjectFavorites = async (projectId: string, projectName: 
  * @param projectName - The name of the project (optional, used only when creating)
  * @returns Promise<number> - The current favorites count
  */
-export const getProjectFavoritesCount = async (projectId: string, projectName?: string) => {
+export const getProjectFavoritesCount = async (
+  projectId: string,
+  projectName?: string,
+) => {
   try {
     const projectRef = doc(db, "favorite projects", projectId);
     const projectSnap = await getDoc(projectRef);
-    
+
     if (projectSnap.exists()) {
       const data = projectSnap.data();
       return data.likeCount || 0;

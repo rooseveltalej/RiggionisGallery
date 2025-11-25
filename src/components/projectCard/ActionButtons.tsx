@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
-import Button from '@/mini-components/Button/Button';
-import IconWhatsapp from '@/assets/icons/whatsapp.svg';
-import type { ActionButtonsProps } from  '@/components/projectCard/ActionCard.interface';
+import React, { useCallback } from "react";
+import Button from "@/mini-components/Button/Button";
+import IconWhatsapp from "@/assets/icons/whatsapp.svg";
+import type { ActionButtonsProps } from "@/components/projectCard/ActionCard.interface";
 
 export const ActionButtons: React.FC<ActionButtonsProps> = ({
   project,
@@ -10,9 +10,15 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
   onWhatsApp,
   ariaLabels,
 }) => {
-  const handleViewProject = useCallback(() => onViewProject?.(project), [onViewProject, project]);
+  const handleViewProject = useCallback(
+    () => onViewProject?.(project),
+    [onViewProject, project],
+  );
   // const handleBuyProject = useCallback(() => onBuyProject?.(project), [onBuyProject, project]);
-  const handleWhatsApp = useCallback(() => onWhatsApp?.(project), [onWhatsApp, project]);
+  const handleWhatsApp = useCallback(
+    () => onWhatsApp?.(project),
+    [onWhatsApp, project],
+  );
   return (
     <div className="project-card__action-buttons">
       <Button

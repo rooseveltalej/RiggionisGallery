@@ -1,5 +1,5 @@
-import { useMemo, useCallback } from 'react';
-import type { Project } from '@/components/projectCard/ProjectCard.interface';
+import { useMemo, useCallback } from "react";
+import type { Project } from "@/components/projectCard/ProjectCard.interface";
 
 interface UseSimilarProjectsProps {
   projectId: string;
@@ -11,35 +11,34 @@ interface UseSimilarProjectsReturn {
   handleViewProject: (id: string) => void;
 }
 
-const METADATA_KEYS = ['technique', 'support', 'style'] as const;
+const METADATA_KEYS = ["technique", "support", "style"] as const;
 const MIN_MATCHES = 2;
 
 export const useSimilarProjects = ({
   projectId,
-  projects
+  projects,
 }: UseSimilarProjectsProps): UseSimilarProjectsReturn => {
-  
   const similarProjects = useMemo(() => {
     if (!projects || !Array.isArray(projects)) {
       return [];
     }
 
-    const currentProject = projects.find(p => p.id === projectId);
-    
+    const currentProject = projects.find((p) => p.id === projectId);
+
     if (!currentProject?.metadata) {
       return [];
     }
 
     const currentMetadata = currentProject.metadata;
 
-    const similar = projects.filter(project => {
+    const similar = projects.filter((project) => {
       if (project.id === projectId || !project.metadata) {
         return false;
       }
 
       const matches = METADATA_KEYS.reduce((count, key) => {
-        return currentMetadata[key] === project.metadata?.[key] 
-          ? count + 1 
+        return currentMetadata[key] === project.metadata?.[key]
+          ? count + 1
           : count;
       }, 0);
 
@@ -55,6 +54,6 @@ export const useSimilarProjects = ({
 
   return {
     similarProjects,
-    handleViewProject
+    handleViewProject,
   };
 };

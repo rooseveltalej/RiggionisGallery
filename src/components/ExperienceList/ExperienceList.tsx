@@ -27,7 +27,10 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
               :
             </H3>
             {ex.description && (
-              <span className="exp-desc" aria-label={`Descripción de ${ex.heading}`}>
+              <span
+                className="exp-desc"
+                aria-label={`Descripción de ${ex.heading}`}
+              >
                 {ex.description}
               </span>
             )}

@@ -18,7 +18,7 @@ type SocialLinksProps = {
 
 const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
   const validLinks = links.filter(
-    (link) => link.href && link.href.trim().length > 0
+    (link) => link.href && link.href.trim().length > 0,
   );
 
   if (validLinks.length === 0) {

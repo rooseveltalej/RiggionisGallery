@@ -18,7 +18,11 @@ export const H2: React.FC<H2Props> = ({
   };
 
   return (
-    <h2 className={`${H2_BASE_CLASS} ${className}`.trim()} style={style} {...rest}>
+    <h2
+      className={`${H2_BASE_CLASS} ${className}`.trim()}
+      style={style}
+      {...rest}
+    >
       {children}
     </h2>
   );

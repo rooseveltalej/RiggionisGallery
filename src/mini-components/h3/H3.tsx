@@ -18,7 +18,11 @@ export const H3: React.FC<H3Props> = ({
   };
 
   return (
-    <h3 className={`${H3_BASE_CLASS} ${className}`.trim()} style={style} {...rest}>
+    <h3
+      className={`${H3_BASE_CLASS} ${className}`.trim()}
+      style={style}
+      {...rest}
+    >
       {children}
     </h3>
   );

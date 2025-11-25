@@ -3,7 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { H1 } from "@/mini-components/h1/H1";
 import Button from "@/mini-components/Button/Button";
 import { useLanguage } from "@/hooks";
-import { ImageCarousel, ProjectDetailsList, PhotoGallery, SimilarProjects } from "@/components";
+import {
+  ImageCarousel,
+  ProjectDetailsList,
+  PhotoGallery,
+  SimilarProjects,
+} from "@/components";
 import { formatPrice, formatDimensions } from "@/utils/projectFormatters";
 import type { Project as ProjectType } from "@/components/projectCard/ProjectCard.interface";
 import "./Project.css";
@@ -23,7 +28,7 @@ const Project: React.FC<ProjectDetailsProps> = () => {
       Array.isArray(languageStrings?.gallery_page?.projects)
         ? languageStrings.gallery_page.projects
         : [],
-    [languageStrings]
+    [languageStrings],
   );
 
   const project = projects.find((p) => p.id === id);
@@ -37,20 +42,21 @@ const Project: React.FC<ProjectDetailsProps> = () => {
     );
   }
 
-  const { title, description, metadata, year, availability, price, images } = project;
+  const { title, description, metadata, year, availability, price, images } =
+    project;
 
-
-  const displayImages = images && images.length > 0 ? images : ['/icons/fallback.png'];
+  const displayImages =
+    images && images.length > 0 ? images : ["/icons/fallback.png"];
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prev) =>
-      prev === 0 ? displayImages.length - 1 : prev - 1
+      prev === 0 ? displayImages.length - 1 : prev - 1,
     );
   };
 
   const handleNextImage = () => {
     setCurrentImageIndex((prev) =>
-      prev === displayImages.length - 1 ? 0 : prev + 1
+      prev === displayImages.length - 1 ? 0 : prev + 1,
     );
   };
 
@@ -65,7 +71,9 @@ const Project: React.FC<ProjectDetailsProps> = () => {
   // Formatear datos para los componentes
   const formattedPrice = formatPrice(price);
   const formattedDimensions = formatDimensions(metadata?.dimensions);
-  const relatedProjectsTitle = languageStrings?.general_titles?.related_projects || 'Proyectos relacionados';
+  const relatedProjectsTitle =
+    languageStrings?.general_titles?.related_projects ||
+    "Proyectos relacionados";
 
   return (
     <div className="project-page">
@@ -130,8 +138,8 @@ const Project: React.FC<ProjectDetailsProps> = () => {
         />
 
         {/* Proyectos relacionados */}
-        <SimilarProjects 
-          projectId={id || ''} 
+        <SimilarProjects
+          projectId={id || ""}
           projects={projects}
           title={relatedProjectsTitle}
         />

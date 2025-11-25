@@ -23,8 +23,8 @@ const Button: React.FC<ButtonProps> = ({
     <button className="button" style={style} {...rest}>
       {icon && (
         <span className="button-icon">
-          <IconWrapper 
-            icon={icon} 
+          <IconWrapper
+            icon={icon}
             size={iconSize}
             color={iconColor || "currentColor"}
           />

@@ -1,5 +1,5 @@
-import type { SelectHTMLAttributes } from 'react';
-import type React from 'react';
+import type { SelectHTMLAttributes } from "react";
+import type React from "react";
 
 export interface Option {
   value: string;
@@ -10,7 +10,7 @@ export interface Option {
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options: Option[];
   placeholder?: string;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>  | string;
-  iconSize?: React.CSSProperties['width'];
-  iconColor?: React.CSSProperties['color'];
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>> | string;
+  iconSize?: React.CSSProperties["width"];
+  iconColor?: React.CSSProperties["color"];
 }

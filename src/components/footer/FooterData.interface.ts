@@ -25,7 +25,7 @@ export interface GeneralTitlesForFooter {
     contact_general: string;
     quote_request: string;
     artist_info: string;
-    };
+  };
 }
 
 export interface Developer {

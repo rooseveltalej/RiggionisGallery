@@ -2,30 +2,25 @@ import React, { type FC } from "react";
 import type { IconWrapperProps } from "./IconWrapper.interface";
 import Image from "../Image/Image";
 
-const IconWrapper: FC<IconWrapperProps> = ({ 
+const IconWrapper: FC<IconWrapperProps> = ({
   icon,
   size = "24px",
   color = "currentColor",
   className = "",
-  ...props 
+  ...props
 }) => {
-  if (typeof icon === 'string') {
+  if (typeof icon === "string") {
     const imageStyle: React.CSSProperties = {
       width: size,
       height: size,
     };
 
-    if (color === '#ffffff' || color === 'white' || color === '#fff') {
-      imageStyle.filter = 'brightness(0) invert(1)';
+    if (color === "#ffffff" || color === "white" || color === "#fff") {
+      imageStyle.filter = "brightness(0) invert(1)";
     }
 
     return (
-      <Image
-        src={icon}
-        alt="icon"
-        style={imageStyle}
-        className={className}
-      />
+      <Image src={icon} alt="icon" style={imageStyle} className={className} />
     );
   }
 
@@ -36,13 +31,7 @@ const IconWrapper: FC<IconWrapperProps> = ({
     color,
   };
 
-  return (
-    <Icon 
-      style={style} 
-      className={className}
-      {...props}
-    />
-  );
+  return <Icon style={style} className={className} {...props} />;
 };
 
 export default IconWrapper;

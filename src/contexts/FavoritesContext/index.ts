@@ -1,1 +1,1 @@
-export { FavoritesProvider, useFavoritesContext } from './FavoritesContext';
+export { FavoritesProvider, useFavoritesContext } from "./FavoritesContext";

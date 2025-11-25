@@ -1,5 +1,11 @@
 import React from "react";
-import { H1, Avatar, Button, LinkButton, WhatsAppButton } from "@/mini-components";
+import {
+  H1,
+  Avatar,
+  Button,
+  LinkButton,
+  WhatsAppButton,
+} from "@/mini-components";
 import type { HeroSectionProps } from "./HeroSection.interface";
 import "./HeroSection.css";
 
@@ -40,7 +46,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             text={contact.cta}
             phoneNumber={contact.phone}
             message={
-              contact.message ?? "Hola, me gustaría conocer más sobre la artista."
+              contact.message ??
+              "Hola, me gustaría conocer más sobre la artista."
             }
             className={contact.className ?? "btn-whatsapp"}
             style={contact.style}

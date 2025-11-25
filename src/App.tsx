@@ -3,7 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useLanguage } from "@/hooks";
 import { Footer } from "@/components";
 import { Spinner } from "@/mini-components";
-import { Gallery, ProjectsPage, Contact, ArtistPage, Project, QuotePage } from "@/pages";
+import {
+  Gallery,
+  ProjectsPage,
+  Contact,
+  ArtistPage,
+  Project,
+  QuotePage,
+} from "@/pages";
 import { Navbar } from "@/components/navbar";
 
 function App() {

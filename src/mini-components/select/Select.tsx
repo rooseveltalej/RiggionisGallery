@@ -1,32 +1,32 @@
-import React from 'react';
-import type { SelectProps } from './Select.interface';
-import IconWrapper from '../IconWrapper/IconWrapper';
-import './Select.css';
+import React from "react";
+import type { SelectProps } from "./Select.interface";
+import IconWrapper from "../IconWrapper/IconWrapper";
+import "./Select.css";
 
-const Select: React.FC<SelectProps> = ({ 
-  options, 
-  placeholder = "Seleccionar...", 
+const Select: React.FC<SelectProps> = ({
+  options,
+  placeholder = "Seleccionar...",
   icon,
   iconSize = "1rem",
   iconColor,
   className,
   style,
   onChange,
-  ...rest 
+  ...rest
 }) => {
   return (
     <div className="select-wrapper">
       {icon && (
         <div className="select-icon-left">
-          <IconWrapper 
-            icon={icon} 
+          <IconWrapper
+            icon={icon}
             size={iconSize}
-            color={iconColor || 'var(--input-text)'}
+            color={iconColor || "var(--input-text)"}
           />
         </div>
       )}
       <select
-        className={`select ${icon ? 'select-with-icon' : ''} ${className || ''}`}
+        className={`select ${icon ? "select-with-icon" : ""} ${className || ""}`}
         style={style}
         onChange={onChange}
         {...rest}

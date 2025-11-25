@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 export const useHorizontalScroll = <T extends HTMLElement>() => {
   const scrollRef = useRef<T>(null);
@@ -14,10 +14,10 @@ export const useHorizontalScroll = <T extends HTMLElement>() => {
       }
     };
 
-    scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
+    scrollContainer.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
-      scrollContainer.removeEventListener('wheel', handleWheel);
+      scrollContainer.removeEventListener("wheel", handleWheel);
     };
   }, []);
 

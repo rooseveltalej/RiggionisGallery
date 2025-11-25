@@ -1,6 +1,6 @@
-import React from 'react';
-import Button from '@/mini-components/Button/Button';
-import { useLanguage } from '@/hooks/useLanguage';
+import React from "react";
+import Button from "@/mini-components/Button/Button";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface PaginationProps {
   currentPage: number;
@@ -47,7 +47,7 @@ export const Pagination: React.FC<PaginationProps> = ({
               key={page}
               text={page.toString()}
               onClick={() => onPageChange(page)}
-              className={`pagination-number ${page === currentPage ? 'active' : ''}`}
+              className={`pagination-number ${page === currentPage ? "active" : ""}`}
             />
           ))}
         </div>
@@ -63,7 +63,8 @@ export const Pagination: React.FC<PaginationProps> = ({
       {totalItems > 0 && (
         <div className="projects-page__info">
           <p>
-            {showingText} {startIndex + 1}-{Math.min(endIndex, totalItems)} {ofText} {totalItems} {projectsText}
+            {showingText} {startIndex + 1}-{Math.min(endIndex, totalItems)}{" "}
+            {ofText} {totalItems} {projectsText}
           </p>
         </div>
       )}

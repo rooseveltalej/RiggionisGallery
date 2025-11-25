@@ -1,4 +1,4 @@
-import type { Project } from '../projectCard/ProjectCard.interface';
+import type { Project } from "../projectCard/ProjectCard.interface";
 
 export interface SimilarProjectsProps {
   projectId: string;

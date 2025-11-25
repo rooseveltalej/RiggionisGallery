@@ -9,14 +9,16 @@
   min-height: 30px;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition:
+    transform 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
 }
 
 .arrow:hover:not(.disabled) {
   transform: scale(1.1);
 }
 
-.arrow:focus-visible  {
+.arrow:focus-visible {
   outline: 2px solid #5c0a0a;
   outline-offset: 4px;
 }

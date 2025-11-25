@@ -35,7 +35,9 @@ export function useContactConfig({
       contactHref,
       contactCta,
       waMessage,
-      waStyle ? (waStyle as Record<string, string | number>)["--primary-color"] : undefined,
-    ]
+      waStyle
+        ? (waStyle as Record<string, string | number>)["--primary-color"]
+        : undefined,
+    ],
   );
 }

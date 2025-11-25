@@ -39,27 +39,26 @@ export function useArtistRemoteConfig(): UseArtistRemoteConfigResult {
   const { languageStrings, loading } = useLanguage();
 
   return useMemo<UseArtistRemoteConfigResult>(() => {
-    const profile = (languageStrings?.artist_content ?? null) as ArtistProfile | null;
+    const profile = (languageStrings?.artist_content ??
+      null) as ArtistProfile | null;
 
     const generalTitles = languageStrings?.general_titles;
 
-    const labels: ArtistLabels =
-      generalTitles?.artist_info?.labels ?? {
-        name: "Nombre",
-        degree: "Grado académico",
-        phone: "Teléfono",
-        email1: "Correo",
-        email2: "Correo 2",
-      };
+    const labels: ArtistLabels = generalTitles?.artist_info?.labels ?? {
+      name: "Nombre",
+      degree: "Grado académico",
+      phone: "Teléfono",
+      email1: "Correo",
+      email2: "Correo 2",
+    };
 
-    const values: ArtistValues =
-      generalTitles?.artist_info?.values ?? {
-        name: profile?.personName ?? "",
-        degree: "",
-        phone: "",
-        email1: "",
-        email2: "",
-      };
+    const values: ArtistValues = generalTitles?.artist_info?.values ?? {
+      name: profile?.personName ?? "",
+      degree: "",
+      phone: "",
+      email1: "",
+      email2: "",
+    };
 
     const whatsappMessages: WhatsAppMessages =
       generalTitles?.whatsapp_messages ?? {
@@ -68,20 +67,21 @@ export function useArtistRemoteConfig(): UseArtistRemoteConfigResult {
         artist_info: "Mensaje sobre información del artista.",
       };
 
-    const pageStrings: ArtistPageStrings =
-      (languageStrings?.artist_page as ArtistPageStrings | undefined) ?? {
-        sections: {
-          academic: "Preparación académica",
-          experience: "Experiencia",
-          skills: "Habilidades y Herramientas",
-          languages: "Idiomas",
-        },
-        buttons: {
-          view_cv: "Ver CV",
-          download_cv: "Descargar CV",
-          contact: "Enviar mensaje",
-        },
-      };
+    const pageStrings: ArtistPageStrings = (languageStrings?.artist_page as
+      | ArtistPageStrings
+      | undefined) ?? {
+      sections: {
+        academic: "Preparación académica",
+        experience: "Experiencia",
+        skills: "Habilidades y Herramientas",
+        languages: "Idiomas",
+      },
+      buttons: {
+        view_cv: "Ver CV",
+        download_cv: "Descargar CV",
+        contact: "Enviar mensaje",
+      },
+    };
 
     const error = !profile
       ? "No hay contenido de artista en el remote config (artist_content)."

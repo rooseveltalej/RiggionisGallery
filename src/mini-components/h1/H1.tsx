@@ -18,7 +18,11 @@ export const H1: React.FC<H1Props> = ({
   };
 
   return (
-    <h1 className={`${H1_BASE_CLASS} ${className}`.trim()} style={style} {...rest}>
+    <h1
+      className={`${H1_BASE_CLASS} ${className}`.trim()}
+      style={style}
+      {...rest}
+    >
       {children}
     </h1>
   );

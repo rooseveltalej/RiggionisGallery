@@ -5,7 +5,7 @@
   --gallery-text-light: #666666;
   --gallery-bg-color: #ffffff;
   --gallery-border-color: #e0e0e0;
-  
+
   /* Espaciado optimizado */
   --gallery-padding: 1.5rem;
   --gallery-padding-mobile: 1rem;
@@ -13,17 +13,17 @@
   --gallery-gap-mobile: 1rem;
   --gallery-header-margin: 2rem;
   --gallery-header-margin-mobile: 1.5rem;
-  
+
   /* Grid fijo para 3 columnas */
   --gallery-grid-columns: repeat(3, 1fr);
   --gallery-grid-columns-tablet: repeat(2, 1fr);
   --gallery-grid-columns-mobile: repeat(1, 1fr);
-  
+
   /* Typography más grande */
   --gallery-title-size: 2rem;
   --gallery-title-size-mobile: 1.75rem;
   --gallery-title-weight: 700;
-  
+
   /* Layout con scroll apropiado */
   background-color: var(--gallery-bg-color);
   padding: var(--gallery-padding);
@@ -52,7 +52,7 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  
+
   background-color: var(--gallery-primary-color);
   color: white;
   border: none;
@@ -61,8 +61,10 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+
   /* Tipografía en rem */
   min-width: 6rem;
   height: 2.8125rem;
@@ -85,7 +87,7 @@
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .gallery__view-more-btn {
     position: static;
     transform: none;
@@ -105,8 +107,10 @@
 .gallery__card {
   width: 100%;
   max-width: 28.125rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
   /* Override de variables del ProjectCard */
   --projectcard-image-height: 28.125rem;
   --projectcard-font-size-title: 1.6rem;
@@ -125,15 +129,15 @@
   .gallery {
     padding: var(--gallery-padding-mobile);
   }
-  
+
   .gallery__header {
     margin-bottom: var(--gallery-header-margin-mobile);
   }
-  
+
   .gallery__title {
     font-size: var(--gallery-title-size-mobile);
   }
-  
+
   .gallery__grid {
     grid-template-columns: var(--gallery-grid-columns-tablet);
     gap: var(--gallery-gap-mobile);
@@ -144,12 +148,12 @@
   .gallery {
     padding: var(--gallery-padding-mobile);
   }
-  
+
   .gallery__grid {
     grid-template-columns: var(--gallery-grid-columns-mobile);
     gap: var(--gallery-gap-mobile);
   }
-  
+
   .gallery__card {
     max-width: 20rem;
   }

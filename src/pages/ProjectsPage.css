@@ -5,7 +5,7 @@
   --projects-text-light: #666666;
   --projects-bg-color: #ffffff;
   --projects-border-color: #e0e0e0;
-  
+
   width: 100%;
   min-height: 100vh;
   padding: 1.5rem;
@@ -24,7 +24,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  
+
   background-color: var(--projects-primary-color);
   color: white;
   border: none;
@@ -33,7 +33,9 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
   height: 2.8125rem;
 }
 
@@ -122,8 +124,10 @@
 
 .projects-page__card {
   width: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
   /* Override de variables del ProjectCard */
   --projectcard-image-height: 15rem;
   --projectcard-font-size-title: 1rem;
@@ -223,11 +227,11 @@
   .projects-page__filters {
     padding: 1rem;
   }
-  
+
   .filter-select {
     min-width: 10rem;
   }
-  
+
   .projects-page__grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -237,44 +241,44 @@
   .projects-page {
     padding: 1rem;
   }
-  
+
   .projects-page__header {
     margin-bottom: 1.5rem;
   }
-  
+
   .projects-page__back-btn {
     position: static;
     width: 100%;
     margin-bottom: 1rem;
   }
-  
+
   .projects-page__title {
     font-size: 1.5rem;
   }
-  
+
   .projects-page__filters {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .filter-group {
     min-width: auto;
   }
-  
+
   .filter-select {
     min-width: auto;
   }
-  
+
   .projects-page__grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
-  
+
   .projects-page__pagination {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .pagination-numbers {
     justify-content: center;
   }

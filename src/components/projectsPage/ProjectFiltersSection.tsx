@@ -1,6 +1,6 @@
-import React from 'react';
-import type { FilterState, FilterOptions } from './models/projectsPage.models';
-import { useLanguage } from '@/hooks/useLanguage';
+import React from "react";
+import type { FilterState, FilterOptions } from "./models/projectsPage.models";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface ProjectFiltersProps {
   filters: FilterState;
@@ -14,7 +14,7 @@ export const ProjectFiltersSection: React.FC<ProjectFiltersProps> = ({
   onFilterChange,
 }) => {
   const { languageStrings } = useLanguage();
-  
+
   const filterLabels = languageStrings?.gallery_page?.filter_labels;
   return (
     <div className="projects-page__filters">
@@ -24,7 +24,7 @@ export const ProjectFiltersSection: React.FC<ProjectFiltersProps> = ({
             id="technique-select"
             className="filter-select"
             value={filters.technique}
-            onChange={(e) => onFilterChange('technique', e.target.value)}
+            onChange={(e) => onFilterChange("technique", e.target.value)}
           >
             <option value="">{filterLabels.technique}</option>
             {options.techniques.map((technique) => (
@@ -42,7 +42,7 @@ export const ProjectFiltersSection: React.FC<ProjectFiltersProps> = ({
             id="support-select"
             className="filter-select"
             value={filters.support}
-            onChange={(e) => onFilterChange('support', e.target.value)}
+            onChange={(e) => onFilterChange("support", e.target.value)}
           >
             <option value="">{filterLabels.support}</option>
             {options.supports.map((support) => (
@@ -60,7 +60,7 @@ export const ProjectFiltersSection: React.FC<ProjectFiltersProps> = ({
             id="style-select"
             className="filter-select"
             value={filters.style}
-            onChange={(e) => onFilterChange('style', e.target.value)}
+            onChange={(e) => onFilterChange("style", e.target.value)}
           >
             <option value="">{filterLabels.style}</option>
             {options.styles.map((style) => (
@@ -78,7 +78,7 @@ export const ProjectFiltersSection: React.FC<ProjectFiltersProps> = ({
             id="availability-select"
             className="filter-select"
             value={filters.availability}
-            onChange={(e) => onFilterChange('availability', e.target.value)}
+            onChange={(e) => onFilterChange("availability", e.target.value)}
           >
             <option value="">{filterLabels.availability}</option>
             {options.availabilities.map((availability) => (

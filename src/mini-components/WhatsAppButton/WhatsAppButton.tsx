@@ -3,7 +3,7 @@ import "./WhatsAppButton.css";
 import type { WhatsAppButtonProps } from "./WhatsAppButton.interface";
 import Button from "../Button/Button";
 import { useWhatsAppLink } from "@/hooks";
-import IconWhatsapp from '@/assets/icons/whatsapp.svg';
+import IconWhatsapp from "@/assets/icons/whatsapp.svg";
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   text,
@@ -19,17 +19,17 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
 
   const whatsappLink = useMemo(
     () => generateLink(phoneNumber, message),
-    [generateLink, phoneNumber, message]
+    [generateLink, phoneNumber, message],
   );
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    
+
     if (isLoading) return;
-    
+
     setIsLoading(true);
-    window.open(whatsappLink, '_blank', 'noopener,noreferrer');
-    
+    window.open(whatsappLink, "_blank", "noopener,noreferrer");
+
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);

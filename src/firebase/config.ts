@@ -20,15 +20,15 @@ export const remoteConfig = getRemoteConfig(app);
 
 remoteConfig.settings = {
   minimumFetchIntervalMillis: 3600000,
-  fetchTimeoutMillis: 60000, 
+  fetchTimeoutMillis: 60000,
 };
 
 remoteConfig.defaultConfig = {
-  languages: "{}", 
+  languages: "{}",
 };
 
 fetchAndActivate(remoteConfig).catch((err) =>
-  console.error("Error fetching remote config:", err)
+  console.error("Error fetching remote config:", err),
 );
 
 export default app;
