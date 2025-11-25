@@ -1,6 +1,6 @@
 import React from 'react';
 import { H2 } from '@/mini-components/h2/H2';
-import { useSimilarProjects } from '@/hooks';
+import { useSimilarProjects, useHorizontalScroll } from '@/hooks';
 import SimilarProjectCard from '../SimilarProjectCard/SimilarProjectCard';
 import type { SimilarProjectsProps } from './SimilarProjects.interface';
 import './SimilarProjects.css';
@@ -11,6 +11,7 @@ const SimilarProjects: React.FC<SimilarProjectsProps> = ({
   title,
   className = ''
 }) => {
+  const scrollRef = useHorizontalScroll<HTMLUListElement>();
   const { similarProjects, handleViewProject } = useSimilarProjects({
     projectId,
     projects
@@ -24,15 +25,16 @@ const SimilarProjects: React.FC<SimilarProjectsProps> = ({
     <section className={`similar-projects ${className}`.trim()}>
       <H2 className="similar-projects__title">{title}</H2>
       
-      <div className="similar-projects__grid">
+      <ul ref={scrollRef} role="list" className="similar-projects__grid">
         {similarProjects.map(project => (
-          <SimilarProjectCard
-            key={project.id}
-            project={project}
-            onViewProject={handleViewProject}
-          />
+          <li key={project.id}>
+            <SimilarProjectCard
+              project={project}
+              onViewProject={handleViewProject}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 };
