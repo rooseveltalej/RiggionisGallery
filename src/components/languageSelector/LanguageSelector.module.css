@@ -1,0 +1,34 @@
+.language-selector-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.language-selector-select {
+  display: flex;
+  align-items: center;
+  background: var(--primary-color-dark);
+  color: var(--text-inverse);
+  border: 2px solid var(--white);
+  border-radius: 2rem;
+  padding: 0.5rem 2.5rem 0.5rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  appearance: none;
+  background-image: url("/icons/arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  background-size: 1.2rem 0.8rem;
+  min-width: 100px;
+}
+
+.language-selector-select:focus {
+  border-color: var(--white);
+  outline: none;
+}
+
+.language-selector-select option {
+  text-align: center;
+}

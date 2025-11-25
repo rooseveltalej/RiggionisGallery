@@ -1,51 +1,57 @@
-import './App.css';
-import { useMemo } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useLanguage } from '@/hooks';
-import { Footer, Navbar } from '@/components';
-import { Spinner } from '@/mini-components';
-import { Gallery, ProjectsPage, Artist, Contact } from '@/pages';
-import logo from '@/assets/images/logo/Blanco - Vino.png';
-import type { NavItem } from '@/components/navbar/Navbar.interface';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useLanguage } from "@/hooks";
+import { Footer } from "@/components";
+import { Spinner } from "@/mini-components";
+import { Gallery, ProjectsPage, Contact, ArtistPage, Project } from "@/pages";
+import { Navbar } from "@/components/navbar";
 
 function App() {
-    const { languageStrings, loading } = useLanguage();
-    const navItems = useMemo<NavItem[]>(() => {
-        const routes = languageStrings?.navbar?.routes ?? {};
-        return [
-            { label: routes?.gallery ?? "Galería", path: "/" },
-            { label: routes?.artist ?? "Artista", path: "/artist" },
-            { label: routes?.contact ?? "Contacto", path: "/contact" },
-            { label: routes?.quote ?? "Cotizar", path: "/projects" },
-        ].filter((item) => Boolean(item.label));
-    }, [languageStrings]);
+  const { languageStrings, loading } = useLanguage();
 
-    if (loading) {
-        return (
-            <div className="app" style={{ justifyContent: "center" }}>
-                <Spinner />
-            </div>
-        );
-    }
+  if (loading) {
+    return (
+      <div className="app-loading">
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <BrowserRouter>
       <div className="app">
-        <Navbar 
-          navItems={navItems}
-          logoSrc={logo}
-          logoAlt={languageStrings?.general_titles?.company_name ?? "Riggioni's Gallery"}
+        <Navbar
+          navItems={[
+            {
+              label: languageStrings?.navbar?.routes?.gallery || "Galería",
+              path: "/",
+            },
+            {
+              label: languageStrings?.navbar?.routes?.projects || "Proyectos",
+              path: "/projects",
+            },
+            {
+              label: languageStrings?.navbar?.routes?.contact || "Contacto",
+              path: "/contact",
+            },
+            {
+              label: languageStrings?.navbar?.routes?.ArtistPage || "Artista",
+              path: "/artist",
+            },
+          ]}
+          logoSrc={"/icons/logoBlanco.svg"}
+          logoAlt={languageStrings?.navbar?.logoAlt || "Logo"}
         />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Gallery />} />
             <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/artist" element={<Artist />} />
+            <Route path="/project/:id" element={<Project />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/artist" element={<ArtistPage />} />
           </Routes>
         </main>
-
-        <Footer 
+        <Footer
           generalTitles={languageStrings.general_titles}
           footerData={languageStrings.footer}
         />

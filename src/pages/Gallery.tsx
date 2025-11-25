@@ -43,9 +43,8 @@ const Gallery: React.FC = () => {
             onBuyProject={handleBuyProject}
             onWhatsApp={handleWhatsApp}
             onToggleFavorite={handleToggleFavorite}
-            isFavorite={false} // Por ahora todos empiezan como no favoritos
+            isFavorite={false} 
             className="gallery__card"
-            // Pasar textos desde remote config si es necesario
           />
         ))}
       </div>

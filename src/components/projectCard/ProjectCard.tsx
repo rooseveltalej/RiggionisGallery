@@ -3,25 +3,29 @@ import Image from '@/mini-components/Image/Image';
 import Button from '@/mini-components/Button/Button';
 import { H3 } from '@/mini-components/h3/H3';
 import { useProjectCard } from '@/hooks/useProjectCard';
-import { getImageAltText, getAriaLabels } from '@/utils/projectFormatters';
+import { getImageAltText } from '@/utils/projectFormatters';
 import { ActionButtons } from '@/components/projectCard/ActionButtons';
 import type { ProjectCardProps } from '@/components/projectCard/ProjectCard.interface';
 import './ProjectCard.css';
 
-const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyProject,onWhatsApp,isFavorite: initialFavorite = false,className}) => {
-  // Hook 
-  const {isFavorite,handleToggleFavorite,favoriteIconSrc,showOverlay,handleTouchEnd} = useProjectCard({ project, initialFavorite });
-  // Utils
-  const ariaLabels = getAriaLabels(project);
-  // Obtener primera imagen con fallback
+const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyProject,onWhatsApp,className}) => {
+  // All project card logic and data in one hook
+  const {
+    isFavorite,
+    handleToggleFavorite,
+    favoriteIconSrc,
+    showOverlay,
+    handleTouchEnd,
+    likesCount,
+    loadingLikes,
+    ariaLabels,
+  } = useProjectCard({ project });
+  // first image or fallback
   const firstImage = project.images?.[0] || '/icons/fallback.png';
   
   return (
-    <div
+    <article
       className={`project-card ${className || ''}`.trim()}
-      tabIndex={0}
-      role="article"
-      aria-label={ariaLabels.projectCard}
     >
       <div 
         className="project-card__image-container"
@@ -32,8 +36,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyPro
           alt={getImageAltText(project, 0)}
           className="project-card__image"
         />
-        {/* Overlay con botones de acción */}
-        <div className={`project-card__overlay ${showOverlay ? 'project-card__overlay--visible' : ''}`}>
+        {/* Overlay with action buttons */}
+        <div className="project-card__overlay" data-mobile-visible={showOverlay}>
           <div className="project-card__overlay-content">
             <ActionButtons
               project={project}
@@ -48,25 +52,36 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyPro
             />
           </div>
         </div>
-          {/* Chips de información - solo visible en hover o cuando showOverlay está activo */}
-        <div className={`project-card__info-chips ${showOverlay ? 'project-card__info-chips--visible' : ''}`}>
-          {project.metadata?.technique && (
-            <H3 className="project-card__chip">{project.metadata.technique} </H3>
-          )}
-          {project.metadata?.support && (
-            <H3 className="project-card__chip">{project.metadata.support} </H3>
-          )}
-          {project.metadata?.style && (
-            <H3 className="project-card__chip">{project.metadata.style} </H3>
-          )}
+          {/* Information chips - only visible on hover or when showOverlay is active */}
+        <div className="project-card__info-chips" data-mobile-visible={showOverlay}>
+          {project.metadata && Object.entries(project.metadata)
+            .filter(([key, value]) => value && typeof value === 'string' && key !== 'dimensions')
+            .map(([key, value]) => (
+              <span key={key} className="project-card__chip">
+                {value as string}
+              </span>
+            ))
+          }
         </div>
       </div>
-      {/* Título fuera del contenedor de imagen */}
+ {/* Title outside the image container */}
       <div className="project-card__title-container">
         <H3 className="project-card__title">{project.title}</H3>
-        {/* Ícono de favorito junto al título */}
+        <div className="project-card__favorite-section">
+          {/* Likes count */}
+          {!loadingLikes && (
+            <span className="project-card__likes-count" aria-label={`${likesCount} likes`}>
+              {likesCount}
+            </span>
+          )} 
+          {/* Loading indicator while fetching likes */}
+          {loadingLikes && (
+            <span className="project-card__likes-count project-card__likes-count--loading">
+              ...
+            </span>
+          )}
+          {/* Favorite icon next to the title */}
         <Button 
-          key={`favorite-${isFavorite}`}
           text=""
           className={`project-card__favorite-btn ${isFavorite ? 'active' : ''}`} 
           onClick={handleToggleFavorite}
@@ -75,6 +90,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project,onViewProject,onBuyPro
         />
       </div>
     </div>
+    </article>
   );
 };
 export default ProjectCard;

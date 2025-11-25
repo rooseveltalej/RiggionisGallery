@@ -1,6 +1,6 @@
 import React from "react";
 
-import { H1 } from "../mini-components/h1/H1";
+import { H1 } from "../../mini-components/h1/H1";
 import styles from "./ContactInfo.module.css";
 
 type ContactInfoProps = {
