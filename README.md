@@ -22,12 +22,14 @@ This project was developed as part of an **innovative educational program** that
 ## 🎯 Main Features
 
 ### 🖼️ Project Gallery
+
 - Responsive grid display of artworks
 - Interactive cards with basic information (technique, support, style)
 - Favorites system with local persistence and global counter (Firebase)
 - Smooth navigation between projects
 
 ### 🎨 Project Details Page
+
 - High-quality image carousel
 - Complete information: technique, support, style, dimensions, price, year
 - Real-time availability status
@@ -35,6 +37,7 @@ This project was developed as part of an **innovative educational program** that
 - Additional photo gallery
 
 ### 👤 Artist Profile
+
 - Hero section with avatar and contact information
 - Academic background and professional experience
 - Skills and tools mastery
@@ -43,6 +46,7 @@ This project was developed as part of an **innovative educational program** that
 - Direct WhatsApp integration
 
 ### 💬 Contact System
+
 - Customized quote form
 - WhatsApp API integration
 - Contextual predefined messages
@@ -50,6 +54,7 @@ This project was developed as part of an **innovative educational program** that
 - Social media links (Instagram, Facebook, LinkedIn)
 
 ### 🌐 Internationalization
+
 - Multi-language support (Spanish and English)
 - Language selector in navbar
 - Dynamic content from Firebase Remote Config
@@ -57,6 +62,7 @@ This project was developed as part of an **innovative educational program** that
 - Persistent language selection
 
 ### 📱 Responsive Design
+
 - Mobile-first design
 - Optimized breakpoints for all devices
 - Touch interactions on mobile devices
@@ -67,6 +73,7 @@ This project was developed as part of an **innovative educational program** that
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **React 19.1.1** - UI library with modern hooks
 - **TypeScript 5.8.3** - Static typing for greater security
 - **React Router DOM 7.9.4** - SPA routing
@@ -74,12 +81,14 @@ This project was developed as part of an **innovative educational program** that
 - **CSS Modules** - Encapsulated and maintainable styles
 
 ### Backend/Services
+
 - **Firebase 12.3.0**
   - **Firestore** - Real-time database for favorites
   - **Remote Config** - Dynamic multi-language content management
   - **Storage** - Image storage (configured)
-  
+
 ### Development Tools
+
 - **ESLint** - Linter with strict TypeScript rules
 - **TypeScript ESLint** - TypeScript-specific rules
 - **Vite Plugin React** - HMR and Fast Refresh
@@ -169,12 +178,13 @@ src/
 ## 🚀 Outstanding Technical Features
 
 ### 1. Robust Favorites System
+
 ```typescript
 // Bidirectional synchronization: localStorage + Firebase
 const toggleFavorite = async (projectId: string, projectName: string) => {
   // Optimistic local update
   setFavoritesArray(/* ... */);
-  
+
   // Background Firebase synchronization
   try {
     await incrementProjectFavorites(projectId, projectName);
@@ -186,6 +196,7 @@ const toggleFavorite = async (projectId: string, projectName: string) => {
 ```
 
 ### 2. Remote Config with Smart Cache
+
 ```typescript
 // 24-hour cache to reduce Firebase calls
 const CACHE_DURATION = 86400000; // 24 hours
@@ -199,32 +210,33 @@ if (cachedData) {
 ```
 
 ### 3. Real-time Likes Counter
+
 ```typescript
 // Real-time listener with onSnapshot
 useEffect(() => {
   const projectRef = doc(db, "favorite projects", projectId);
-  
+
   const unsubscribe = onSnapshot(projectRef, (doc) => {
     setLikesCount(doc.data()?.likeCount || 0);
   });
-  
+
   return () => unsubscribe();
 }, [projectId]);
 ```
 
 ### 4. Image Optimization
+
 - Implicit lazy loading with `Image` component
 - Automatic fallback to placeholder
 - Dynamic alt text for accessibility
 - Prevention of inline SVG to optimize bundle
 
 ### 5. SPA Routing with Vercel Support
+
 ```json
 // vercel.json - Rewrite for client-side routing
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
 ```
 
@@ -233,6 +245,7 @@ useEffect(() => {
 ## 🔧 Installation and Setup
 
 ### Prerequisites
+
 - Node.js >= 18.x
 - npm or yarn
 - Firebase account (Firestore + Remote Config)
@@ -241,12 +254,14 @@ useEffect(() => {
 ### Local Installation
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/rooseveltalej/RiggionisGallery.git
 cd RiggionisGallery
 ```
 
 2. **Install dependencies**
+
 ```bash
 npm install
 ```
@@ -254,6 +269,7 @@ npm install
 3. **Configure environment variables**
 
 Create `.env.local` file:
+
 ```env
 VITE_FIREBASE_API_KEY=your_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
@@ -266,26 +282,43 @@ VITE_FIREBASE_APP_ID=your_app_id
 4. **Configure Firebase Remote Config**
 
 In Firebase console, create `languages` parameter with structure:
+
 ```json
 {
   "languages": {
     "spanish": {
-      "navbar": { "routes": { /* ... */ } },
-      "gallery_page": { "projects": [ /* ... */ ] },
-      "general_titles": { /* ... */ },
-      "artist_content": { /* ... */ }
+      "navbar": {
+        "routes": {
+          /* ... */
+        }
+      },
+      "gallery_page": {
+        "projects": [
+          /* ... */
+        ]
+      },
+      "general_titles": {
+        /* ... */
+      },
+      "artist_content": {
+        /* ... */
+      }
     },
-    "english": { /* ... */ }
+    "english": {
+      /* ... */
+    }
   }
 }
 ```
 
 5. **Run in development**
+
 ```bash
 npm run dev
 ```
 
 6. **Build for production**
+
 ```bash
 npm run build
 ```
@@ -418,7 +451,6 @@ This project was developed as part of an educational program. If you wish to con
 **Developer:** Kevin Jiménez  
 **GitHub:** [@Khraben](https://github.com/Khraben)
 
-
 **Developer:** Walter Lazo  
 **GitHub:** [@Walter-Lz](https://github.com/Walter-Lz)
 
@@ -428,14 +460,12 @@ This project was developed as part of an educational program. If you wish to con
 **Developer:** Daniel Porras  
 **GitHub:** [@mortalcr](https://github.com/mortalcr)
 
-
 **Developer:** Anthony Jiménez  
 **GitHub:** [@AntJimenezZ](https://github.com/AntJimenezZ)
 
 **Client (Dev):** Jeremy Soto  
 **GitHub:** [@P3T3Rr](https://github.com/P3T3Rr)
 **GitLab:** [@P3T3Rr](https://gitlab.com/P3T3Rr)
-
 
 **Artist:** Mónica Riggioni  
 **Website:** [Vercel Deployment](https://riggionigallery.vercel.app)
