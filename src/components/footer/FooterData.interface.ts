@@ -26,6 +26,11 @@ export interface GeneralTitlesForFooter {
     quote_request: string;
     artist_info: string;
   };
+  whatsapp_button_texts?: {
+    send_message?: string;
+    send_quote?: string;
+    contact?: string;
+  };
 }
 
 export interface Developer {

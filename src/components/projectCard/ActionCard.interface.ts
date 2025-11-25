@@ -10,6 +10,8 @@ export interface ActionButtonsProps {
     buyProject: string;
     whatsApp: string;
   };
+  viewProjectText?: string;
+  whatsappText?: string;
 }
 export interface ImageIndicatorsProps {
   totalImages: number;

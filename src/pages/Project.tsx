@@ -31,13 +31,21 @@ const Project: React.FC<ProjectDetailsProps> = () => {
     [languageStrings],
   );
 
+  const projectPageStrings = languageStrings?.project_page;
+  const galleryPageStrings = languageStrings?.gallery_page;
+
   const project = projects.find((p) => p.id === id);
 
   if (!project) {
     return (
       <div className="project-not-found">
-        <H1>Proyecto no encontrado</H1>
-        <Button text="Volver a la galería" onClick={() => navigate("/")} />
+        <H1>
+          {galleryPageStrings?.project_not_found || "Proyecto no encontrado"}
+        </H1>
+        <Button
+          text={galleryPageStrings?.back_to_gallery || "Volver a la galería"}
+          onClick={() => navigate("/")}
+        />
       </div>
     );
   }
@@ -100,14 +108,30 @@ const Project: React.FC<ProjectDetailsProps> = () => {
             support={metadata?.support}
             style={metadata?.style}
             author="Mónica Rigioni"
-            year={year?.toString() || "N/A"}
+            year={
+              year?.toString() ||
+              projectPageStrings?.placeholders?.not_available ||
+              "N/A"
+            }
             dimensions={formattedDimensions}
             price={formattedPrice}
-            description={description || "Sin descripción disponible"}
+            description={
+              description ||
+              projectPageStrings?.placeholders?.no_description ||
+              "Sin descripción disponible"
+            }
+            labels={projectPageStrings?.labels}
+            placeholders={projectPageStrings?.placeholders}
           />
 
           {/* Acciones */}
-          <aside className="project-actions" aria-label="Acciones del proyecto">
+          <aside
+            className="project-actions"
+            aria-label={
+              projectPageStrings?.labels?.project_actions ||
+              "Acciones del proyecto"
+            }
+          >
             <div className="availability-badge">
               <span
                 className={`availability-status ${
@@ -116,13 +140,13 @@ const Project: React.FC<ProjectDetailsProps> = () => {
                     : "status-sold"
                 }`}
                 role="status"
-                aria-label={`Estado: ${availability}`}
+                aria-label={`${projectPageStrings?.labels?.availability || "Estado"}: ${availability}`}
               >
                 {availability}
               </span>
             </div>
             <Button
-              text="COMPRAR"
+              text={projectPageStrings?.buttons?.buy || "COMPRAR"}
               className="btn-buy"
               onClick={handleBuy}
               disabled={availability !== "Disponible"}
@@ -135,6 +159,10 @@ const Project: React.FC<ProjectDetailsProps> = () => {
           images={displayImages}
           title={title}
           onViewMore={handleViewMore}
+          allPhotosText={projectPageStrings?.labels?.all_photos}
+          viewMoreText={projectPageStrings?.buttons?.view_more}
+          viewMoreAriaLabel={projectPageStrings?.buttons?.view_more_photos}
+          photoLabelTemplate={projectPageStrings?.labels?.photo_label}
         />
 
         {/* Proyectos relacionados */}

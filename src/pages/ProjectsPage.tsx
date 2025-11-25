@@ -99,6 +99,11 @@ const ProjectsPage: React.FC = () => {
     navigate("/");
   };
 
+  const buttonTexts = {
+    viewProject: languageStrings?.general_titles?.buttons?.view_project,
+    whatsapp: languageStrings?.general_titles?.buttons?.whatsapp,
+  };
+
   return (
     <div className="projects-page">
       <ProjectsHeader onBackClick={handleBackToGallery} />
@@ -117,6 +122,7 @@ const ProjectsPage: React.FC = () => {
             onBuyProject={handleBuyProject}
             onWhatsApp={handleWhatsApp}
             onToggleFavorite={handleToggleFavorite}
+            buttonTexts={buttonTexts}
           />
 
           <Pagination

@@ -11,6 +11,7 @@ const Navbar: React.FC<NavbarProps> = ({
   logoSrc,
   logoAlt = "Logo",
   className = "",
+  backToHomeText,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -41,7 +42,12 @@ const Navbar: React.FC<NavbarProps> = ({
       aria-label="Navegación principal"
     >
       <div className="navbar__container">
-        <NavLogo src={logoSrc} alt={logoAlt} linkTo="/" />
+        <NavLogo
+          src={logoSrc}
+          alt={logoAlt}
+          linkTo="/"
+          backToHomeText={backToHomeText}
+        />
 
         <HamburgerButton isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
 

@@ -26,6 +26,10 @@ const Gallery: React.FC = () => {
 
   const galleryTitle = languageStrings?.gallery_page?.title;
   const seeMoreText = languageStrings?.general_titles?.see_more;
+  const buttonTexts = {
+    viewProject: languageStrings?.general_titles?.buttons?.view_project,
+    whatsapp: languageStrings?.general_titles?.buttons?.whatsapp,
+  };
 
   return (
     <div className="gallery">
@@ -49,6 +53,7 @@ const Gallery: React.FC = () => {
             onToggleFavorite={handleToggleFavorite}
             isFavorite={false}
             className="gallery__card"
+            buttonTexts={buttonTexts}
           />
         ))}
       </div>

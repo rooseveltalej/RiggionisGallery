@@ -46,12 +46,13 @@ function App() {
               path: "/contact",
             },
             {
-              label: languageStrings?.navbar?.routes?.ArtistPage || "Artista",
+              label: languageStrings?.navbar?.routes?.artist || "Artista",
               path: "/artist",
             },
           ]}
           logoSrc={"/icons/logoBlanco.svg"}
           logoAlt={languageStrings?.navbar?.logoAlt || "Logo"}
+          backToHomeText={languageStrings?.general_titles?.labels?.back_to_home}
         />
         <main className="main-content">
           <Routes>

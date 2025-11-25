@@ -16,6 +16,7 @@ export const ProjectFiltersSection: React.FC<ProjectFiltersProps> = ({
   const { languageStrings } = useLanguage();
 
   const filterLabels = languageStrings?.gallery_page?.filter_labels;
+
   return (
     <div className="projects-page__filters">
       {options.techniques.length > 0 && (

@@ -59,6 +59,9 @@ const QuotePage = () => {
   const quoteContent = languageStrings?.quote_page as
     | QuotePageContent
     | undefined;
+  const whatsappButtonText =
+    languageStrings?.general_titles?.whatsapp_button_texts?.send_quote ||
+    "Enviar cotización por WhatsApp";
   const aspectRatioOptions = quoteContent?.options?.aspect_ratios ?? [];
 
   const [selectedRelation, setSelectedRelation] = useState("");
@@ -325,7 +328,7 @@ const QuotePage = () => {
           />
 
           <WhatsAppButton
-            text="Enviar cotización por WhatsApp"
+            text={whatsappButtonText}
             phoneNumber={whatsapp.phoneNumber}
             message={whatsappMessage}
             disabled={!whatsappMessage}

@@ -9,6 +9,8 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
   // onBuyProject, // Comentado temporalmente - se programará más adelante
   onWhatsApp,
   ariaLabels,
+  viewProjectText = "Ver proyecto",
+  whatsappText = "WhatsApp",
 }) => {
   const handleViewProject = useCallback(
     () => onViewProject?.(project),
@@ -22,7 +24,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
   return (
     <div className="project-card__action-buttons">
       <Button
-        text="Ver proyecto"
+        text={viewProjectText}
         onClick={handleViewProject}
         className="project-card__button project-card__button--view"
         aria-label={ariaLabels.viewProject}
@@ -35,7 +37,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
         aria-label={ariaLabels.buyProject}
       /> */}
       <Button
-        text="WhatsApp"
+        text={whatsappText}
         icon={IconWhatsapp}
         onClick={handleWhatsApp}
         className="project-card__button project-card__button--whatsapp"

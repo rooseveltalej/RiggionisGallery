@@ -55,4 +55,8 @@ export interface ProjectCardProps {
   onToggleFavorite?: (project: Project) => void;
   isFavorite?: boolean;
   className?: string;
+  buttonTexts?: {
+    viewProject?: string;
+    whatsapp?: string;
+  };
 }

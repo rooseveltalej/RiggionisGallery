@@ -20,4 +20,5 @@ export interface NavbarProps {
   logoSrc: string;
   logoAlt?: string;
   className?: string;
+  backToHomeText?: string;
 }

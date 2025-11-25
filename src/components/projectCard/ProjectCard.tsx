@@ -14,6 +14,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   onBuyProject,
   onWhatsApp,
   className,
+  buttonTexts,
 }) => {
   // All project card logic and data in one hook
   const {
@@ -56,6 +57,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 buyProject: ariaLabels.buyProject,
                 whatsApp: ariaLabels.whatsApp,
               }}
+              viewProjectText={buttonTexts?.viewProject}
+              whatsappText={buttonTexts?.whatsapp}
             />
           </div>
         </div>

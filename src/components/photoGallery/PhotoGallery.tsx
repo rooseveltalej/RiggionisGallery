@@ -11,6 +11,10 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   onViewMore,
   onViewImage,
   limit = 6,
+  allPhotosText = "Todas las fotografías",
+  viewMoreText = "Ver más",
+  viewMoreAriaLabel = "Ver más fotografías",
+  photoLabelTemplate = "Fotografía {number} de {total}",
 }) => {
   if (!images || images.length === 0) {
     return null;
@@ -19,7 +23,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
   return (
     <section className="photo-gallery-section" aria-labelledby="gallery-title">
       <H2 id="gallery-title" className="gallery-title">
-        Todas las fotografías
+        {allPhotosText}
       </H2>
       <ul className="photos-grid">
         {images.map((image, index) => (
@@ -27,7 +31,9 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
             key={index}
             className="photo-item"
             tabIndex={0}
-            aria-label={`Fotografía ${index + 1} de ${images.length}`}
+            aria-label={photoLabelTemplate
+              .replace("{number}", String(index + 1))
+              .replace("{total}", String(images.length))}
             onClick={() => onViewImage?.(image, index)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
@@ -47,10 +53,10 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({
       </ul>
       {onViewMore && images.length >= limit && (
         <Button
-          text="Ver más"
+          text={viewMoreText}
           className="view-more-btn"
           onClick={onViewMore}
-          aria-label="Ver más fotografías"
+          aria-label={viewMoreAriaLabel}
         />
       )}
     </section>

@@ -6,9 +6,27 @@ import styles from "./ContactInfo.module.css";
 type ContactInfoProps = {
   phone: string;
   emails: string[];
+  labels?: {
+    title?: string;
+    phone?: string;
+    email?: string;
+    emailMultiple?: string;
+  };
 };
 
-const ContactInfo: React.FC<ContactInfoProps> = ({ phone, emails }) => {
+const ContactInfo: React.FC<ContactInfoProps> = ({
+  phone,
+  emails,
+  labels = {},
+}) => {
+  const defaultLabels = {
+    title: "Información de contacto",
+    phone: "Teléfono:",
+    email: "Correo:",
+    emailMultiple: "Correo {number}:",
+    ...labels,
+  };
+
   const hasPhone = phone && phone.trim().length > 0;
   const hasEmails = emails && emails.length > 0;
   const validEmails = hasEmails
@@ -25,13 +43,13 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ phone, emails }) => {
       className={styles["contact-info"]}
       aria-labelledby="contact-heading"
     >
-      <H1 id="contact-heading">Información de contacto</H1>
+      <H1 id="contact-heading">{defaultLabels.title}</H1>
 
       <address className={styles["contact-address"]}>
         <dl className={styles["contact-list"]}>
           {hasPhone && (
             <div className={styles["contact-item"]}>
-              <dt className={styles["contact-label"]}>Teléfono:</dt>
+              <dt className={styles["contact-label"]}>{defaultLabels.phone}</dt>
               <dd className={styles["contact-value"]}>
                 <a
                   href={`tel:${phone.replace(/\s/g, "")}`}
@@ -46,7 +64,12 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ phone, emails }) => {
           {validEmails.map((email, index) => (
             <div className={styles["contact-item"]} key={email}>
               <dt className={styles["contact-label"]}>
-                {validEmails.length > 1 ? `Correo ${index + 1}:` : "Correo:"}
+                {validEmails.length > 1
+                  ? defaultLabels.emailMultiple.replace(
+                      "{number}",
+                      String(index + 1),
+                    )
+                  : defaultLabels.email}
               </dt>
               <dd className={styles["contact-value"]}>
                 <a href={`mailto:${email}`} className={styles["contact-link"]}>

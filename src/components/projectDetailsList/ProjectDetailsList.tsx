@@ -14,7 +14,27 @@ export const ProjectDetailsList: React.FC<ProjectDetailsListProps> = ({
   dimensions,
   price,
   description,
+  labels = {},
+  placeholders = {},
 }) => {
+  const defaultLabels = {
+    title: "Título:",
+    technique: "Técnica:",
+    support: "Soporte:",
+    style: "Estilo:",
+    author: "Autor:",
+    year: "Año:",
+    dimensions: "Dimensiones:",
+    price: "Precio:",
+    description: "Descripción de la obra:",
+    ...labels,
+  };
+
+  const defaultPlaceholders = {
+    notAvailable: "N/A",
+    ...placeholders,
+  };
+
   return (
     <div
       className="project-details"
@@ -22,31 +42,41 @@ export const ProjectDetailsList: React.FC<ProjectDetailsListProps> = ({
       aria-label="Detalles del proyecto"
     >
       <dl className="details-list">
-        <dt className="detail-label">Título:</dt>
-        <dd className="detail-value">{title || "N/A"}</dd>
+        <dt className="detail-label">{defaultLabels.title}</dt>
+        <dd className="detail-value">
+          {title || defaultPlaceholders.notAvailable}
+        </dd>
 
-        <dt className="detail-label">Técnica:</dt>
-        <dd className="detail-value">{technique || "N/A"}</dd>
+        <dt className="detail-label">{defaultLabels.technique}</dt>
+        <dd className="detail-value">
+          {technique || defaultPlaceholders.notAvailable}
+        </dd>
 
-        <dt className="detail-label">Soporte:</dt>
-        <dd className="detail-value">{support || "N/A"}</dd>
+        <dt className="detail-label">{defaultLabels.support}</dt>
+        <dd className="detail-value">
+          {support || defaultPlaceholders.notAvailable}
+        </dd>
 
-        <dt className="detail-label">Estilo:</dt>
-        <dd className="detail-value">{style || "N/A"}</dd>
+        <dt className="detail-label">{defaultLabels.style}</dt>
+        <dd className="detail-value">
+          {style || defaultPlaceholders.notAvailable}
+        </dd>
 
-        <dt className="detail-label">Autor:</dt>
+        <dt className="detail-label">{defaultLabels.author}</dt>
         <dd className="detail-value">{author}</dd>
 
-        <dt className="detail-label">Año:</dt>
+        <dt className="detail-label">{defaultLabels.year}</dt>
         <dd className="detail-value">{year}</dd>
 
-        <dt className="detail-label">Dimensiones:</dt>
-        <dd className="detail-value">{dimensions || "N/A"}</dd>
+        <dt className="detail-label">{defaultLabels.dimensions}</dt>
+        <dd className="detail-value">
+          {dimensions || defaultPlaceholders.notAvailable}
+        </dd>
       </dl>
 
       {/* Precio */}
       <div className="project-price" aria-label="Precio del proyecto">
-        <span className="price-label">Precio:</span>
+        <span className="price-label">{defaultLabels.price}</span>
         <span className="price-value">{price}</span>
       </div>
 
@@ -56,7 +86,7 @@ export const ProjectDetailsList: React.FC<ProjectDetailsListProps> = ({
         aria-labelledby="description-title"
       >
         <H3 id="description-title" className="description-title">
-          Descripción de la obra:
+          {defaultLabels.description}
         </H3>
         <Paragraph className="project-description">{description}</Paragraph>
       </div>

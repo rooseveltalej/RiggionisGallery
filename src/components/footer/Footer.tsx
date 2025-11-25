@@ -28,7 +28,10 @@ const Footer: React.FC<FooterProps> = ({
             {generalTitles.artist_info.values.phone}
           </span>
           <WhatsAppButton
-            text="¡Enviar Mensaje!"
+            text={
+              generalTitles.whatsapp_button_texts?.send_message ||
+              "¡Enviar Mensaje!"
+            }
             phoneNumber={
               generalTitles.artist_info.values.phone ?? "+50600000000"
             }
