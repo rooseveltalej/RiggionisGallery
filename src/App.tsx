@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useLanguage } from "@/hooks";
 import { Footer } from "@/components";
 import { Spinner } from "@/mini-components";
-import { Gallery, ProjectsPage, Contact, ArtistPage, Project } from "@/pages";
+import { Gallery, ProjectsPage, Contact, ArtistPage, Project, QuotePage } from "@/pages";
 import { Navbar } from "@/components/navbar";
 
 function App() {
@@ -31,6 +31,10 @@ function App() {
               path: "/projects",
             },
             {
+              label: languageStrings?.navbar?.routes?.quote || "Cotizar",
+              path: "/cotizar",
+            },
+            {
               label: languageStrings?.navbar?.routes?.contact || "Contacto",
               path: "/contact",
             },
@@ -46,6 +50,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Gallery />} />
             <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/cotizar" element={<QuotePage />} />
             <Route path="/project/:id" element={<Project />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/artist" element={<ArtistPage />} />
