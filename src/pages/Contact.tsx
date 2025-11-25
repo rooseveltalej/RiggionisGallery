@@ -22,9 +22,11 @@ const Contact: React.FC = () => {
     languageStrings?.general_titles?.whatsapp_button_texts?.contact ||
     whatsapp.text;
 
+  const artistPhotoUrl = languageStrings?.general_titles?.artist_info?.artist_photo_url || avatar.imageUrl;
+
   return (
     <div className="contact-page">
-      <Avatar name={avatar.name} imageUrl={avatar.imageUrl} />
+      <Avatar name={avatar.name} imageUrl={artistPhotoUrl} />
       <div className="contact-info">
         <ContactInfo
           phone={contact.phone}

@@ -2,6 +2,7 @@ import "./Artist.css";
 import { Spinner } from "@/mini-components";
 import { useArtistRemoteConfig } from "@/hooks/useArtistRemoteConfig";
 import { useContactConfig } from "@/hooks/useContactConfig";
+import { useLanguage } from "@/hooks";
 import type { CSSVars } from "@/types/css";
 
 import {
@@ -23,6 +24,8 @@ export default function ArtistPage() {
     pageStrings,
     error,
   } = useArtistRemoteConfig();
+  
+  const { languageStrings } = useLanguage();
 
   if (loading) {
     return (
@@ -42,6 +45,8 @@ export default function ArtistPage() {
 
   const waStyle: CSSVars = { "--primary-color": "var(--color-brand)" };
 
+  const artistPhotoUrl = languageStrings?.general_titles?.artist_info?.artist_photo_url || profile?.avatarUrl;
+
   const contact = useContactConfig({
     phone: values?.phone ?? null,
     contactHref: profile?.contact?.href ?? null,
@@ -57,7 +62,7 @@ export default function ArtistPage() {
   return (
     <main className="page">
       <HeroSection
-        avatarUrl={profile?.avatarUrl}
+        avatarUrl={artistPhotoUrl}
         personName={profile?.personName || values?.name || ""}
         title={profile?.title || ""}
         labels={{ name: labels?.name, degree: labels?.degree }}
