@@ -5,9 +5,9 @@ import { useFavorites } from '@/hooks/useFavorites';
 interface FavoritesContextValue {
   favorites: Set<string>;
   isLoaded: boolean;
-  toggleFavorite: (projectId: string) => void;
-  addFavorite: (projectId: string) => void;
-  removeFavorite: (projectId: string) => void;
+  toggleFavorite: (projectId: string, projectName: string) => Promise<void>;
+  addFavorite: (projectId: string, projectName: string) => Promise<void>;
+  removeFavorite: (projectId: string, projectName: string) => Promise<void>;
   isFavorite: (projectId: string) => boolean;
 }
 
@@ -22,9 +22,17 @@ interface FavoritesProviderProps {
  * Manages favorites state across the application using localStorage
  */
 export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }) => {
-  const favoritesData = useFavorites();
 
-  const contextValue = useMemo(() => favoritesData, [favoritesData.favorites, favoritesData.isLoaded]);
+  const { favorites, isLoaded, toggleFavorite, addFavorite, removeFavorite, isFavorite } = useFavorites();
+  const contextValue = useMemo(() => ({
+  favorites,
+  isLoaded,
+  toggleFavorite,
+  addFavorite,
+  removeFavorite,
+  isFavorite,
+  }), [favorites, isLoaded, toggleFavorite, addFavorite, removeFavorite, isFavorite]);
+
   return (
     <FavoritesContext.Provider value={contextValue}>
       {children}
