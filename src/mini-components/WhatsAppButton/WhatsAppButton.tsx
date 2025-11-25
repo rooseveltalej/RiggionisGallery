@@ -3,6 +3,7 @@ import "./WhatsAppButton.css";
 import type { WhatsAppButtonProps } from "./WhatsAppButton.interface";
 import Button from "../Button/Button";
 import { useWhatsAppLink } from "@/hooks";
+import IconWhatsapp from '@/assets/icons/whatsapp.svg';
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   text,
@@ -37,7 +38,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   return (
     <Button
       text={text}
-      icon="/src/assets/icons/whatsapp.svg"
+      icon={IconWhatsapp}
       iconSize={iconSize}
       iconColor={iconColor}
       className="whatsapp-button"
