@@ -2,6 +2,7 @@ import React from 'react';
 import type { SpinnerProps } from './Spinner.interface';
 import './Spinner.css';
 import IconWrapper from '../IconWrapper/IconWrapper';
+import LogoVino from '@/assets/icons/logoVino.svg';
 
 const Spinner: React.FC<SpinnerProps> = ({ 
   className = '' 
@@ -13,7 +14,7 @@ const Spinner: React.FC<SpinnerProps> = ({
       aria-label="Loading"
     >
       <IconWrapper 
-        icon="/icons/logoVino.svg" 
+        icon={LogoVino} 
         size="8rem" 
         className="spinner-icon" 
       />

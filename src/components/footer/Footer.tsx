@@ -2,6 +2,7 @@ import React from 'react';
 import type { FooterProps } from './Footer.interface';
 import './Footer.css';
 import {IconWrapper, WhatsAppButton} from '@/mini-components';
+import IconLinkedin from '@/assets/icons/linkedinFooter.svg';
 
 const Footer: React.FC<FooterProps> = ({ 
   generalTitles,
@@ -55,7 +56,7 @@ const Footer: React.FC<FooterProps> = ({
                     className="footer-linkedin-icon"
                     aria-label={`LinkedIn de ${dev.name}`}
                   >
-                    <IconWrapper icon="/icons/linkedinFooter.svg" size="1.7rem"/>
+                    <IconWrapper icon={IconLinkedin} size="1.7rem"/>
                   </a>
                 )}
               </div>

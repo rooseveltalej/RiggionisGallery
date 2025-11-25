@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import Button from '@/mini-components/Button/Button';
-import IconWhatsapp from '/icons/whatsapp.svg';
+import IconWhatsapp from '@/assets/icons/whatsapp.svg';
 import type { ActionButtonsProps } from  '@/components/projectCard/ActionCard.interface';
 
 export const ActionButtons: React.FC<ActionButtonsProps> = ({

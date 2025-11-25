@@ -20,4 +20,9 @@ export default defineConfig({
       '@/constants': '/src/constants',
     },
   },
+  assetsInclude: ['**/*.svg'],
+  build: {
+    assetsInlineLimit: 0, // Prevent inlining SVGs as data URIs
+  },
 })
+
